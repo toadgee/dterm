@@ -8,9 +8,6 @@ Check these before every release:
 - Window resizing with output
 - Execute in Terminal
 - Copy results and dismiss
-- Unlicensed command restriction works
-- Licenses are accepted
-- Licenses are found automatically
 - Hide dock icon preference
 - Activation hotkey preference
 - Also deactivate if already active preference
