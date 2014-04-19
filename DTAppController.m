@@ -12,8 +12,6 @@
 #import "PathFinder.h"
 #import "RTFWindowController.h"
 
-#import "DSLicenseFileFinder.h"
-
 NSString* DTResultsToKeepKey = @"DTResultsToKeep";
 NSString* DTHotkeyAlsoDeactivatesKey = @"DTHotkeyAlsoDeactivates";
 NSString* DTShowDockIconKey = @"DTShowDockIcon";
@@ -91,17 +89,9 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	if(!AXAPIEnabled() && !AXIsProcessTrusted()) {
 		[self.prefsWindowController showAccessibility:self];
 	}
-//	else if(!IS_REGISTERED) {
-//		[self.prefsWindowController showRegistration:self];
-//	}
 	
 	// Workaround for Growl bug in Growl 1.1
 	[GrowlApplicationBridge setGrowlDelegate:@""];
-	
-//	if(!IS_REGISTERED) {
-//		[[NSGarbageCollector defaultCollector] disableCollectorForPointer:[[DSLicenseFileFinder alloc] initWithUTI:@"net.decimus.dterm.license"
-//																										  delegate:self]];
-//	}
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
@@ -134,9 +124,6 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	if(kCFCompareEqualTo != CFStringCompare(outValue, CFSTR("net.decimus.dterm.license"), kCFCompareCaseInsensitive))
 		return NO;
 	
-//	if(!IS_REGISTERED)
-//		[self.prefsWindowController.regPrefsViewController acceptLicenseURL:fileURL];
-//	[self.prefsWindowController showRegistration:self];
 	return YES;
 }
 
@@ -716,31 +703,5 @@ static const char* DTNumCommandsRunXattrName = "net.decimus.dterm.commands";
 	[currentPrefsValues setValue:[panelFont fontName] forKey:DTFontNameKey];
 	[currentPrefsValues setValue:fontSize forKey:DTFontSizeKey];
 }
-
-//#pragma mark licensing support
-//
-//- (void)licenseFileFinder:(DSLicenseFileFinder*)lff foundLicense:(NSString*)path {
-//	//NSLog(@"notified of license file: %@", path);
-//	
-//	if(IS_REGISTERED) {
-//		[lff stopQuery];
-//		[[NSGarbageCollector defaultCollector] enableCollectorForPointer:lff];
-//		return;
-//	} else if(AskUserIfTheyWantToInstallLicenseFile(path)) {
-//		[self.prefsWindowController.regPrefsViewController acceptLicenseURL:[NSURL fileURLWithPath:path]];
-//	}
-//}
-//
-//- (BOOL)installLicenseFromData:(NSData*)licData {
-//	[self.prefsWindowController.regPrefsViewController willChangeValueForKey:@"isRegistered"];
-//	[[NSUserDefaults standardUserDefaults] setObject:licData forKey:DTLicenseDataKey];
-//	[self.prefsWindowController.regPrefsViewController didChangeValueForKey:@"isRegistered"];
-//	
-//	return IS_REGISTERED;
-//}
-//
-//- (NSString*)storeProductID {
-//	return @"6";
-//}
 
 @end

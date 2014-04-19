@@ -112,18 +112,7 @@ static NSString* DTPreferencesContext = @"DTPreferencesContext";
 	// Set the state variables
 	self.workingDirectory = wdPath;
 	self.selectedURLs = selection;
-	
-//	DTAppController* appController = [NSApp delegate];
-//	if(!IS_REGISTERED && (appController.numCommandsExecuted >= 45)) {
-//		long remainingCommands = (50 - appController.numCommandsExecuted);
-//		if(remainingCommands == 1)
-//			self.command = NSLocalizedString(@"1 command remaining in demo", NULL);
-//		else
-//			self.command = [NSString stringWithFormat:NSLocalizedString(@"%ld commands remaining in demo", NULL),
-//							(long)remainingCommands];
-//			
-//	}
-	
+		
 	// Hide window
 	NSWindow* window = [self window];
 	[window setAlphaValue:0.0];
@@ -248,20 +237,12 @@ static NSString* DTPreferencesContext = @"DTPreferencesContext";
 	
 	DTAppController* appController = [NSApp delegate];
 	
-//	if(IS_REGISTERED || (appController.numCommandsExecuted < 50)) {
-		appController.numCommandsExecuted++;
-		DTRunManager* runManager = [[DTRunManager alloc] initWithWD:self.workingDirectory
-														  selection:self.selectedURLs
-															command:self.command
-														demoExpired:NO];
-		[runsController addObject:runManager];
-//	} else {
-//		DTRunManager* runManager = [[DTRunManager alloc] initWithWD:NSHomeDirectory()
-//														  selection:[NSArray array]
-//															command:self.command
-//														demoExpired:YES];
-//		[runsController addObject:runManager];
-//	}
+    appController.numCommandsExecuted++;
+    DTRunManager* runManager = [[DTRunManager alloc] initWithWD:self.workingDirectory
+                                                      selection:self.selectedURLs
+                                                        command:self.command
+                                                    demoExpired:NO];
+    [runsController addObject:runManager];
 }
 
 - (IBAction)executeCommandInTerminal:(id)sender {
@@ -272,7 +253,6 @@ static NSString* DTPreferencesContext = @"DTPreferencesContext";
 	DTAppController* appController = [NSApp delegate];
 	NSString* cdCommandString = [NSString stringWithFormat:@"cd %@", escapedPath(self.workingDirectory)];
 	
-//	if(IS_REGISTERED || (appController.numCommandsExecuted <= 50)) {
 	appController.numCommandsExecuted++;
 	
 	id iTerm = [SBApplication applicationWithBundleIdentifier:@"net.sourceforge.iTerm"];
@@ -332,14 +312,6 @@ static NSString* DTPreferencesContext = @"DTPreferencesContext";
 		
 		[terminal activate];
 	}
-	
-//	} else {
-//		DTRunManager* runManager = [[DTRunManager alloc] initWithWD:NSHomeDirectory()
-//														  selection:[NSArray array]
-//															command:self.command
-//														demoExpired:YES];
-//		[runsController addObject:runManager];
-//	}
 }
 
 

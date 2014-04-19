@@ -448,13 +448,7 @@
 		25B10DCE0D29D2B40034B100 /* DSUniqueTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSUniqueTextStorage.h; sourceTree = "<group>"; };
 		25B10DCF0D29D2B40034B100 /* DSUniqueTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSUniqueTextStorage.m; sourceTree = "<group>"; };
 		25BEBAE70D171C8D00F7A797 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/DTermHelp; sourceTree = "<group>"; };
-		25E006360DBFC0200092F1E5 /* LicensingAutoDL.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LicensingAutoDL.xib; sourceTree = "<group>"; };
-		25E0063B0DBFC3D80092F1E5 /* DSLicenseAutoDLWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLicenseAutoDLWindowController.h; sourceTree = "<group>"; };
-		25E0063C0DBFC3D80092F1E5 /* DSLicenseAutoDLWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLicenseAutoDLWindowController.m; sourceTree = "<group>"; };
-		25E0063E0DBFC7E50092F1E5 /* GetPrimaryMACAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPrimaryMACAddress.m; sourceTree = "<group>"; };
 		25E007090DBFCA280092F1E5 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		25E007A60DC0148B0092F1E5 /* DSLicenseFileFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLicenseFileFinder.h; sourceTree = "<group>"; };
-		25E007A70DC0148B0092F1E5 /* DSLicenseFileFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLicenseFileFinder.m; sourceTree = "<group>"; };
 		25E651520CF3B0860072997F /* DTPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTPrefsWindowController.h; sourceTree = "<group>"; };
 		25E651530CF3B0860072997F /* DTPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPrefsWindowController.m; sourceTree = "<group>"; };
 		25E651560CF3B0B80072997F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -780,35 +774,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		25E006310DBFBEAE0092F1E5 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				25E006350DBFBFEB0092F1E5 /* Licensing */,
-				25E007A00DC012180092F1E5 /* Utilities */,
-			);
-			path = Shared;
-			sourceTree = SOURCE_ROOT;
-		};
-		25E006350DBFBFEB0092F1E5 /* Licensing */ = {
-			isa = PBXGroup;
-			children = (
-				25E006360DBFC0200092F1E5 /* LicensingAutoDL.xib */,
-				25E0063B0DBFC3D80092F1E5 /* DSLicenseAutoDLWindowController.h */,
-				25E0063C0DBFC3D80092F1E5 /* DSLicenseAutoDLWindowController.m */,
-				25E0063E0DBFC7E50092F1E5 /* GetPrimaryMACAddress.m */,
-				25E007A60DC0148B0092F1E5 /* DSLicenseFileFinder.h */,
-				25E007A70DC0148B0092F1E5 /* DSLicenseFileFinder.m */,
-			);
-			path = Licensing;
-			sourceTree = "<group>";
-		};
-		25E007A00DC012180092F1E5 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		25E6515B0CF3B1440072997F /* ShortcutRecorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,7 +812,6 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				25E006310DBFBEAE0092F1E5 /* Shared */,
 				2525DE780D234B2C009A5592 /* Growl */,
 				25A871FC0D0C7FC600D88D65 /* SparklePlus-Customized */,
 				25E6515B0CF3B1440072997F /* ShortcutRecorder */,
