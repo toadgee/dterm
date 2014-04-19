@@ -4,7 +4,6 @@
 #import "DTAppController.h"
 
 #import "DSAppleScriptUtilities.h"
-#import "DTPrefsRegController.h"
 #import "DTPrefsWindowController.h"
 #import "DTTermWindowController.h"
 #import "Finder.h"

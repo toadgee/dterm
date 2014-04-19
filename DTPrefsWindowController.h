@@ -1,7 +1,6 @@
 //  DTPrefsWindowController.h
 //  Copyright (c) 2007-2010 Decimus Software, Inc. All rights reserved.
 
-//@class DTPrefsRegController;
 @class DTPrefsAXController;
 @class SRRecorderControl;
 
@@ -15,11 +14,9 @@
 #endif
 	IBOutlet NSView* regPrefsView;
 	
-//	IBOutlet DTPrefsRegController* regPrefsViewController;
 	IBOutlet DTPrefsAXController* axPrefsController;
 }
 
-//@property DTPrefsRegController* regPrefsViewController;
 @property DTPrefsAXController* axPrefsController;
 
 - (IBAction)showPrefs:(id)sender;

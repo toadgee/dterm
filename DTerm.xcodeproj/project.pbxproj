@@ -297,8 +297,6 @@
 		2511B8640D16D201001FDD59 /* DTermLicense.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DTermLicense.icns; sourceTree = "<group>"; };
 		251453C10D720F35000B6100 /* FontNameToDisplayNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontNameToDisplayNameTransformer.m; sourceTree = "<group>"; };
 		251453C20D720F35000B6100 /* FontNameToDisplayNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontNameToDisplayNameTransformer.h; sourceTree = "<group>"; };
-		251AE08A0D0E23A40029522C /* DTRegDropBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTRegDropBox.h; sourceTree = "<group>"; };
-		251AE08B0D0E23A40029522C /* DTRegDropBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTRegDropBox.m; sourceTree = "<group>"; };
 		251D0E5D0D7CA32E00E9E49D /* DTAntialiasControllableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAntialiasControllableTextField.h; sourceTree = "<group>"; };
 		251D0E5E0D7CA32E00E9E49D /* DTAntialiasControllableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTAntialiasControllableTextField.m; sourceTree = "<group>"; };
 		25229FF30CF8BEDE00DF702E /* DTTermWindowContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTermWindowContentView.h; sourceTree = "<group>"; };
@@ -358,8 +356,6 @@
 		253645F90D2D9F050056613C /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/SUUpdateAlert.nib; sourceTree = "<group>"; };
 		253645FB0D2D9F050056613C /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SUUpdateAlert.strings; sourceTree = "<group>"; };
 		254036C510FFCDCC0076CE83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		254315050D0E51EF001E9537 /* NoDragImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoDragImageView.h; path = Utilities/NoDragImageView.h; sourceTree = SOURCE_ROOT; };
-		254315060D0E51EF001E9537 /* NoDragImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoDragImageView.m; path = Utilities/NoDragImageView.m; sourceTree = SOURCE_ROOT; };
 		2559EB0E0D36EC58002BCF4E /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinder.h; sourceTree = "<group>"; };
 		257158E70CFF9A99007181F4 /* DTShellUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTShellUtilities.h; sourceTree = "<group>"; };
 		257158E80CFF9A99007181F4 /* DTShellUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTShellUtilities.m; sourceTree = "<group>"; };
@@ -445,10 +441,6 @@
 		25A872E00D0C80C200D88D65 /* SUStatus.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SUStatus.nib; sourceTree = "<group>"; };
 		25A872E10D0C80C200D88D65 /* SUProfileInfo.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SUProfileInfo.nib; sourceTree = "<group>"; };
 		25A872E20D0C80C200D88D65 /* SUModelTranslation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SUModelTranslation.plist; sourceTree = "<group>"; };
-		25A873AF0D0CC85500D88D65 /* Licensing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Licensing.h; path = Licensing/Licensing.h; sourceTree = SOURCE_ROOT; };
-		25A873B00D0CC85500D88D65 /* Licensing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Licensing.m; path = Licensing/Licensing.m; sourceTree = SOURCE_ROOT; };
-		25A873B20D0CC8DF00D88D65 /* DTPrefsRegController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTPrefsRegController.h; sourceTree = "<group>"; };
-		25A873B30D0CC8DF00D88D65 /* DTPrefsRegController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPrefsRegController.m; sourceTree = "<group>"; };
 		25A8745B0D0CE00400D88D65 /* DropLicenseFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DropLicenseFile.png; path = Images/DropLicenseFile.png; sourceTree = SOURCE_ROOT; };
 		25AE84210CF0D208008F96FD /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TermWindow.xib; sourceTree = "<group>"; };
 		25AE84310CF0D5AA008F96FD /* DTTermWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTermWindowController.h; sourceTree = "<group>"; };
@@ -791,21 +783,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		25A873A30D0CC83100D88D65 /* Licensing */ = {
-			isa = PBXGroup;
-			children = (
-				25A873AF0D0CC85500D88D65 /* Licensing.h */,
-				25A873B00D0CC85500D88D65 /* Licensing.m */,
-				25A873B20D0CC8DF00D88D65 /* DTPrefsRegController.h */,
-				25A873B30D0CC8DF00D88D65 /* DTPrefsRegController.m */,
-				251AE08A0D0E23A40029522C /* DTRegDropBox.h */,
-				251AE08B0D0E23A40029522C /* DTRegDropBox.m */,
-				254315050D0E51EF001E9537 /* NoDragImageView.h */,
-				254315060D0E51EF001E9537 /* NoDragImageView.m */,
-			);
-			path = Licensing;
-			sourceTree = SOURCE_ROOT;
-		};
 		25E006310DBFBEAE0092F1E5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,7 +837,6 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				25229E1A0CF8981700DF702E /* Term Window */,
 				2529F6B90CF4CCCE00CDF456 /* Utilities */,
-				25A873A30D0CC83100D88D65 /* Licensing */,
 				2500756C0CF0C1B700949B95 /* ScriptingBridge */,
 				257159260CFFAB1E007181F4 /* Tests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
