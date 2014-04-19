@@ -7,8 +7,6 @@
 #import "DTPrefsWindowController.h"
 #import "DTTermWindowController.h"
 #import "Finder.h"
-#import "GrowlApplicationBridge.h"
-//#import "Licensing.h"
 #import "PathFinder.h"
 #import "RTFWindowController.h"
 
@@ -89,9 +87,6 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	if(!AXAPIEnabled() && !AXIsProcessTrusted()) {
 		[self.prefsWindowController showAccessibility:self];
 	}
-	
-	// Workaround for Growl bug in Growl 1.1
-	[GrowlApplicationBridge setGrowlDelegate:@""];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
