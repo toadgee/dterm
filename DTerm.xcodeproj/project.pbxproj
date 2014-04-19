@@ -25,7 +25,6 @@
 		2500751C0CF0B2B600949B95 /* DTAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2500751B0CF0B2B600949B95 /* DTAppController.m */; };
 		250075200CF0B33600949B95 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2500751E0CF0B33600949B95 /* MainMenu.xib */; };
 		250075730CF0C24200949B95 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250075720CF0C24200949B95 /* ScriptingBridge.framework */; };
-		2511B8650D16D201001FDD59 /* DTermLicense.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2511B8640D16D201001FDD59 /* DTermLicense.icns */; };
 		251453C30D720F35000B6100 /* FontNameToDisplayNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 251453C10D720F35000B6100 /* FontNameToDisplayNameTransformer.m */; };
 		251D0E5F0D7CA32E00E9E49D /* DTAntialiasControllableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 251D0E5E0D7CA32E00E9E49D /* DTAntialiasControllableTextField.m */; };
 		25229FF50CF8BEDE00DF702E /* DTTermWindowContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25229FF40CF8BEDE00DF702E /* DTTermWindowContentView.m */; };
@@ -61,12 +60,6 @@
 		257355F30D1087D6008E7D0F /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 257355F20D1087D6008E7D0F /* License.rtf */; };
 		257355F60D108839008E7D0F /* RTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257355F50D108839008E7D0F /* RTFWindowController.m */; };
 		257355FC0D108999008E7D0F /* RTFWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257355FB0D108999008E7D0F /* RTFWindow.xib */; };
-		2573565B0D1098A2008E7D0F /* logo_paypal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356550D1098A2008E7D0F /* logo_paypal.gif */; };
-		2573565C0D1098A2008E7D0F /* logo_ccAmex.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356560D1098A2008E7D0F /* logo_ccAmex.gif */; };
-		2573565D0D1098A2008E7D0F /* logo_ccDiscover.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356570D1098A2008E7D0F /* logo_ccDiscover.gif */; };
-		2573565E0D1098A2008E7D0F /* logo_ccEcheck.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356580D1098A2008E7D0F /* logo_ccEcheck.gif */; };
-		2573565F0D1098A2008E7D0F /* logo_ccMC.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356590D1098A2008E7D0F /* logo_ccMC.gif */; };
-		257356600D1098A2008E7D0F /* logo_ccVisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2573565A0D1098A2008E7D0F /* logo_ccVisa.gif */; };
 		2573569C0D10BBAD008E7D0F /* DSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569B0D10BBAD008E7D0F /* DSUtilities.m */; };
 		257356A00D10BD1A008E7D0F /* DSPOSTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569F0D10BD1A008E7D0F /* DSPOSTManager.m */; };
 		257357BB0D10F231008E7D0F /* DSNumberFormatterTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */; };
@@ -108,7 +101,6 @@
 		25A872E30D0C80C200D88D65 /* SUStatus.nib in Resources */ = {isa = PBXBuildFile; fileRef = 25A872E00D0C80C200D88D65 /* SUStatus.nib */; };
 		25A872E40D0C80C200D88D65 /* SUProfileInfo.nib in Resources */ = {isa = PBXBuildFile; fileRef = 25A872E10D0C80C200D88D65 /* SUProfileInfo.nib */; };
 		25A872E50D0C80C200D88D65 /* SUModelTranslation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25A872E20D0C80C200D88D65 /* SUModelTranslation.plist */; };
-		25A8745C0D0CE00400D88D65 /* DropLicenseFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A8745B0D0CE00400D88D65 /* DropLicenseFile.png */; };
 		25AE84220CF0D208008F96FD /* TermWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25AE84200CF0D208008F96FD /* TermWindow.xib */; };
 		25AE84330CF0D5AA008F96FD /* DTTermWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AE84320CF0D5AA008F96FD /* DTTermWindowController.m */; };
 		25B10DD00D29D2B40034B100 /* DSUniqueTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B10DCF0D29D2B40034B100 /* DSUniqueTextStorage.m */; };
@@ -140,15 +132,7 @@
 		25FA3B0D12E6118400DE744A /* ProgressWhite-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD50D03598500255595 /* ProgressWhite-8.png */; };
 		25FA3B0E12E6118400DE744A /* ProgressWhite-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD60D03598500255595 /* ProgressWhite-9.png */; };
 		25FA3B0F12E6118400DE744A /* ProgressWhite-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD70D03598500255595 /* ProgressWhite-10.png */; };
-		25FA3B1412E6118400DE744A /* DropLicenseFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A8745B0D0CE00400D88D65 /* DropLicenseFile.png */; };
 		25FA3B1712E6118400DE744A /* RTFWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257355FB0D108999008E7D0F /* RTFWindow.xib */; };
-		25FA3B1812E6118400DE744A /* logo_paypal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356550D1098A2008E7D0F /* logo_paypal.gif */; };
-		25FA3B1912E6118400DE744A /* logo_ccAmex.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356560D1098A2008E7D0F /* logo_ccAmex.gif */; };
-		25FA3B1A12E6118400DE744A /* logo_ccDiscover.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356570D1098A2008E7D0F /* logo_ccDiscover.gif */; };
-		25FA3B1B12E6118400DE744A /* logo_ccEcheck.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356580D1098A2008E7D0F /* logo_ccEcheck.gif */; };
-		25FA3B1C12E6118400DE744A /* logo_ccMC.gif in Resources */ = {isa = PBXBuildFile; fileRef = 257356590D1098A2008E7D0F /* logo_ccMC.gif */; };
-		25FA3B1D12E6118400DE744A /* logo_ccVisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2573565A0D1098A2008E7D0F /* logo_ccVisa.gif */; };
-		25FA3B1E12E6118400DE744A /* DTermLicense.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2511B8640D16D201001FDD59 /* DTermLicense.icns */; };
 		25FA3B1F12E6118400DE744A /* DTermHelp in Resources */ = {isa = PBXBuildFile; fileRef = 25BEBAE60D171C8D00F7A797 /* DTermHelp */; };
 		25FA3B2012E6118400DE744A /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 2525DE5E0D234AE0009A5592 /* Growl Registration Ticket.growlRegDict */; };
 		25FA3B2112E6118400DE744A /* GrowlInstallation.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2525E08D0D23547D009A5592 /* GrowlInstallation.strings */; };
@@ -294,7 +278,6 @@
 		2500751F0CF0B33600949B95 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2500756D0CF0C1CF00949B95 /* Finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finder.h; sourceTree = "<group>"; };
 		250075720CF0C24200949B95 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
-		2511B8640D16D201001FDD59 /* DTermLicense.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DTermLicense.icns; sourceTree = "<group>"; };
 		251453C10D720F35000B6100 /* FontNameToDisplayNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontNameToDisplayNameTransformer.m; sourceTree = "<group>"; };
 		251453C20D720F35000B6100 /* FontNameToDisplayNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontNameToDisplayNameTransformer.h; sourceTree = "<group>"; };
 		251D0E5D0D7CA32E00E9E49D /* DTAntialiasControllableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAntialiasControllableTextField.h; sourceTree = "<group>"; };
@@ -368,12 +351,6 @@
 		257355F40D108839008E7D0F /* RTFWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFWindowController.h; sourceTree = "<group>"; };
 		257355F50D108839008E7D0F /* RTFWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFWindowController.m; sourceTree = "<group>"; };
 		257355FB0D108999008E7D0F /* RTFWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTFWindow.xib; sourceTree = "<group>"; };
-		257356550D1098A2008E7D0F /* logo_paypal.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo_paypal.gif; sourceTree = "<group>"; };
-		257356560D1098A2008E7D0F /* logo_ccAmex.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo_ccAmex.gif; sourceTree = "<group>"; };
-		257356570D1098A2008E7D0F /* logo_ccDiscover.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo_ccDiscover.gif; sourceTree = "<group>"; };
-		257356580D1098A2008E7D0F /* logo_ccEcheck.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo_ccEcheck.gif; sourceTree = "<group>"; };
-		257356590D1098A2008E7D0F /* logo_ccMC.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo_ccMC.gif; sourceTree = "<group>"; };
-		2573565A0D1098A2008E7D0F /* logo_ccVisa.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo_ccVisa.gif; sourceTree = "<group>"; };
 		2573569A0D10BBAD008E7D0F /* DSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSUtilities.h; sourceTree = "<group>"; };
 		2573569B0D10BBAD008E7D0F /* DSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSUtilities.m; sourceTree = "<group>"; };
 		2573569E0D10BD1A008E7D0F /* DSPOSTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPOSTManager.h; sourceTree = "<group>"; };
@@ -441,7 +418,6 @@
 		25A872E00D0C80C200D88D65 /* SUStatus.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SUStatus.nib; sourceTree = "<group>"; };
 		25A872E10D0C80C200D88D65 /* SUProfileInfo.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SUProfileInfo.nib; sourceTree = "<group>"; };
 		25A872E20D0C80C200D88D65 /* SUModelTranslation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SUModelTranslation.plist; sourceTree = "<group>"; };
-		25A8745B0D0CE00400D88D65 /* DropLicenseFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DropLicenseFile.png; path = Images/DropLicenseFile.png; sourceTree = SOURCE_ROOT; };
 		25AE84210CF0D208008F96FD /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TermWindow.xib; sourceTree = "<group>"; };
 		25AE84310CF0D5AA008F96FD /* DTTermWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTermWindowController.h; sourceTree = "<group>"; };
 		25AE84320CF0D5AA008F96FD /* DTTermWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTermWindowController.m; sourceTree = "<group>"; };
@@ -680,15 +656,7 @@
 		2529F84B0CF5F67200CDF456 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				257356550D1098A2008E7D0F /* logo_paypal.gif */,
-				257356560D1098A2008E7D0F /* logo_ccAmex.gif */,
-				257356570D1098A2008E7D0F /* logo_ccDiscover.gif */,
-				257356580D1098A2008E7D0F /* logo_ccEcheck.gif */,
-				257356590D1098A2008E7D0F /* logo_ccMC.gif */,
-				2573565A0D1098A2008E7D0F /* logo_ccVisa.gif */,
-				25A8745B0D0CE00400D88D65 /* DropLicenseFile.png */,
 				2529F8500CF5F6AB00CDF456 /* DTerm.icns */,
-				2511B8640D16D201001FDD59 /* DTermLicense.icns */,
 				25878BCC0D03598500255595 /* ProgressWhite-11.png */,
 				25878BCD0D03598500255595 /* ProgressWhite-0.png */,
 				25878BCE0D03598500255595 /* ProgressWhite-1.png */,
@@ -1020,15 +988,7 @@
 				25FA3B0D12E6118400DE744A /* ProgressWhite-8.png in Resources */,
 				25FA3B0E12E6118400DE744A /* ProgressWhite-9.png in Resources */,
 				25FA3B0F12E6118400DE744A /* ProgressWhite-10.png in Resources */,
-				25FA3B1412E6118400DE744A /* DropLicenseFile.png in Resources */,
 				25FA3B1712E6118400DE744A /* RTFWindow.xib in Resources */,
-				25FA3B1812E6118400DE744A /* logo_paypal.gif in Resources */,
-				25FA3B1912E6118400DE744A /* logo_ccAmex.gif in Resources */,
-				25FA3B1A12E6118400DE744A /* logo_ccDiscover.gif in Resources */,
-				25FA3B1B12E6118400DE744A /* logo_ccEcheck.gif in Resources */,
-				25FA3B1C12E6118400DE744A /* logo_ccMC.gif in Resources */,
-				25FA3B1D12E6118400DE744A /* logo_ccVisa.gif in Resources */,
-				25FA3B1E12E6118400DE744A /* DTermLicense.icns in Resources */,
 				25FA3B1F12E6118400DE744A /* DTermHelp in Resources */,
 				25FA3B2012E6118400DE744A /* Growl Registration Ticket.growlRegDict in Resources */,
 				25FA3B2112E6118400DE744A /* GrowlInstallation.strings in Resources */,
@@ -1067,17 +1027,9 @@
 				25A872E30D0C80C200D88D65 /* SUStatus.nib in Resources */,
 				25A872E40D0C80C200D88D65 /* SUProfileInfo.nib in Resources */,
 				25A872E50D0C80C200D88D65 /* SUModelTranslation.plist in Resources */,
-				25A8745C0D0CE00400D88D65 /* DropLicenseFile.png in Resources */,
 				257355CE0D1085B5008E7D0F /* Acknowledgments.rtf in Resources */,
 				257355F30D1087D6008E7D0F /* License.rtf in Resources */,
 				257355FC0D108999008E7D0F /* RTFWindow.xib in Resources */,
-				2573565B0D1098A2008E7D0F /* logo_paypal.gif in Resources */,
-				2573565C0D1098A2008E7D0F /* logo_ccAmex.gif in Resources */,
-				2573565D0D1098A2008E7D0F /* logo_ccDiscover.gif in Resources */,
-				2573565E0D1098A2008E7D0F /* logo_ccEcheck.gif in Resources */,
-				2573565F0D1098A2008E7D0F /* logo_ccMC.gif in Resources */,
-				257356600D1098A2008E7D0F /* logo_ccVisa.gif in Resources */,
-				2511B8650D16D201001FDD59 /* DTermLicense.icns in Resources */,
 				25BEBAFC0D171C8D00F7A797 /* DTermHelp in Resources */,
 				2525DE5F0D234AE0009A5592 /* Growl Registration Ticket.growlRegDict in Resources */,
 				2525E0B90D23547D009A5592 /* GrowlInstallation.strings in Resources */,
