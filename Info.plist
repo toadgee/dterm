@@ -4,25 +4,6 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>DTermLicense</string>
-			<key>CFBundleTypeName</key>
-			<string>net.decimus.dterm.license</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>net.decimus.dterm.license</string>
-			</array>
-			<key>NSDocumentClass</key>
-			<string>DTLicenseFile</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>XML</string>
-		</dict>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
@@ -83,28 +64,5 @@
 	<false/>
 	<key>SUFeedURL</key>
 	<string>http://decimus.net/appcasts/DTerm.xml</string>
-	<key>UTExportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.xml</string>
-				<string>public.content</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>DTerm License</string>
-			<key>UTTypeIconFile</key>
-			<string>DTermLicense.icns</string>
-			<key>UTTypeIdentifier</key>
-			<string>net.decimus.dterm.license</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>dtermlicense</string>
-				</array>
-			</dict>
-		</dict>
-	</array>
 </dict>
 </plist>
