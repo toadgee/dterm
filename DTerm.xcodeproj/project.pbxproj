@@ -469,9 +469,6 @@
 		25E651780CF3B1620072997F /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRValidator.h; sourceTree = "<group>"; };
 		25E651790CF3B1620072997F /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRValidator.m; sourceTree = "<group>"; };
 		25E652390CF3DA080072997F /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		25E6523E0CF3DA200072997F /* Dutch */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		25E6523F0CF3DA260072997F /* German */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		25E652400CF3DA2C0072997F /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		25E6DA3C0EB2623F003C1E84 /* DSAppleScriptUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAppleScriptUtilities.h; sourceTree = "<group>"; };
 		25E6DA3D0EB2623F003C1E84 /* DSAppleScriptUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAppleScriptUtilities.m; sourceTree = "<group>"; };
 		25FA394212E5E47100DE744A /* iTerm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTerm2.h; sourceTree = "<group>"; };
@@ -1461,9 +1458,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				25E652390CF3DA080072997F /* English */,
-				25E6523E0CF3DA200072997F /* Dutch */,
-				25E6523F0CF3DA260072997F /* German */,
-				25E652400CF3DA2C0072997F /* sv */,
 			);
 			name = ShortcutRecorder.strings;
 			path = ../..;
