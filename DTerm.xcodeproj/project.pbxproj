@@ -47,12 +47,6 @@
 		2529F7CC0CF4D71900CDF456 /* setaxtrusted in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2529F7C30CF4D6F100CDF456 /* setaxtrusted */; };
 		2529F7CE0CF4D73600CDF456 /* setaxtrusted.m in Sources */ = {isa = PBXBuildFile; fileRef = 2529F7CD0CF4D73600CDF456 /* setaxtrusted.m */; };
 		2529F8510CF5F6AB00CDF456 /* DTerm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2529F8500CF5F6AB00CDF456 /* DTerm.icns */; };
-		253645FC0D2D9F050056613C /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 253645F00D2D9F050056613C /* Sparkle.strings */; };
-		253645FD0D2D9F050056613C /* SUAutomaticUpdateAlert.nib in Resources */ = {isa = PBXBuildFile; fileRef = 253645F20D2D9F050056613C /* SUAutomaticUpdateAlert.nib */; };
-		253645FE0D2D9F050056613C /* SUAutomaticUpdateAlert.strings in Resources */ = {isa = PBXBuildFile; fileRef = 253645F40D2D9F050056613C /* SUAutomaticUpdateAlert.strings */; };
-		253645FF0D2D9F050056613C /* SUStatus.strings in Resources */ = {isa = PBXBuildFile; fileRef = 253645F60D2D9F050056613C /* SUStatus.strings */; };
-		253646000D2D9F050056613C /* SUUpdateAlert.nib in Resources */ = {isa = PBXBuildFile; fileRef = 253645F80D2D9F050056613C /* SUUpdateAlert.nib */; };
-		253646010D2D9F050056613C /* SUUpdateAlert.strings in Resources */ = {isa = PBXBuildFile; fileRef = 253645FA0D2D9F050056613C /* SUUpdateAlert.strings */; };
 		254036C610FFCDCC0076CE83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 254036C410FFCDCC0076CE83 /* Localizable.strings */; };
 		257158E90CFF9A99007181F4 /* DTShellUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 257158E80CFF9A99007181F4 /* DTShellUtilities.m */; };
 		257159290CFFAB52007181F4 /* ShellUtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 257159280CFFAB52007181F4 /* ShellUtilitiesTests.m */; };
@@ -82,25 +76,6 @@
 		25878BE30D03598500255595 /* ProgressWhite-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD70D03598500255595 /* ProgressWhite-10.png */; };
 		25A870C80D0B03E300D88D65 /* Updates Prefs.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A870C70D0B03E300D88D65 /* Updates Prefs.png */; };
 		25A871A10D0B157F00D88D65 /* DTPrefsAXController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A871A00D0B157F00D88D65 /* DTPrefsAXController.m */; };
-		25A872140D0C805300D88D65 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 25A872040D0C805300D88D65 /* md5.c */; };
-		25A872150D0C805300D88D65 /* NSString+extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872050D0C805300D88D65 /* NSString+extras.m */; };
-		25A872160D0C805300D88D65 /* RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872060D0C805300D88D65 /* RSS.m */; };
-		25A872170D0C805300D88D65 /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872070D0C805300D88D65 /* SUUpdater.m */; };
-		25A872180D0C805300D88D65 /* NSFileManager+Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872080D0C805300D88D65 /* NSFileManager+Authentication.m */; };
-		25A872190D0C805300D88D65 /* SUAppcast.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872090D0C805300D88D65 /* SUAppcast.m */; };
-		25A8721A0D0C805300D88D65 /* SUUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A8720A0D0C805300D88D65 /* SUUtilities.m */; };
-		25A8721B0D0C805300D88D65 /* SUAppcastItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A8720B0D0C805300D88D65 /* SUAppcastItem.m */; };
-		25A8721C0D0C805300D88D65 /* SUUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A8720C0D0C805300D88D65 /* SUUpdateAlert.m */; };
-		25A8721D0D0C805300D88D65 /* SUStatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A8720D0D0C805300D88D65 /* SUStatusController.m */; };
-		25A8721E0D0C805300D88D65 /* NSFileManager+Verification.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A8720E0D0C805300D88D65 /* NSFileManager+Verification.m */; };
-		25A8721F0D0C805300D88D65 /* NSApplication+AppCopies.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A8720F0D0C805300D88D65 /* NSApplication+AppCopies.m */; };
-		25A872200D0C805300D88D65 /* SUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872100D0C805300D88D65 /* SUConstants.m */; };
-		25A872210D0C805300D88D65 /* SUUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872110D0C805300D88D65 /* SUUnarchiver.m */; };
-		25A872220D0C805300D88D65 /* SUAutomaticUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872120D0C805300D88D65 /* SUAutomaticUpdateAlert.m */; };
-		25A872230D0C805300D88D65 /* SUStatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A872130D0C805300D88D65 /* SUStatusChecker.m */; };
-		25A872E30D0C80C200D88D65 /* SUStatus.nib in Resources */ = {isa = PBXBuildFile; fileRef = 25A872E00D0C80C200D88D65 /* SUStatus.nib */; };
-		25A872E40D0C80C200D88D65 /* SUProfileInfo.nib in Resources */ = {isa = PBXBuildFile; fileRef = 25A872E10D0C80C200D88D65 /* SUProfileInfo.nib */; };
-		25A872E50D0C80C200D88D65 /* SUModelTranslation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25A872E20D0C80C200D88D65 /* SUModelTranslation.plist */; };
 		25AE84220CF0D208008F96FD /* TermWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25AE84200CF0D208008F96FD /* TermWindow.xib */; };
 		25AE84330CF0D5AA008F96FD /* DTTermWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AE84320CF0D5AA008F96FD /* DTTermWindowController.m */; };
 		25B10DD00D29D2B40034B100 /* DSUniqueTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B10DCF0D29D2B40034B100 /* DSUniqueTextStorage.m */; };
@@ -382,42 +357,6 @@
 		25A870C70D0B03E300D88D65 /* Updates Prefs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Updates Prefs.png"; path = "Images/Updates Prefs.png"; sourceTree = SOURCE_ROOT; };
 		25A8719F0D0B157F00D88D65 /* DTPrefsAXController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTPrefsAXController.h; sourceTree = SOURCE_ROOT; };
 		25A871A00D0B157F00D88D65 /* DTPrefsAXController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPrefsAXController.m; sourceTree = SOURCE_ROOT; };
-		25A872040D0C805300D88D65 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
-		25A872050D0C805300D88D65 /* NSString+extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+extras.m"; sourceTree = "<group>"; };
-		25A872060D0C805300D88D65 /* RSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSS.m; sourceTree = "<group>"; };
-		25A872070D0C805300D88D65 /* SUUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdater.m; sourceTree = "<group>"; };
-		25A872080D0C805300D88D65 /* NSFileManager+Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Authentication.m"; sourceTree = "<group>"; };
-		25A872090D0C805300D88D65 /* SUAppcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUAppcast.m; sourceTree = "<group>"; };
-		25A8720A0D0C805300D88D65 /* SUUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUtilities.m; sourceTree = "<group>"; };
-		25A8720B0D0C805300D88D65 /* SUAppcastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUAppcastItem.m; sourceTree = "<group>"; };
-		25A8720C0D0C805300D88D65 /* SUUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdateAlert.m; sourceTree = "<group>"; };
-		25A8720D0D0C805300D88D65 /* SUStatusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUStatusController.m; sourceTree = "<group>"; };
-		25A8720E0D0C805300D88D65 /* NSFileManager+Verification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Verification.m"; sourceTree = "<group>"; };
-		25A8720F0D0C805300D88D65 /* NSApplication+AppCopies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+AppCopies.m"; sourceTree = "<group>"; };
-		25A872100D0C805300D88D65 /* SUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUConstants.m; sourceTree = "<group>"; };
-		25A872110D0C805300D88D65 /* SUUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUnarchiver.m; sourceTree = "<group>"; };
-		25A872120D0C805300D88D65 /* SUAutomaticUpdateAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUAutomaticUpdateAlert.m; sourceTree = "<group>"; };
-		25A872130D0C805300D88D65 /* SUStatusChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUStatusChecker.m; sourceTree = "<group>"; };
-		25A872CC0D0C809F00D88D65 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		25A872CD0D0C809F00D88D65 /* NSString+extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+extras.h"; sourceTree = "<group>"; };
-		25A872CE0D0C809F00D88D65 /* RSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSS.h; sourceTree = "<group>"; };
-		25A872CF0D0C809F00D88D65 /* SUUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdater.h; sourceTree = "<group>"; };
-		25A872D00D0C809F00D88D65 /* SUAppcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUAppcast.h; sourceTree = "<group>"; };
-		25A872D10D0C809F00D88D65 /* SUUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUtilities.h; sourceTree = "<group>"; };
-		25A872D20D0C809F00D88D65 /* SUAppcastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUAppcastItem.h; sourceTree = "<group>"; };
-		25A872D30D0C809F00D88D65 /* SUUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdateAlert.h; sourceTree = "<group>"; };
-		25A872D40D0C809F00D88D65 /* SUStatusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUStatusController.h; sourceTree = "<group>"; };
-		25A872D50D0C809F00D88D65 /* NSFileManager+Verification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Verification.h"; sourceTree = "<group>"; };
-		25A872D60D0C809F00D88D65 /* NSFileManager+Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Authentication.h"; sourceTree = "<group>"; };
-		25A872D70D0C809F00D88D65 /* NSApplication+AppCopies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+AppCopies.h"; sourceTree = "<group>"; };
-		25A872D80D0C809F00D88D65 /* SUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUConstants.h; sourceTree = "<group>"; };
-		25A872D90D0C809F00D88D65 /* SUUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUnarchiver.h; sourceTree = "<group>"; };
-		25A872DA0D0C809F00D88D65 /* Sparkle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sparkle.h; sourceTree = "<group>"; };
-		25A872DB0D0C809F00D88D65 /* SUAutomaticUpdateAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUAutomaticUpdateAlert.h; sourceTree = "<group>"; };
-		25A872DC0D0C809F00D88D65 /* SUStatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUStatusChecker.h; sourceTree = "<group>"; };
-		25A872E00D0C80C200D88D65 /* SUStatus.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SUStatus.nib; sourceTree = "<group>"; };
-		25A872E10D0C80C200D88D65 /* SUProfileInfo.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = SUProfileInfo.nib; sourceTree = "<group>"; };
-		25A872E20D0C80C200D88D65 /* SUModelTranslation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SUModelTranslation.plist; sourceTree = "<group>"; };
 		25AE84210CF0D208008F96FD /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TermWindow.xib; sourceTree = "<group>"; };
 		25AE84310CF0D5AA008F96FD /* DTTermWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTermWindowController.h; sourceTree = "<group>"; };
 		25AE84320CF0D5AA008F96FD /* DTTermWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTermWindowController.m; sourceTree = "<group>"; };
@@ -684,64 +623,6 @@
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		25A871FC0D0C7FC600D88D65 /* SparklePlus-Customized */ = {
-			isa = PBXGroup;
-			children = (
-				25A872DF0D0C80B400D88D65 /* Resources */,
-				25A872DA0D0C809F00D88D65 /* Sparkle.h */,
-				25A872CC0D0C809F00D88D65 /* md5.h */,
-				25A872040D0C805300D88D65 /* md5.c */,
-				25A872CD0D0C809F00D88D65 /* NSString+extras.h */,
-				25A872050D0C805300D88D65 /* NSString+extras.m */,
-				25A872CE0D0C809F00D88D65 /* RSS.h */,
-				25A872060D0C805300D88D65 /* RSS.m */,
-				25A872CF0D0C809F00D88D65 /* SUUpdater.h */,
-				25A872070D0C805300D88D65 /* SUUpdater.m */,
-				25A872D00D0C809F00D88D65 /* SUAppcast.h */,
-				25A872090D0C805300D88D65 /* SUAppcast.m */,
-				25A872D10D0C809F00D88D65 /* SUUtilities.h */,
-				25A8720A0D0C805300D88D65 /* SUUtilities.m */,
-				25A872D20D0C809F00D88D65 /* SUAppcastItem.h */,
-				25A8720B0D0C805300D88D65 /* SUAppcastItem.m */,
-				25A872D30D0C809F00D88D65 /* SUUpdateAlert.h */,
-				25A8720C0D0C805300D88D65 /* SUUpdateAlert.m */,
-				25A872D40D0C809F00D88D65 /* SUStatusController.h */,
-				25A8720D0D0C805300D88D65 /* SUStatusController.m */,
-				25A872D60D0C809F00D88D65 /* NSFileManager+Authentication.h */,
-				25A872080D0C805300D88D65 /* NSFileManager+Authentication.m */,
-				25A872D50D0C809F00D88D65 /* NSFileManager+Verification.h */,
-				25A8720E0D0C805300D88D65 /* NSFileManager+Verification.m */,
-				25A872D70D0C809F00D88D65 /* NSApplication+AppCopies.h */,
-				25A8720F0D0C805300D88D65 /* NSApplication+AppCopies.m */,
-				25A872D80D0C809F00D88D65 /* SUConstants.h */,
-				25A872100D0C805300D88D65 /* SUConstants.m */,
-				25A872D90D0C809F00D88D65 /* SUUnarchiver.h */,
-				25A872110D0C805300D88D65 /* SUUnarchiver.m */,
-				25A872DB0D0C809F00D88D65 /* SUAutomaticUpdateAlert.h */,
-				25A872120D0C805300D88D65 /* SUAutomaticUpdateAlert.m */,
-				25A872DC0D0C809F00D88D65 /* SUStatusChecker.h */,
-				25A872130D0C805300D88D65 /* SUStatusChecker.m */,
-			);
-			name = "SparklePlus-Customized";
-			path = "3rd party source/SparklePlus-Customized";
-			sourceTree = SOURCE_ROOT;
-		};
-		25A872DF0D0C80B400D88D65 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				25A872E00D0C80C200D88D65 /* SUStatus.nib */,
-				25A872E10D0C80C200D88D65 /* SUProfileInfo.nib */,
-				25A872E20D0C80C200D88D65 /* SUModelTranslation.plist */,
-				253645F00D2D9F050056613C /* Sparkle.strings */,
-				253645F20D2D9F050056613C /* SUAutomaticUpdateAlert.nib */,
-				253645F40D2D9F050056613C /* SUAutomaticUpdateAlert.strings */,
-				253645F60D2D9F050056613C /* SUStatus.strings */,
-				253645F80D2D9F050056613C /* SUUpdateAlert.nib */,
-				253645FA0D2D9F050056613C /* SUUpdateAlert.strings */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		25E6515B0CF3B1440072997F /* ShortcutRecorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -781,7 +662,6 @@
 			isa = PBXGroup;
 			children = (
 				2525DE780D234B2C009A5592 /* Growl */,
-				25A871FC0D0C7FC600D88D65 /* SparklePlus-Customized */,
 				25E6515B0CF3B1440072997F /* ShortcutRecorder */,
 				32CA4F630368D1EE00C91783 /* DTerm_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -1024,9 +904,6 @@
 				25878BE20D03598500255595 /* ProgressWhite-9.png in Resources */,
 				25878BE30D03598500255595 /* ProgressWhite-10.png in Resources */,
 				25A870C80D0B03E300D88D65 /* Updates Prefs.png in Resources */,
-				25A872E30D0C80C200D88D65 /* SUStatus.nib in Resources */,
-				25A872E40D0C80C200D88D65 /* SUProfileInfo.nib in Resources */,
-				25A872E50D0C80C200D88D65 /* SUModelTranslation.plist in Resources */,
 				257355CE0D1085B5008E7D0F /* Acknowledgments.rtf in Resources */,
 				257355F30D1087D6008E7D0F /* License.rtf in Resources */,
 				257355FC0D108999008E7D0F /* RTFWindow.xib in Resources */,
@@ -1036,12 +913,6 @@
 				2525E0BB0D23547D009A5592 /* GrowlInstallationPrompt.nib in Resources */,
 				2525E0BC0D23547D009A5592 /* Growl-WithInstaller.framework-Info.plist in Resources */,
 				2525E0BD0D23547D009A5592 /* Growl.framework-Info.plist in Resources */,
-				253645FC0D2D9F050056613C /* Sparkle.strings in Resources */,
-				253645FD0D2D9F050056613C /* SUAutomaticUpdateAlert.nib in Resources */,
-				253645FE0D2D9F050056613C /* SUAutomaticUpdateAlert.strings in Resources */,
-				253645FF0D2D9F050056613C /* SUStatus.strings in Resources */,
-				253646000D2D9F050056613C /* SUUpdateAlert.nib in Resources */,
-				253646010D2D9F050056613C /* SUUpdateAlert.strings in Resources */,
 				254036C610FFCDCC0076CE83 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1167,22 +1038,6 @@
 				257158E90CFF9A99007181F4 /* DTShellUtilities.m in Sources */,
 				25878A240D03399E00255595 /* DTProgressCancelButton.m in Sources */,
 				25A871A10D0B157F00D88D65 /* DTPrefsAXController.m in Sources */,
-				25A872140D0C805300D88D65 /* md5.c in Sources */,
-				25A872150D0C805300D88D65 /* NSString+extras.m in Sources */,
-				25A872160D0C805300D88D65 /* RSS.m in Sources */,
-				25A872170D0C805300D88D65 /* SUUpdater.m in Sources */,
-				25A872180D0C805300D88D65 /* NSFileManager+Authentication.m in Sources */,
-				25A872190D0C805300D88D65 /* SUAppcast.m in Sources */,
-				25A8721A0D0C805300D88D65 /* SUUtilities.m in Sources */,
-				25A8721B0D0C805300D88D65 /* SUAppcastItem.m in Sources */,
-				25A8721C0D0C805300D88D65 /* SUUpdateAlert.m in Sources */,
-				25A8721D0D0C805300D88D65 /* SUStatusController.m in Sources */,
-				25A8721E0D0C805300D88D65 /* NSFileManager+Verification.m in Sources */,
-				25A8721F0D0C805300D88D65 /* NSApplication+AppCopies.m in Sources */,
-				25A872200D0C805300D88D65 /* SUConstants.m in Sources */,
-				25A872210D0C805300D88D65 /* SUUnarchiver.m in Sources */,
-				25A872220D0C805300D88D65 /* SUAutomaticUpdateAlert.m in Sources */,
-				25A872230D0C805300D88D65 /* SUStatusChecker.m in Sources */,
 				257355F60D108839008E7D0F /* RTFWindowController.m in Sources */,
 				2573569C0D10BBAD008E7D0F /* DSUtilities.m in Sources */,
 				257356A00D10BD1A008E7D0F /* DSPOSTManager.m in Sources */,
@@ -1288,54 +1143,6 @@
 				2525E0B80D23547D009A5592 /* zh_TW */,
 			);
 			name = GrowlInstallationPrompt.nib;
-			sourceTree = "<group>";
-		};
-		253645F00D2D9F050056613C /* Sparkle.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				253645F10D2D9F050056613C /* en */,
-			);
-			name = Sparkle.strings;
-			sourceTree = "<group>";
-		};
-		253645F20D2D9F050056613C /* SUAutomaticUpdateAlert.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				253645F30D2D9F050056613C /* en */,
-			);
-			name = SUAutomaticUpdateAlert.nib;
-			sourceTree = "<group>";
-		};
-		253645F40D2D9F050056613C /* SUAutomaticUpdateAlert.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				253645F50D2D9F050056613C /* en */,
-			);
-			name = SUAutomaticUpdateAlert.strings;
-			sourceTree = "<group>";
-		};
-		253645F60D2D9F050056613C /* SUStatus.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				253645F70D2D9F050056613C /* en */,
-			);
-			name = SUStatus.strings;
-			sourceTree = "<group>";
-		};
-		253645F80D2D9F050056613C /* SUUpdateAlert.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				253645F90D2D9F050056613C /* en */,
-			);
-			name = SUUpdateAlert.nib;
-			sourceTree = "<group>";
-		};
-		253645FA0D2D9F050056613C /* SUUpdateAlert.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				253645FB0D2D9F050056613C /* en */,
-			);
-			name = SUUpdateAlert.strings;
 			sourceTree = "<group>";
 		};
 		254036C410FFCDCC0076CE83 /* Localizable.strings */ = {

@@ -60,9 +60,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUCheckAtStartup</key>
-	<false/>
-	<key>SUFeedURL</key>
-	<string>http://decimus.net/appcasts/DTerm.xml</string>
 </dict>
 </plist>

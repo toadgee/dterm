@@ -6,7 +6,6 @@
 #import "DTAppController.h"
 #import "DTPrefsAXController.h"
 #import "FontNameToDisplayNameTransformer.h"
-#import "Sparkle.h"
 #import "SRRecorderControl.h"
 
 #ifdef MAC_APP_STORE
