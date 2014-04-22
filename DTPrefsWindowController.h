@@ -26,7 +26,6 @@
 #ifndef MAC_APP_STORE
 - (IBAction)showUpdates:(id)sender;
 #endif
-//- (IBAction)showRegistration:(id)sender;
 
 - (IBAction)showFontPanel:(id)sender;
 - (IBAction)resetColorAndFont:(id)sender;

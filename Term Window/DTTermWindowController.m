@@ -10,7 +10,6 @@
 #import "DTResultsTextView.h"
 #import "DTRunManager.h"
 #import "DTShellUtilities.h"
-//#import "Licensing.h"
 #import "iTerm.h"
 #import "iTerm2.h"
 #import "Terminal.h"

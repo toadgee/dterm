@@ -596,8 +596,6 @@ done:
 		else if([prefsName isEqualToString:@"/updates"])
 			[self.prefsWindowController showUpdates:self];
 #endif
-//		else if([prefsName isEqualToString:@"/licensing"])
-//			[self.prefsWindowController showRegistration:self];
 	}
 }
 

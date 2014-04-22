@@ -149,23 +149,6 @@
 }
 #endif
 
-
-//- (IBAction)showRegistration:(id)sender {
-//	// make sure we have a window
-//	[self window];
-//	
-//	// This method can be called programmatically, so make sure licensing toolbar icon is selected
-//	NSToolbar* toolbar = [[self window] toolbar];
-//	for(NSToolbarItem* item in [toolbar items]) {
-//		if([item tag] == 4 /* licensing tag */) {
-//			[toolbar setSelectedItemIdentifier:[item itemIdentifier]];
-//			break;
-//		}
-//	}
-//	
-//	[self showView:regPrefsView];
-//}
-
 #pragma mark font selection
 
 - (IBAction)showFontPanel:(id)sender {

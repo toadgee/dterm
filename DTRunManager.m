@@ -76,16 +76,7 @@
 		else
 			unsetenv("DTERM_SELECTED_FILES");
 		
-//		if(demoExpired) {
-//			[resultsStorage beginEditing];
-//			[resultsStorage setAttributedString:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Sorry, your demo period has expired!  Please visit the Licensing preferences to purchase a license.", nil) 
-//																				attributes:[currentAttributes copy]]];
-//			[resultsStorage endEditing];
-//			[NSApp activateIgnoringOtherApps:YES];
-//			[((DTAppController*)[NSApp delegate]).prefsWindowController showRegistration:self];
-//		} else {
-			[self launch];
-//		}
+        [self launch];
 	}
 	
 	return self;
