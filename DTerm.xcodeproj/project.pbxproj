@@ -43,7 +43,6 @@
 		257355F60D108839008E7D0F /* RTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257355F50D108839008E7D0F /* RTFWindowController.m */; };
 		257355FC0D108999008E7D0F /* RTFWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257355FB0D108999008E7D0F /* RTFWindow.xib */; };
 		2573569C0D10BBAD008E7D0F /* DSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569B0D10BBAD008E7D0F /* DSUtilities.m */; };
-		257356A00D10BD1A008E7D0F /* DSPOSTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569F0D10BD1A008E7D0F /* DSPOSTManager.m */; };
 		257357BB0D10F231008E7D0F /* DSNumberFormatterTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */; };
 		257357E60D10F987008E7D0F /* DSDecimalToIntegerTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357E50D10F987008E7D0F /* DSDecimalToIntegerTransformer.m */; };
 		2583733F0CFE105F00943791 /* DTResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2583733E0CFE105F00943791 /* DTResultsView.m */; };
@@ -119,7 +118,6 @@
 		25FA3B3F12E6118400DE744A /* DTPrefsAXController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A871A00D0B157F00D88D65 /* DTPrefsAXController.m */; };
 		25FA3B5012E6118400DE744A /* RTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257355F50D108839008E7D0F /* RTFWindowController.m */; };
 		25FA3B5112E6118400DE744A /* DSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569B0D10BBAD008E7D0F /* DSUtilities.m */; };
-		25FA3B5212E6118400DE744A /* DSPOSTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569F0D10BD1A008E7D0F /* DSPOSTManager.m */; };
 		25FA3B5312E6118400DE744A /* DSNumberFormatterTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */; };
 		25FA3B5412E6118400DE744A /* DSDecimalToIntegerTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357E50D10F987008E7D0F /* DSDecimalToIntegerTransformer.m */; };
 		25FA3B5D12E6118400DE744A /* DSUniqueTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B10DCF0D29D2B40034B100 /* DSUniqueTextStorage.m */; };
@@ -261,8 +259,6 @@
 		257355FB0D108999008E7D0F /* RTFWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTFWindow.xib; sourceTree = "<group>"; };
 		2573569A0D10BBAD008E7D0F /* DSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSUtilities.h; sourceTree = "<group>"; };
 		2573569B0D10BBAD008E7D0F /* DSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSUtilities.m; sourceTree = "<group>"; };
-		2573569E0D10BD1A008E7D0F /* DSPOSTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPOSTManager.h; sourceTree = "<group>"; };
-		2573569F0D10BD1A008E7D0F /* DSPOSTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPOSTManager.m; sourceTree = "<group>"; };
 		257357B90D10F231008E7D0F /* DSNumberFormatterTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSNumberFormatterTransformer.h; sourceTree = "<group>"; };
 		257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSNumberFormatterTransformer.m; sourceTree = "<group>"; };
 		257357E40D10F987008E7D0F /* DSDecimalToIntegerTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDecimalToIntegerTransformer.h; sourceTree = "<group>"; };
@@ -472,8 +468,6 @@
 				257355F50D108839008E7D0F /* RTFWindowController.m */,
 				2573569A0D10BBAD008E7D0F /* DSUtilities.h */,
 				2573569B0D10BBAD008E7D0F /* DSUtilities.m */,
-				2573569E0D10BD1A008E7D0F /* DSPOSTManager.h */,
-				2573569F0D10BD1A008E7D0F /* DSPOSTManager.m */,
 				257357B90D10F231008E7D0F /* DSNumberFormatterTransformer.h */,
 				257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */,
 				257357E40D10F987008E7D0F /* DSDecimalToIntegerTransformer.h */,
@@ -877,7 +871,6 @@
 				25FA3B3F12E6118400DE744A /* DTPrefsAXController.m in Sources */,
 				25FA3B5012E6118400DE744A /* RTFWindowController.m in Sources */,
 				25FA3B5112E6118400DE744A /* DSUtilities.m in Sources */,
-				25FA3B5212E6118400DE744A /* DSPOSTManager.m in Sources */,
 				25FA3B5312E6118400DE744A /* DSNumberFormatterTransformer.m in Sources */,
 				25FA3B5412E6118400DE744A /* DSDecimalToIntegerTransformer.m in Sources */,
 				25FA3B5D12E6118400DE744A /* DSUniqueTextStorage.m in Sources */,
@@ -919,7 +912,6 @@
 				25A871A10D0B157F00D88D65 /* DTPrefsAXController.m in Sources */,
 				257355F60D108839008E7D0F /* RTFWindowController.m in Sources */,
 				2573569C0D10BBAD008E7D0F /* DSUtilities.m in Sources */,
-				257356A00D10BD1A008E7D0F /* DSPOSTManager.m in Sources */,
 				257357BB0D10F231008E7D0F /* DSNumberFormatterTransformer.m in Sources */,
 				257357E60D10F987008E7D0F /* DSDecimalToIntegerTransformer.m in Sources */,
 				25B10DD00D29D2B40034B100 /* DSUniqueTextStorage.m in Sources */,
