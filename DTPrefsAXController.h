@@ -12,9 +12,7 @@
 
 - (void)recheckGeneralAXAccess;
 
-#ifndef MAC_APP_STORE
 - (IBAction)setAXTrusted:(id)sender;
-#endif
 - (IBAction)showUniversalAccessPrefPane:(id)sender;
 
 @end

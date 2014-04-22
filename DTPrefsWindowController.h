@@ -9,9 +9,7 @@
 	
 	IBOutlet NSView* generalPrefsView;
 	IBOutlet NSView* accessibilityPrefsView;
-#ifndef MAC_APP_STORE
 	IBOutlet NSView* updatesPrefsView;
-#endif
 	IBOutlet NSView* regPrefsView;
 	
 	IBOutlet DTPrefsAXController* axPrefsController;
@@ -23,15 +21,11 @@
 
 - (IBAction)showGeneral:(id)sender;
 - (IBAction)showAccessibility:(id)sender;
-#ifndef MAC_APP_STORE
 - (IBAction)showUpdates:(id)sender;
-#endif
 
 - (IBAction)showFontPanel:(id)sender;
 - (IBAction)resetColorAndFont:(id)sender;
 
-#ifndef MAC_APP_STORE
 - (IBAction)checkForUpdatesNow:(id)sender;
-#endif
 
 @end

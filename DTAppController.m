@@ -27,9 +27,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 
 @implementation DTAppController
 
-#ifndef MAC_APP_STORE
 @synthesize sparkleUpdater;
-#endif
 
 @synthesize numCommandsExecuted, termWindowController;
 
@@ -592,10 +590,8 @@ done:
 			[self.prefsWindowController showGeneral:self];
 		else if([prefsName isEqualToString:@"/accessibility"])
 			[self.prefsWindowController showAccessibility:self];
-#ifndef MAC_APP_STORE
 		else if([prefsName isEqualToString:@"/updates"])
 			[self.prefsWindowController showUpdates:self];
-#endif
 	}
 }
 

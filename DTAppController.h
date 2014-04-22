@@ -7,9 +7,7 @@
 @class DTTermWindowController;
 @class RTFWindowController;
 
-#ifndef MAC_APP_STORE
 @class SUUpdater;
-#endif
 
 extern NSString* DTResultsToKeepKey;
 extern NSString* DTTextColorKey;
@@ -17,9 +15,7 @@ extern NSString* DTFontNameKey;
 extern NSString* DTFontSizeKey;
 
 @interface DTAppController : NSObject {
-#ifndef MAC_APP_STORE
 	IBOutlet SUUpdater* sparkleUpdater;
-#endif
 	DTPrefsWindowController* prefsWindowController;
 	DTTermWindowController* termWindowController;
 	
@@ -32,9 +28,7 @@ extern NSString* DTFontSizeKey;
 	NSUInteger numCommandsExecuted;
 }
 
-#ifndef MAC_APP_STORE
 @property (assign) SUUpdater* sparkleUpdater;
-#endif
 @property NSUInteger numCommandsExecuted;
 @property (readonly) DTPrefsWindowController* prefsWindowController;
 @property (readonly) DTTermWindowController* termWindowController;

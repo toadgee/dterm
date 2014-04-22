@@ -8,12 +8,6 @@
 #import "FontNameToDisplayNameTransformer.h"
 #import "SRRecorderControl.h"
 
-#ifdef MAC_APP_STORE
-#define PREFERENCES_NIB_NAME @"PreferencesMAS"
-#else
-#define PREFERENCES_NIB_NAME @"Preferences"
-#endif
-
 @implementation DTPrefsWindowController
 
 //@synthesize regPrefsViewController;
@@ -26,7 +20,7 @@
 }
 
 - (id)init {
-	if((self = [super initWithWindowNibName:PREFERENCES_NIB_NAME])) {
+	if((self = [super initWithWindowNibName:@"Preferences"])) {
 		[self setShouldCascadeWindows:NO];
 		
 		[[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
@@ -131,7 +125,7 @@
 	
 	[self showView:accessibilityPrefsView];
 }
-#ifndef MAC_APP_STORE
+
 - (IBAction)showUpdates:(id)sender {
 	// make sure we have a window
 	[self window];
@@ -147,7 +141,6 @@
 	
 	[self showView:updatesPrefsView];
 }
-#endif
 
 #pragma mark font selection
 
@@ -178,10 +171,8 @@
 
 #pragma mark Updates support
 
-#ifndef MAC_APP_STORE
 - (IBAction)checkForUpdatesNow:(id)sender {
 	[[[NSApp delegate] sparkleUpdater] checkForUpdates:sender];
 }
-#endif
 
 @end

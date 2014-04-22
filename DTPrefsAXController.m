@@ -53,7 +53,6 @@
 
 #pragma mark actions
 
-#ifndef MAC_APP_STORE
 - (IBAction)setAXTrusted:(id)sender {
 	const char* path = [[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"setaxtrusted"] fileSystemRepresentation];
 	if(!path) {
@@ -123,7 +122,6 @@
 		[NSApp terminate:self];
 	}
 }
-#endif
 
 - (IBAction)showUniversalAccessPrefPane:(id)sender {
 //	@try {

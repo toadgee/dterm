@@ -78,61 +78,6 @@
 		25E6523A0CF3DA080072997F /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25E652380CF3DA080072997F /* ShortcutRecorder.strings */; };
 		25E6DA3E0EB2623F003C1E84 /* DSAppleScriptUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E6DA3D0EB2623F003C1E84 /* DSAppleScriptUtilities.m */; };
 		25E6DA3F0EB262AB003C1E84 /* DSAppleScriptUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E6DA3D0EB2623F003C1E84 /* DSAppleScriptUtilities.m */; };
-		25FA3AFE12E6118400DE744A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		25FA3B0012E6118400DE744A /* TermWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25AE84200CF0D208008F96FD /* TermWindow.xib */; };
-		25FA3B0212E6118400DE744A /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25E652380CF3DA080072997F /* ShortcutRecorder.strings */; };
-		25FA3B0312E6118400DE744A /* DTerm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2529F8500CF5F6AB00CDF456 /* DTerm.icns */; };
-		25FA3B0412E6118400DE744A /* ProgressWhite-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BCC0D03598500255595 /* ProgressWhite-11.png */; };
-		25FA3B0512E6118400DE744A /* ProgressWhite-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BCD0D03598500255595 /* ProgressWhite-0.png */; };
-		25FA3B0612E6118400DE744A /* ProgressWhite-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BCE0D03598500255595 /* ProgressWhite-1.png */; };
-		25FA3B0712E6118400DE744A /* ProgressWhite-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BCF0D03598500255595 /* ProgressWhite-2.png */; };
-		25FA3B0812E6118400DE744A /* ProgressWhite-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD00D03598500255595 /* ProgressWhite-3.png */; };
-		25FA3B0912E6118400DE744A /* ProgressWhite-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD10D03598500255595 /* ProgressWhite-4.png */; };
-		25FA3B0A12E6118400DE744A /* ProgressWhite-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD20D03598500255595 /* ProgressWhite-5.png */; };
-		25FA3B0B12E6118400DE744A /* ProgressWhite-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD30D03598500255595 /* ProgressWhite-6.png */; };
-		25FA3B0C12E6118400DE744A /* ProgressWhite-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD40D03598500255595 /* ProgressWhite-7.png */; };
-		25FA3B0D12E6118400DE744A /* ProgressWhite-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD50D03598500255595 /* ProgressWhite-8.png */; };
-		25FA3B0E12E6118400DE744A /* ProgressWhite-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD60D03598500255595 /* ProgressWhite-9.png */; };
-		25FA3B0F12E6118400DE744A /* ProgressWhite-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 25878BD70D03598500255595 /* ProgressWhite-10.png */; };
-		25FA3B1712E6118400DE744A /* RTFWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257355FB0D108999008E7D0F /* RTFWindow.xib */; };
-		25FA3B1F12E6118400DE744A /* DTermHelp in Resources */ = {isa = PBXBuildFile; fileRef = 25BEBAE60D171C8D00F7A797 /* DTermHelp */; };
-		25FA3B2012E6118400DE744A /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 2525DE5E0D234AE0009A5592 /* Growl Registration Ticket.growlRegDict */; };
-		25FA3B2C12E6118400DE744A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 254036C410FFCDCC0076CE83 /* Localizable.strings */; };
-		25FA3B2E12E6118400DE744A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		25FA3B2F12E6118400DE744A /* DTAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2500751B0CF0B2B600949B95 /* DTAppController.m */; };
-		25FA3B3012E6118400DE744A /* DTTermWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AE84320CF0D5AA008F96FD /* DTTermWindowController.m */; };
-		25FA3B3112E6118400DE744A /* DTPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E651530CF3B0860072997F /* DTPrefsWindowController.m */; };
-		25FA3B3212E6118400DE744A /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E651710CF3B1620072997F /* SRCommon.m */; };
-		25FA3B3312E6118400DE744A /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E651730CF3B1620072997F /* SRKeyCodeTransformer.m */; };
-		25FA3B3412E6118400DE744A /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E651750CF3B1620072997F /* SRRecorderCell.m */; };
-		25FA3B3512E6118400DE744A /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E651770CF3B1620072997F /* SRRecorderControl.m */; };
-		25FA3B3612E6118400DE744A /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E651790CF3B1620072997F /* SRValidator.m */; };
-		25FA3B3712E6118400DE744A /* DTBlackRedStatusTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2529F6BB0CF4CD0700CDF456 /* DTBlackRedStatusTransformer.m */; };
-		25FA3B3812E6118400DE744A /* DTTermWindowContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25229FF40CF8BEDE00DF702E /* DTTermWindowContentView.m */; };
-		25FA3B3912E6118400DE744A /* DTResultsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2522A1010CFB540500DF702E /* DTResultsTextView.m */; };
-		25FA3B3A12E6118400DE744A /* DTResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2583733E0CFE105F00943791 /* DTResultsView.m */; };
-		25FA3B3B12E6118400DE744A /* DTRunManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258373430CFE12A000943791 /* DTRunManager.m */; };
-		25FA3B3C12E6118400DE744A /* DTCommandFieldEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 258375650CFF47E600943791 /* DTCommandFieldEditor.m */; };
-		25FA3B3D12E6118400DE744A /* DTShellUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 257158E80CFF9A99007181F4 /* DTShellUtilities.m */; };
-		25FA3B3E12E6118400DE744A /* DTProgressCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 25878A230D03399E00255595 /* DTProgressCancelButton.m */; };
-		25FA3B3F12E6118400DE744A /* DTPrefsAXController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A871A00D0B157F00D88D65 /* DTPrefsAXController.m */; };
-		25FA3B5012E6118400DE744A /* RTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257355F50D108839008E7D0F /* RTFWindowController.m */; };
-		25FA3B5112E6118400DE744A /* DSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569B0D10BBAD008E7D0F /* DSUtilities.m */; };
-		25FA3B5312E6118400DE744A /* DSNumberFormatterTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */; };
-		25FA3B5412E6118400DE744A /* DSDecimalToIntegerTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357E50D10F987008E7D0F /* DSDecimalToIntegerTransformer.m */; };
-		25FA3B5D12E6118400DE744A /* DSUniqueTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B10DCF0D29D2B40034B100 /* DSUniqueTextStorage.m */; };
-		25FA3B5E12E6118400DE744A /* FontNameToDisplayNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 251453C10D720F35000B6100 /* FontNameToDisplayNameTransformer.m */; };
-		25FA3B5F12E6118400DE744A /* DTAntialiasControllableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 251D0E5E0D7CA32E00E9E49D /* DTAntialiasControllableTextField.m */; };
-		25FA3B6012E6118400DE744A /* DSAppleScriptUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E6DA3D0EB2623F003C1E84 /* DSAppleScriptUtilities.m */; };
-		25FA3B6212E6118400DE744A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		25FA3B6312E6118400DE744A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250074540CF0B1C500949B95 /* Carbon.framework */; };
-		25FA3B6412E6118400DE744A /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 250075720CF0C24200949B95 /* ScriptingBridge.framework */; };
-		25FA3B6512E6118400DE744A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2529F76D0CF4D61100CDF456 /* Security.framework */; };
-		25FA3B6612E6118400DE744A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E007090DBFCA280092F1E5 /* IOKit.framework */; };
-		25FA3B8412E614B600DE744A /* setaxtrusted.m in Sources */ = {isa = PBXBuildFile; fileRef = 2529F7CD0CF4D73600CDF456 /* setaxtrusted.m */; };
-		25FA3B8E12E6155E00DE744A /* setaxtrusted in CopyFiles */ = {isa = PBXBuildFile; fileRef = 25FA3B8912E614B600DE744A /* setaxtrusted */; };
-		25FA3BBD12E6196400DE744A /* MainMenuMAS.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FA3BBB12E6196400DE744A /* MainMenuMAS.xib */; };
-		25FA3BDA12E61ACA00DE744A /* PreferencesMAS.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25FA3BD812E61ACA00DE744A /* PreferencesMAS.xib */; };
 		25FA401212F069D300DE744A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FA401112F069D300DE744A /* WebKit.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -161,20 +106,6 @@
 			remoteGlobalIDString = 25A0CDCA0DE500010042D226;
 			remoteInfo = BZRRevision;
 		};
-		25FA3AFA12E6118400DE744A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 25A0CDCA0DE500010042D226;
-			remoteInfo = BZRRevision;
-		};
-		25FA3B8B12E614CB00DE744A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 25FA3B8212E614B600DE744A;
-			remoteInfo = "setaxtrusted-MAS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -189,25 +120,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		25A8706A0D0AF5DB00D88D65 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25FA3B6712E6118400DE744A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-				25FA3B8E12E6155E00DE744A /* setaxtrusted in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25FA3B6912E6118400DE744A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -310,11 +222,6 @@
 		25E6DA3C0EB2623F003C1E84 /* DSAppleScriptUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAppleScriptUtilities.h; sourceTree = "<group>"; };
 		25E6DA3D0EB2623F003C1E84 /* DSAppleScriptUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAppleScriptUtilities.m; sourceTree = "<group>"; };
 		25FA394212E5E47100DE744A /* iTerm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTerm2.h; sourceTree = "<group>"; };
-		25FA3B6D12E6118400DE744A /* DTerm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTerm.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		25FA3B7412E611B500DE744A /* MAS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MAS-Info.plist"; sourceTree = "<group>"; };
-		25FA3B8912E614B600DE744A /* setaxtrusted */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = setaxtrusted; sourceTree = BUILT_PRODUCTS_DIR; };
-		25FA3BBC12E6196400DE744A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenuMAS.xib; sourceTree = "<group>"; };
-		25FA3BD912E61ACA00DE744A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreferencesMAS.xib; sourceTree = "<group>"; };
 		25FA401112F069D300DE744A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -333,25 +240,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		257159160CFFAA2C007181F4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25FA3B6112E6118400DE744A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				25FA3B6212E6118400DE744A /* Cocoa.framework in Frameworks */,
-				25FA3B6312E6118400DE744A /* Carbon.framework in Frameworks */,
-				25FA3B6412E6118400DE744A /* ScriptingBridge.framework in Frameworks */,
-				25FA3B6512E6118400DE744A /* Security.framework in Frameworks */,
-				25FA3B6612E6118400DE744A /* IOKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25FA3B8512E614B600DE744A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -417,8 +305,6 @@
 				8D1107320486CEB800E47090 /* DTerm.app */,
 				2529F7C30CF4D6F100CDF456 /* setaxtrusted */,
 				257159190CFFAA2C007181F4 /* Tests.octest */,
-				25FA3B6D12E6118400DE744A /* DTerm.app */,
-				25FA3B8912E614B600DE744A /* setaxtrusted */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -567,14 +453,11 @@
 				257355CD0D1085B5008E7D0F /* Acknowledgments.rtf */,
 				2529F84B0CF5F67200CDF456 /* Images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				25FA3B7412E611B500DE744A /* MAS-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				254036C410FFCDCC0076CE83 /* Localizable.strings */,
 				2500751E0CF0B33600949B95 /* MainMenu.xib */,
-				25FA3BBB12E6196400DE744A /* MainMenuMAS.xib */,
 				25AE84200CF0D208008F96FD /* TermWindow.xib */,
 				25E651550CF3B0B80072997F /* Preferences.xib */,
-				25FA3BD812E61ACA00DE744A /* PreferencesMAS.xib */,
 				257355FB0D108999008E7D0F /* RTFWindow.xib */,
 			);
 			name = Resources;
@@ -626,44 +509,6 @@
 			productName = Tests;
 			productReference = 257159190CFFAA2C007181F4 /* Tests.octest */;
 			productType = "com.apple.product-type.bundle";
-		};
-		25FA3AF812E6118400DE744A /* DTerm-MAS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 25FA3B6A12E6118400DE744A /* Build configuration list for PBXNativeTarget "DTerm-MAS" */;
-			buildPhases = (
-				25FA3AFD12E6118400DE744A /* Resources */,
-				25FA3B2D12E6118400DE744A /* Sources */,
-				25FA3B6112E6118400DE744A /* Frameworks */,
-				25FA3B6712E6118400DE744A /* CopyFiles */,
-				25FA3B6912E6118400DE744A /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				25FA3AF912E6118400DE744A /* PBXTargetDependency */,
-				25FA3B8C12E614CB00DE744A /* PBXTargetDependency */,
-			);
-			name = "DTerm-MAS";
-			productInstallPath = "$(HOME)/Applications";
-			productName = DTerm;
-			productReference = 25FA3B6D12E6118400DE744A /* DTerm.app */;
-			productType = "com.apple.product-type.application";
-		};
-		25FA3B8212E614B600DE744A /* setaxtrusted-MAS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 25FA3B8612E614B600DE744A /* Build configuration list for PBXNativeTarget "setaxtrusted-MAS" */;
-			buildPhases = (
-				25FA3B8312E614B600DE744A /* Sources */,
-				25FA3B8512E614B600DE744A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "setaxtrusted-MAS";
-			productName = setaxtrusted;
-			productReference = 25FA3B8912E614B600DE744A /* setaxtrusted */;
-			productType = "com.apple.product-type.tool";
 		};
 		8D1107260486CEB800E47090 /* DTerm */ = {
 			isa = PBXNativeTarget;
@@ -721,8 +566,6 @@
 			targets = (
 				8D1107260486CEB800E47090 /* DTerm */,
 				2529F7C20CF4D6F100CDF456 /* setaxtrusted */,
-				25FA3AF812E6118400DE744A /* DTerm-MAS */,
-				25FA3B8212E614B600DE744A /* setaxtrusted-MAS */,
 				257159180CFFAA2C007181F4 /* Tests */,
 				25A0CDCA0DE500010042D226 /* BZRRevision */,
 			);
@@ -734,35 +577,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25FA3AFD12E6118400DE744A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				25FA3AFE12E6118400DE744A /* InfoPlist.strings in Resources */,
-				25FA3B0012E6118400DE744A /* TermWindow.xib in Resources */,
-				25FA3B0212E6118400DE744A /* ShortcutRecorder.strings in Resources */,
-				25FA3B0312E6118400DE744A /* DTerm.icns in Resources */,
-				25FA3B0412E6118400DE744A /* ProgressWhite-11.png in Resources */,
-				25FA3B0512E6118400DE744A /* ProgressWhite-0.png in Resources */,
-				25FA3B0612E6118400DE744A /* ProgressWhite-1.png in Resources */,
-				25FA3B0712E6118400DE744A /* ProgressWhite-2.png in Resources */,
-				25FA3B0812E6118400DE744A /* ProgressWhite-3.png in Resources */,
-				25FA3B0912E6118400DE744A /* ProgressWhite-4.png in Resources */,
-				25FA3B0A12E6118400DE744A /* ProgressWhite-5.png in Resources */,
-				25FA3B0B12E6118400DE744A /* ProgressWhite-6.png in Resources */,
-				25FA3B0C12E6118400DE744A /* ProgressWhite-7.png in Resources */,
-				25FA3B0D12E6118400DE744A /* ProgressWhite-8.png in Resources */,
-				25FA3B0E12E6118400DE744A /* ProgressWhite-9.png in Resources */,
-				25FA3B0F12E6118400DE744A /* ProgressWhite-10.png in Resources */,
-				25FA3B1712E6118400DE744A /* RTFWindow.xib in Resources */,
-				25FA3B1F12E6118400DE744A /* DTermHelp in Resources */,
-				25FA3B2012E6118400DE744A /* Growl Registration Ticket.growlRegDict in Resources */,
-				25FA3B2C12E6118400DE744A /* Localizable.strings in Resources */,
-				25FA3BBD12E6196400DE744A /* MainMenuMAS.xib in Resources */,
-				25FA3BDA12E61ACA00DE744A /* PreferencesMAS.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,47 +661,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		25FA3B2D12E6118400DE744A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				25FA3B2E12E6118400DE744A /* main.m in Sources */,
-				25FA3B2F12E6118400DE744A /* DTAppController.m in Sources */,
-				25FA3B3012E6118400DE744A /* DTTermWindowController.m in Sources */,
-				25FA3B3112E6118400DE744A /* DTPrefsWindowController.m in Sources */,
-				25FA3B3212E6118400DE744A /* SRCommon.m in Sources */,
-				25FA3B3312E6118400DE744A /* SRKeyCodeTransformer.m in Sources */,
-				25FA3B3412E6118400DE744A /* SRRecorderCell.m in Sources */,
-				25FA3B3512E6118400DE744A /* SRRecorderControl.m in Sources */,
-				25FA3B3612E6118400DE744A /* SRValidator.m in Sources */,
-				25FA3B3712E6118400DE744A /* DTBlackRedStatusTransformer.m in Sources */,
-				25FA3B3812E6118400DE744A /* DTTermWindowContentView.m in Sources */,
-				25FA3B3912E6118400DE744A /* DTResultsTextView.m in Sources */,
-				25FA3B3A12E6118400DE744A /* DTResultsView.m in Sources */,
-				25FA3B3B12E6118400DE744A /* DTRunManager.m in Sources */,
-				25FA3B3C12E6118400DE744A /* DTCommandFieldEditor.m in Sources */,
-				25FA3B3D12E6118400DE744A /* DTShellUtilities.m in Sources */,
-				25FA3B3E12E6118400DE744A /* DTProgressCancelButton.m in Sources */,
-				25FA3B3F12E6118400DE744A /* DTPrefsAXController.m in Sources */,
-				25FA3B5012E6118400DE744A /* RTFWindowController.m in Sources */,
-				25FA3B5112E6118400DE744A /* DSUtilities.m in Sources */,
-				25FA3B5312E6118400DE744A /* DSNumberFormatterTransformer.m in Sources */,
-				25FA3B5412E6118400DE744A /* DSDecimalToIntegerTransformer.m in Sources */,
-				25FA3B5D12E6118400DE744A /* DSUniqueTextStorage.m in Sources */,
-				25FA3B5E12E6118400DE744A /* FontNameToDisplayNameTransformer.m in Sources */,
-				25FA3B5F12E6118400DE744A /* DTAntialiasControllableTextField.m in Sources */,
-				25FA3B6012E6118400DE744A /* DSAppleScriptUtilities.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25FA3B8312E614B600DE744A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				25FA3B8412E614B600DE744A /* setaxtrusted.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -938,16 +711,6 @@
 			isa = PBXTargetDependency;
 			target = 25A0CDCA0DE500010042D226 /* BZRRevision */;
 			targetProxy = 25A0CDD30DE500950042D226 /* PBXContainerItemProxy */;
-		};
-		25FA3AF912E6118400DE744A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 25A0CDCA0DE500010042D226 /* BZRRevision */;
-			targetProxy = 25FA3AFA12E6118400DE744A /* PBXContainerItemProxy */;
-		};
-		25FA3B8C12E614CB00DE744A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 25FA3B8212E614B600DE744A /* setaxtrusted-MAS */;
-			targetProxy = 25FA3B8B12E614CB00DE744A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1007,22 +770,6 @@
 			);
 			name = ShortcutRecorder.strings;
 			path = ../..;
-			sourceTree = "<group>";
-		};
-		25FA3BBB12E6196400DE744A /* MainMenuMAS.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				25FA3BBC12E6196400DE744A /* English */,
-			);
-			name = MainMenuMAS.xib;
-			sourceTree = "<group>";
-		};
-		25FA3BD812E61ACA00DE744A /* PreferencesMAS.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				25FA3BD912E61ACA00DE744A /* English */,
-			);
-			name = PreferencesMAS.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1136,84 +883,6 @@
 			};
 			name = Release;
 		};
-		25FA3B6B12E6118400DE744A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Decimus Software, Inc.";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = DTerm_Prefix.pch;
-				INFOPLIST_FILE = "MAS-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/BZRRevision.h;
-				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = "-DMAC_APP_STORE";
-				OTHER_LDFLAGS = "-lcrypto";
-				PRODUCT_NAME = DTerm;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Debug;
-		};
-		25FA3B6C12E6118400DE744A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Decimus Software, Inc.";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = DTerm_Prefix.pch;
-				INFOPLIST_FILE = "MAS-Info.plist";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/BZRRevision.h;
-				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = "-DMAC_APP_STORE";
-				OTHER_LDFLAGS = "-lcrypto";
-				PRODUCT_NAME = DTerm;
-				VALID_ARCHS = "i386 x86_64";
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		25FA3B8712E614B600DE744A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Decimus Software, Inc.";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PRODUCT_NAME = setaxtrusted;
-				VALID_ARCHS = "i386 x86_64";
-				ZERO_LINK = NO;
-			};
-			name = Debug;
-		};
-		25FA3B8812E614B600DE744A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Decimus Software, Inc.";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PRODUCT_NAME = setaxtrusted;
-				VALID_ARCHS = "i386 x86_64";
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1296,24 +965,6 @@
 			buildConfigurations = (
 				25A0CDCB0DE500010042D226 /* Debug */,
 				25A0CDCC0DE500010042D226 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		25FA3B6A12E6118400DE744A /* Build configuration list for PBXNativeTarget "DTerm-MAS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				25FA3B6B12E6118400DE744A /* Debug */,
-				25FA3B6C12E6118400DE744A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		25FA3B8612E614B600DE744A /* Build configuration list for PBXNativeTarget "setaxtrusted-MAS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				25FA3B8712E614B600DE744A /* Debug */,
-				25FA3B8812E614B600DE744A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
