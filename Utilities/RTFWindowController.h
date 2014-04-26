@@ -2,12 +2,12 @@
 
 
 @interface RTFWindowController : NSWindowController {
-	NSString* rtfPath;
-	NSString* windowTitle;
+	NSString* __weak rtfPath;
+	NSString* __weak windowTitle;
 }
 
-@property (assign) NSString* rtfPath;
-@property (assign) NSString* windowTitle;
+@property (weak) NSString* rtfPath;
+@property (weak) NSString* windowTitle;
 
 - (id)initWithRTFFile:(NSString*)_rtfPath;
 

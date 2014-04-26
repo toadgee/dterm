@@ -95,7 +95,7 @@
 							[escapedPath(partialWord) isEqualToString:partialWord]; // or it doesn't change when escaped, meaning that there's been no need to escape yet
 	
 	NSMutableArray* completions = [NSMutableArray arrayWithCapacity:[rawCompletions count]];
-	for(NSString* completion in rawCompletions) {
+	for(__strong NSString* completion in rawCompletions) {
 		if(shouldBeEscaped)
 			completion = escapedPath(completion);
 		

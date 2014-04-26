@@ -5,15 +5,15 @@
 @class DTResultsTextView;
 
 @interface DTTermWindowController : NSWindowController {
-	NSString* workingDirectory;
-	NSArray* selectedURLs;
+	NSString* __weak workingDirectory;
+	NSArray* __weak selectedURLs;
 	
-	NSString* command;
+	NSString* __weak command;
 	IBOutlet NSPopUpButton* actionButton;
 	IBOutlet NSMenu* actionMenu;
 	
-	NSMutableArray* runs;
-	IBOutlet NSArrayController* runsController;
+	NSMutableArray* __weak runs;
+	IBOutlet NSArrayController* __weak runsController;
 	IBOutlet NSView* placeholderForResultsView;
 	IBOutlet DTResultsView* resultsView;
 	IBOutlet DTResultsTextView* resultsTextView;
@@ -22,11 +22,11 @@
 	DTCommandFieldEditor* commandFieldEditor;
 }
 
-@property (assign) NSString* workingDirectory;
-@property (assign) NSArray* selectedURLs;
-@property (assign) NSString* command;
-@property (assign) NSMutableArray* runs;
-@property (assign) NSArrayController* runsController;
+@property (weak) NSString* workingDirectory;
+@property (weak) NSArray* selectedURLs;
+@property (weak) NSString* command;
+@property (weak) NSMutableArray* runs;
+@property (weak) NSArrayController* runsController;
 
 - (void)activateWithWorkingDirectory:(NSString*)wdPath
 						   selection:(NSArray*)selection

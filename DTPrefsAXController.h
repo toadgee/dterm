@@ -6,9 +6,9 @@
 }
 
 @property (readonly) BOOL axAppTrusted;
-@property (readonly) NSString* axTrustStatusString;
+@property (weak, readonly) NSString* axTrustStatusString;
 @property (readonly) BOOL axGeneralAccessEnabled;
-@property (readonly) NSString* axGeneralAccessEnabledString;
+@property (weak, readonly) NSString* axGeneralAccessEnabledString;
 
 - (void)recheckGeneralAXAccess;
 

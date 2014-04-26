@@ -2,10 +2,10 @@
 
 
 @interface DTRunManager : NSObject {
-	NSString* workingDirectory;
-	NSArray* selectedURLStrings;
+	NSString* __weak workingDirectory;
+	NSArray* __weak selectedURLStrings;
 	
-	NSString* command;
+	NSString* __weak command;
 	NSTextStorage* resultsStorage;
 	NSAttributedString* trailingWhitespace;
 	NSMutableData* unprocessedResultsData;
@@ -17,15 +17,15 @@
 	NSFileHandle* stdErr;
 }
 
-@property (assign) NSString* workingDirectory;
-@property (assign) NSArray* selectedURLStrings;
-@property (readonly) NSString* command;
+@property (weak) NSString* workingDirectory;
+@property (weak) NSArray* selectedURLStrings;
+@property (weak, readonly) NSString* command;
 
 @property (readonly) NSTextStorage* resultsStorage;
 - (void)setDisplayFont:(NSFont*)font;
 - (void)setDisplayColor:(NSColor*)color;
 
-@property (readonly, assign) NSTask* task;
+@property (readonly) NSTask* task;
 
 + (NSString*)shellPath;
 + (NSArray*)argumentsToRunCommand:(NSString*)command;

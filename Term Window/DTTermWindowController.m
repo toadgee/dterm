@@ -14,7 +14,7 @@
 #import "iTerm2.h"
 #import "Terminal.h"
 
-static NSString* DTPreferencesContext = @"DTPreferencesContext";
+static void * DTPreferencesContext = &DTPreferencesContext;
 
 @implementation DTTermWindowController
 
@@ -396,7 +396,7 @@ static NSString* DTPreferencesContext = @"DTPreferencesContext";
 	
 	NSMutableArray* completions = [NSMutableArray arrayWithCapacity:[completionsSet count]];
 	NSFileManager* fileManager = [NSFileManager defaultManager];
-	for(NSString* completion in completionsSet) {
+	for(__strong NSString* completion in completionsSet) {
 		NSString* actualPath = ([completion hasPrefix:@"/"] ? completion : [workingDirectory stringByAppendingPathComponent:completion]);
 		BOOL isDirectory = NO;
 		if([fileManager fileExistsAtPath:actualPath isDirectory:&isDirectory] && isDirectory)

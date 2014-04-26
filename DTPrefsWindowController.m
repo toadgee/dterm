@@ -172,7 +172,8 @@
 #pragma mark Updates support
 
 - (IBAction)checkForUpdatesNow:(id)sender {
-	[[[NSApp delegate] sparkleUpdater] checkForUpdates:sender];
+//	[[[NSApp delegate] sparkleUpdater] checkForUpdates:sender];
+    NSLog(@"enable the preceding line of code");
 }
 
 @end

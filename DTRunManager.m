@@ -12,7 +12,7 @@
 
 
 @interface DTRunManager ()
-@property (readwrite, assign) NSTask* task;
+@property NSTask* task;
 - (void)launch;
 - (void)processResultsData;
 - (void)handleEscapeSequenceWithType:(UInt8)type params:(NSArray*)params;

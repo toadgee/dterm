@@ -110,7 +110,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	CFTypeRef outValue;
 	OSStatus err = LSCopyItemAttribute(&fsRef, kLSRolesAll, kLSItemContentType, &outValue);
 	if(outValue)
-		CFMakeCollectable(outValue);
+		CFBridgingRelease(outValue);
 	if(noErr != err)
 		return NO;
 	
@@ -201,7 +201,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	// Get AXPosition of the main window
 	CFTypeRef axPosition = NULL;
 	axErr = AXUIElementCopyAttributeValue(axWindow, kAXPositionAttribute, &axPosition);
-	NSMakeCollectable(axPosition);
+	CFBridgingRelease(axPosition);
 	if((axErr != kAXErrorSuccess) || !axPosition) {
 		NSLog(@"Couldn't get AXPosition: %d", axErr);
 		return NSZeroRect;
@@ -217,7 +217,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	// Get AXSize
 	CFTypeRef axSize = NULL;
 	axErr = AXUIElementCopyAttributeValue(axWindow, kAXSizeAttribute, &axSize);
-	NSMakeCollectable(axSize);
+	CFBridgingRelease(axSize);
 	if((axErr != kAXErrorSuccess) || !axSize) {
 		NSLog(@"Couldn't get AXSize: %d", axErr);
 		return NSZeroRect;
@@ -242,22 +242,22 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	CFTypeRef axURL = NULL;
 	
 	AXError axErr = AXUIElementCopyAttributeValue(uiElement, kAXURLAttribute, &axURL);
-	NSMakeCollectable(axURL);
+	CFBridgingRelease(axURL);
 	if((axErr != kAXErrorSuccess) || !axURL)
 		return nil;
 	
 	// OK, we have some kind of AXURL attribute, but that could either be a string or a URL
 	
 	if(CFGetTypeID(axURL) == CFStringGetTypeID()) {
-		if([(NSString*)axURL hasPrefix:@"file:///"])
-			return (NSString*)axURL;
+		if([(__bridge NSString*)axURL hasPrefix:@"file:///"])
+			return (__bridge NSString*)axURL;
 		else
 			return nil;
 	}
 	
 	if(CFGetTypeID(axURL) == CFURLGetTypeID()) {
-		if([(NSURL*)axURL isFileURL])
-			return [(NSURL*)axURL absoluteString];
+		if([(__bridge NSURL*)axURL isFileURL])
+			return [(__bridge NSURL*)axURL absoluteString];
 		else
 			return nil;
 	}
@@ -281,7 +281,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	// Follow to main window
 	CFTypeRef mainWindow = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXMainWindowAttribute, &mainWindow);
-	NSMakeCollectable(mainWindow);
+	CFBridgingRelease(mainWindow);
 	if((axErr != kAXErrorSuccess) || !mainWindow) {
 #ifdef DEVBUILD
 		NSLog(@"Couldn't get main window: %d", axErr);
@@ -292,7 +292,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	// Get the window's AXDocument URL string
 	CFTypeRef axDocumentURLString = NULL;
 	axErr = AXUIElementCopyAttributeValue(mainWindow, kAXDocumentAttribute, &axDocumentURLString);
-	NSMakeCollectable(axDocumentURLString);
+	CFBridgingRelease(axDocumentURLString);
 	if((axErr != kAXErrorSuccess) || !axDocumentURLString) {
 #ifdef DEVBUILD
 		NSLog(@"Couldn't get AXDocument: %d", axErr);
@@ -302,9 +302,9 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	
 	// OK, we're a go with this method!
 	if(windowURL)
-		*windowURL = [NSURL URLWithString:(NSString*)axDocumentURLString];
+		*windowURL = [NSURL URLWithString:(__bridge NSString*)axDocumentURLString];
 	if(selectionURLStrings)
-		*selectionURLStrings = [NSArray arrayWithObject:(NSString*)axDocumentURLString];
+		*selectionURLStrings = [NSArray arrayWithObject:(__bridge NSString*)axDocumentURLString];
 	if(windowFrame)
 		*windowFrame = [self windowFrameOfAXWindow:mainWindow];
 	return YES;
@@ -317,21 +317,21 @@ failedAXDocument:	;
 	// Find focused UI element
 	CFTypeRef focusedUIElement = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXFocusedUIElementAttribute, &focusedUIElement);
-	NSMakeCollectable(focusedUIElement);
+	CFBridgingRelease(focusedUIElement);
 	if((axErr != kAXErrorSuccess) || !focusedUIElement) {
 #ifdef DEVBUILD
 		NSLog(@"Couldn't get AXFocusedUIElement");
 #endif
-		goto failedAXFocusedUIElement;
+		return NO;
 	}
 	
 	// Does the focused UI element have any selected children or selected rows? Great for file views.
 	CFTypeRef focusedSelectedChildren = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXSelectedChildrenAttribute, &focusedSelectedChildren);
-	NSMakeCollectable(focusedSelectedChildren);
+	CFBridgingRelease(focusedSelectedChildren);
 	if((axErr != kAXErrorSuccess) || !focusedSelectedChildren || !CFArrayGetCount(focusedSelectedChildren)) {
 		axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXSelectedRowsAttribute, &focusedSelectedChildren);
-		NSMakeCollectable(focusedSelectedChildren);
+		CFBridgingRelease(focusedSelectedChildren);
 	}
 	if((axErr == kAXErrorSuccess) && focusedSelectedChildren) {
 		// If it *worked*, we see if we can extract URLs from these selected children
@@ -347,7 +347,7 @@ failedAXDocument:	;
 		if([tmpSelectionURLs count]) {
 			CFTypeRef focusWindow = NULL;
 			axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXWindowAttribute, &focusWindow);
-			NSMakeCollectable(focusWindow);
+			CFBridgingRelease(focusWindow);
 			if((axErr == kAXErrorSuccess) && focusWindow) {
 				// We're good with this! Return the values.
 				if(selectionURLStrings)
@@ -364,7 +364,7 @@ failedAXDocument:	;
 	if(focusedUIElementURLString) {
 		CFTypeRef focusWindow = NULL;
 		axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXWindowAttribute, &focusWindow);
-		NSMakeCollectable(focusWindow);
+		CFBridgingRelease(focusWindow);
 		if((axErr == kAXErrorSuccess) && focusWindow) {
 			// We're good with this! Return the values.
 			if(selectionURLStrings)
@@ -374,10 +374,6 @@ failedAXDocument:	;
 			return YES;
 		}
 	}
-	
-	
-failedAXFocusedUIElement:
-	return NO;
 }
 
 - (void)hotkeyPressed {
@@ -515,7 +511,7 @@ failedAXFocusedUIElement:
 			NSLog(@"Couldn't get systemElement");
 			goto done;
 		}
-		CFMakeCollectable(systemElement);
+		CFBridgingRelease(systemElement);
 		
 		// Follow to focused application
 		CFTypeRef focusedApplication = NULL;
@@ -526,7 +522,7 @@ failedAXFocusedUIElement:
 			NSLog(@"Couldn't get focused application: %d", axErr);
 			goto done;
 		}
-		CFMakeCollectable(focusedApplication);
+		CFBridgingRelease(focusedApplication);
 		
 		[self findWindowURL:&frontWindowURL selectionURLs:&selectionURLStrings windowFrame:&frontWindowBounds ofAXApplication:focusedApplication];
 	}
@@ -545,7 +541,7 @@ done:
 	// If there's no explicit WD, but we have a front window URL, try to deduce a working directory from that
 	if(!workingDirectory && [frontWindowURL isFileURL]) {
 		LSItemInfoRecord outItemInfo;
-		if((noErr == LSCopyItemInfoForURL((CFURLRef)frontWindowURL, kLSRequestAllFlags, &outItemInfo)) &&
+		if((noErr == LSCopyItemInfoForURL((__bridge CFURLRef)frontWindowURL, kLSRequestAllFlags, &outItemInfo)) &&
 		   ((outItemInfo.flags & kLSItemInfoIsPackage) || !(outItemInfo.flags & kLSItemInfoIsContainer))) {
 			// It's a package or not a container (i.e. a file); use its parent as the WD
 			workingDirectory = [[frontWindowURL path] stringByDeletingLastPathComponent];

@@ -12,10 +12,10 @@
 	IBOutlet NSView* updatesPrefsView;
 	IBOutlet NSView* regPrefsView;
 	
-	IBOutlet DTPrefsAXController* axPrefsController;
+	IBOutlet DTPrefsAXController* __weak axPrefsController;
 }
 
-@property DTPrefsAXController* axPrefsController;
+@property (weak) DTPrefsAXController* axPrefsController;
 
 - (IBAction)showPrefs:(id)sender;
 

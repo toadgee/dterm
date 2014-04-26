@@ -15,7 +15,7 @@ extern NSString* DTFontNameKey;
 extern NSString* DTFontSizeKey;
 
 @interface DTAppController : NSObject {
-	IBOutlet SUUpdater* sparkleUpdater;
+	IBOutlet SUUpdater* __unsafe_unretained sparkleUpdater;
 	DTPrefsWindowController* prefsWindowController;
 	DTTermWindowController* termWindowController;
 	
@@ -28,9 +28,9 @@ extern NSString* DTFontSizeKey;
 	NSUInteger numCommandsExecuted;
 }
 
-@property (assign) SUUpdater* sparkleUpdater;
+@property (unsafe_unretained) SUUpdater* sparkleUpdater;
 @property NSUInteger numCommandsExecuted;
-@property (readonly) DTPrefsWindowController* prefsWindowController;
+@property (weak, readonly) DTPrefsWindowController* prefsWindowController;
 @property (readonly) DTTermWindowController* termWindowController;
 
 - (IBAction)showPrefs:(id)sender;
