@@ -42,7 +42,6 @@
 		257355F30D1087D6008E7D0F /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 257355F20D1087D6008E7D0F /* License.rtf */; };
 		257355F60D108839008E7D0F /* RTFWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257355F50D108839008E7D0F /* RTFWindowController.m */; };
 		257355FC0D108999008E7D0F /* RTFWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257355FB0D108999008E7D0F /* RTFWindow.xib */; };
-		2573569C0D10BBAD008E7D0F /* DSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2573569B0D10BBAD008E7D0F /* DSUtilities.m */; };
 		257357BB0D10F231008E7D0F /* DSNumberFormatterTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */; };
 		257357E60D10F987008E7D0F /* DSDecimalToIntegerTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 257357E50D10F987008E7D0F /* DSDecimalToIntegerTransformer.m */; };
 		2583733F0CFE105F00943791 /* DTResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2583733E0CFE105F00943791 /* DTResultsView.m */; };
@@ -172,8 +171,6 @@
 		257355F40D108839008E7D0F /* RTFWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTFWindowController.h; sourceTree = "<group>"; };
 		257355F50D108839008E7D0F /* RTFWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTFWindowController.m; sourceTree = "<group>"; };
 		257355FB0D108999008E7D0F /* RTFWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RTFWindow.xib; sourceTree = "<group>"; };
-		2573569A0D10BBAD008E7D0F /* DSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSUtilities.h; sourceTree = "<group>"; };
-		2573569B0D10BBAD008E7D0F /* DSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSUtilities.m; sourceTree = "<group>"; };
 		257357B90D10F231008E7D0F /* DSNumberFormatterTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSNumberFormatterTransformer.h; sourceTree = "<group>"; };
 		257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSNumberFormatterTransformer.m; sourceTree = "<group>"; };
 		257357E40D10F987008E7D0F /* DSDecimalToIntegerTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDecimalToIntegerTransformer.h; sourceTree = "<group>"; };
@@ -358,8 +355,6 @@
 				2529F7CD0CF4D73600CDF456 /* setaxtrusted.m */,
 				257355F40D108839008E7D0F /* RTFWindowController.h */,
 				257355F50D108839008E7D0F /* RTFWindowController.m */,
-				2573569A0D10BBAD008E7D0F /* DSUtilities.h */,
-				2573569B0D10BBAD008E7D0F /* DSUtilities.m */,
 				257357B90D10F231008E7D0F /* DSNumberFormatterTransformer.h */,
 				257357BA0D10F231008E7D0F /* DSNumberFormatterTransformer.m */,
 				257357E40D10F987008E7D0F /* DSDecimalToIntegerTransformer.h */,
@@ -704,7 +699,6 @@
 				25A871A10D0B157F00D88D65 /* DTPrefsAXController.m in Sources */,
 				3B3E1FB9190C10C500B31D3E /* SRRecorderControl.m in Sources */,
 				257355F60D108839008E7D0F /* RTFWindowController.m in Sources */,
-				2573569C0D10BBAD008E7D0F /* DSUtilities.m in Sources */,
 				257357BB0D10F231008E7D0F /* DSNumberFormatterTransformer.m in Sources */,
 				257357E60D10F987008E7D0F /* DSDecimalToIntegerTransformer.m in Sources */,
 				25B10DD00D29D2B40034B100 /* DSUniqueTextStorage.m in Sources */,
