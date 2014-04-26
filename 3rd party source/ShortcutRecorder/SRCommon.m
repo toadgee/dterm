@@ -2,7 +2,7 @@
 //  SRCommon.m
 //  ShortcutRecorder
 //
-//  Copyright 2006-2007 Contributors. All rights reserved.
+//  Copyright 2006-2011 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -10,6 +10,7 @@
 //      David Dauer
 //      Jesper
 //      Jamie Kirkpatrick
+//      Andy Kim
 
 #import "SRCommon.h"
 #import "SRKeyCodeTransformer.h"
@@ -49,10 +50,10 @@ NSString * SRStringForKeyCode( NSInteger keyCode )
 NSString * SRStringForCarbonModifierFlags( NSUInteger flags )
 {
     NSString *modifierFlagsString = [NSString stringWithFormat:@"%@%@%@%@", 
-		( flags & controlKey ? [NSString stringWithFormat:@"%C", KeyboardControlGlyph] : @"" ),
-		( flags & optionKey ? [NSString stringWithFormat:@"%C", KeyboardOptionGlyph] : @"" ),
-		( flags & shiftKey ? [NSString stringWithFormat:@"%C", KeyboardShiftGlyph] : @"" ),
-		( flags & cmdKey ? [NSString stringWithFormat:@"%C", KeyboardCommandGlyph] : @"" )];
+		( flags & controlKey ? SRChar(KeyboardControlGlyph) : @"" ),
+		( flags & optionKey ? SRChar(KeyboardOptionGlyph) : @"" ),
+		( flags & shiftKey ? SRChar(KeyboardShiftGlyph) : @"" ),
+		( flags & cmdKey ? SRChar(KeyboardCommandGlyph) : @"" )];
 	return modifierFlagsString;
 }
 
@@ -72,10 +73,10 @@ NSString * SRStringForCarbonModifierFlagsAndKeyCode( NSUInteger flags, NSInteger
 NSString * SRStringForCocoaModifierFlags( NSUInteger flags )
 {
     NSString *modifierFlagsString = [NSString stringWithFormat:@"%@%@%@%@", 
-		( flags & NSControlKeyMask ? [NSString stringWithFormat:@"%C", KeyboardControlGlyph] : @"" ),
-		( flags & NSAlternateKeyMask ? [NSString stringWithFormat:@"%C", KeyboardOptionGlyph] : @"" ),
-		( flags & NSShiftKeyMask ? [NSString stringWithFormat:@"%C", KeyboardShiftGlyph] : @"" ),
-		( flags & NSCommandKeyMask ? [NSString stringWithFormat:@"%C", KeyboardCommandGlyph] : @"" )];
+		( flags & NSControlKeyMask ? SRChar(KeyboardControlGlyph) : @"" ),
+		( flags & NSAlternateKeyMask ? SRChar(KeyboardOptionGlyph) : @"" ),
+		( flags & NSShiftKeyMask ? SRChar(KeyboardShiftGlyph) : @"" ),
+		( flags & NSCommandKeyMask ? SRChar(KeyboardCommandGlyph) : @"" )];
 	
 	return modifierFlagsString;
 }
@@ -170,10 +171,7 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
 	
 	UInt32              deadKeyState;
     OSStatus err = noErr;
-    CFLocaleRef locale = CFLocaleCopyCurrent();
-	[(id)CFMakeCollectable(locale) autorelease]; // Autorelease here so that it gets released no matter what
-	
-	CFMutableStringRef resultString;
+    NSLocale *locale = (__bridge_transfer NSLocale *)CFLocaleCopyCurrent();
 	
 	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
     if(!tisSource)
@@ -187,7 +185,6 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
     if (!keyLayout)
 		return FailWithNaiveString;
 	
-    
 	EventModifiers modifiers = 0;
 	if (cocoaFlags & NSAlternateKeyMask)	modifiers |= optionKey;
 	if (cocoaFlags & NSShiftKeyMask)		modifiers |= shiftKey;
@@ -196,15 +193,20 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
 	err = UCKeyTranslate( keyLayout, (UInt16)keyCode, kUCKeyActionDisplay, modifiers, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
 	if(err != noErr)
 		return FailWithNaiveString;
+
 	CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, unicodeString, 1);
-	resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
-	if (temp)
-		CFRelease(temp);
-	CFStringCapitalize(resultString, locale);
-	
+	CFMutableStringRef mutableTemp = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, temp);
+
+	CFStringCapitalize(mutableTemp, (__bridge CFLocaleRef)locale);
+
+	NSString *resultString = [NSString stringWithString:(__bridge NSString *)mutableTemp];
+
+	if (temp) CFRelease(temp);
+	if (mutableTemp) CFRelease(mutableTemp);
+
 	PUDNSLog(@"character: -%@-", (NSString *)resultString);
-	
-	return (NSString *)resultString;
+
+	return resultString;
 }
 
 #pragma mark Animation Easing
@@ -242,7 +244,7 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 						defaultButton:[[error localizedRecoveryOptions] objectAtIndex:0U]
 					  alternateButton:nil
 						  otherButton:nil
-			informativeTextWithFormat:(reason ? reason : @"")];
+			informativeTextWithFormat:(reason ? reason : @""), nil];
 }
 
 @end
@@ -266,7 +268,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 + (NSImage *)supportingImageWithName:(NSString *)name {
 //	NSLog(@"supportingImageWithName: %@", name);
 	if (nil == SRSharedImageCache) {
-		SRSharedImageCache = [[NSMutableDictionary dictionary] retain];
+		SRSharedImageCache = [NSMutableDictionary dictionary];
 //		NSLog(@"inited cache");
 	}
 	NSImage *cachedImage = nil;
@@ -275,18 +277,20 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 		return cachedImage;
 	}
 	
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 //	NSLog(@"constructing image");
 	NSSize size;
 	NSValue *sizeValue = [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"_size%@", name])];
 	size = [sizeValue sizeValue];
 //	NSLog(@"size: %@", NSStringFromSize(size));
+#pragma clang diagnostic pop
 	
 	NSCustomImageRep *customImageRep = [[NSCustomImageRep alloc] initWithDrawSelector:NSSelectorFromString([NSString stringWithFormat:@"_draw%@:", name]) delegate:self];
 	[customImageRep setSize:size];
 //	NSLog(@"created customImageRep: %@", customImageRep);
 	NSImage *returnImage = [[NSImage alloc] initWithSize:size];
 	[returnImage addRepresentation:customImageRep];
-	[customImageRep release];
 	[returnImage setScalesWhenResized:YES];
 	[SRSharedImageCache setObject:returnImage forKey:name];
 	
@@ -312,7 +316,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 #endif
 	
 //	NSLog(@"returned image: %@", returnImage);
-	return [returnImage autorelease];
+	return returnImage;
 }
 @end
 
@@ -359,10 +363,6 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	[sh set];
 	
 	[bp fill];
-	
-	[bp release];
-	[flip release];
-	[sh release];
 }
 
 + (NSValue *)_sizeSRRemoveShortcut {
@@ -393,7 +393,6 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	[cross lineToPoint:MakeRelativePoint(4.0f,10.0f)];
 		
 	[cross stroke];
-	[cross release];
 }
 + (void)_drawSRRemoveShortcut:(id)anNSCustomImageRep {
 	

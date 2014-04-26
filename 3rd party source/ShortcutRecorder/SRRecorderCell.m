@@ -58,17 +58,7 @@
 
 - (void)dealloc
 {
-    [validator release];
-	
-	[keyCharsIgnoringModifiers release];
-	[keyChars release];
-    
-	[recordingGradient release];
-	[autosaveName release];
-	
-	[cancelCharacterSet release];
-	
-	[super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark *** Coding Support ***
@@ -80,7 +70,7 @@
 	[self _privateInit];
 
 	if ([aDecoder allowsKeyedCoding]) {
-		autosaveName = [[aDecoder decodeObjectForKey: @"autosaveName"] retain];
+		autosaveName = [aDecoder decodeObjectForKey: @"autosaveName"];
 		
 		keyCombo.code = [[aDecoder decodeObjectForKey: @"keyComboCode"] shortValue];
 		keyCombo.flags = [[aDecoder decodeObjectForKey: @"keyComboFlags"] unsignedIntegerValue];
@@ -100,7 +90,7 @@
 		
 		style = [[aDecoder decodeObjectForKey:@"style"] shortValue];
 	} else {
-		autosaveName = [[aDecoder decodeObject] retain];
+		autosaveName = [aDecoder decodeObject];
 		
 		keyCombo.code = [[aDecoder decodeObject] shortValue];
 		keyCombo.flags = [[aDecoder decodeObject] unsignedIntegerValue];
@@ -154,8 +144,8 @@
     SRRecorderCell *cell;
     cell = (SRRecorderCell *)[super copyWithZone: zone];
 	
-	cell->recordingGradient = [recordingGradient retain];
-	cell->autosaveName = [autosaveName retain];
+	cell->recordingGradient = recordingGradient;
+	cell->autosaveName = autosaveName;
 
 	cell->isRecording = isRecording;
 	cell->mouseInsideTrackingArea = mouseInsideTrackingArea;
@@ -177,7 +167,7 @@
 	
 	cell->style = style;
 
-	cell->cancelCharacterSet = [cancelCharacterSet retain];
+	cell->cancelCharacterSet = cancelCharacterSet;
     
 	cell->delegate = delegate;
 	
@@ -244,7 +234,7 @@
 			
 		// Draw snapback image
 			NSImage *snapBackArrow = SRResIndImage(@"SRSnapback");	
-			[snapBackArrow dissolveToPoint:[self _snapbackRectForFrame: cellFrame].origin fraction:1.0f];
+			[snapBackArrow drawAtPoint:[self _snapbackRectForFrame: cellFrame].origin fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
 			
 		// Because of the gradient and snapback image, the white rounded rect will be smaller
 			whiteRect = NSInsetRect(cellFrame, 9.5f, 2.0f);
@@ -270,14 +260,14 @@
 			{
 				NSString *removeImageName = [NSString stringWithFormat: @"SRRemoveShortcut%@", (mouseInsideTrackingArea ? (mouseDown ? @"Pressed" : @"Rollover") : (mouseDown ? @"Rollover" : @""))];
 				NSImage *removeImage = SRResIndImage(removeImageName);
-				[removeImage dissolveToPoint:[self _removeButtonRectForFrame: cellFrame].origin fraction:1.0f];
+                [removeImage drawAtPoint:[self _removeButtonRectForFrame: cellFrame].origin fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f];
 			}
 		}
 		
 		[[NSGraphicsContext currentContext] restoreGraphicsState];
 		
 	// Draw text
-		NSMutableParagraphStyle *mpstyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
+		NSMutableParagraphStyle *mpstyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 		[mpstyle setLineBreakMode: NSLineBreakByTruncatingTail];
 		[mpstyle setAlignment: NSCenterTextAlignment];
 		
@@ -447,7 +437,6 @@
 			}
 			CGFloat insetAmount = -([snapBackButton lineWidth]/2.0f);
 			[gradient drawInRect:NSInsetRect(correctedSnapBackRect, insetAmount, insetAmount) angle:90.0f];
-			[gradient release];
 
 			/*
 		// Highlight if inside or down
@@ -459,7 +448,7 @@
 			
 		// Draw snapback image
 			NSImage *snapBackArrow = SRResIndImage(@"SRSnapback");
-			[snapBackArrow dissolveToPoint:correctedSnapBackOrigin fraction:1.0f*alphaRecording];
+            [snapBackArrow drawAtPoint:correctedSnapBackOrigin fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0f*alphaRecording];
 		}
 		
 	// Draw border and remove badge if needed
@@ -471,15 +460,15 @@
 		{
 			NSString *removeImageName = [NSString stringWithFormat: @"SRRemoveShortcut%@", (mouseInsideTrackingArea ? (mouseDown ? @"Pressed" : @"Rollover") : (mouseDown ? @"Rollover" : @""))];
 			NSImage *removeImage = SRResIndImage(removeImageName);
-			[removeImage dissolveToPoint:[viewportMovement transformPoint:([self _removeButtonRectForFrame: cellFrame].origin)] fraction:alphaView];
-			//NSLog(@"drew removeImage with alpha %f", alphaView);
+            [removeImage drawAtPoint:[viewportMovement transformPoint:([self _removeButtonRectForFrame: cellFrame].origin)] fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:alphaView];
+//NSLog(@"drew removeImage with alpha %f", alphaView);
 		}
 //	}
 		
 		
 		
 	// Draw text
-		NSMutableParagraphStyle *mpstyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
+		NSMutableParagraphStyle *mpstyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 		[mpstyle setLineBreakMode: NSLineBreakByTruncatingTail];
 		[mpstyle setAlignment: NSCenterTextAlignment];
 		
@@ -834,8 +823,8 @@
 						keyCombo.code = [theEvent keyCode];
 						
 						hasKeyChars = YES;
-						keyChars = [[theEvent characters] retain];
-						keyCharsIgnoringModifiers = [[theEvent charactersIgnoringModifiers] retain];
+						keyChars = [theEvent characters];
+						keyCharsIgnoringModifiers = [theEvent charactersIgnoringModifiers];
 //						NSLog(@"keychars: %@, ignoringmods: %@", keyChars, keyCharsIgnoringModifiers);
 //						NSLog(@"calculated keychars: %@, ignoring: %@", SRStringForKeyCode(keyCombo.code), SRCharacterForKeyCodeAndCocoaFlags(keyCombo.code,keyCombo.flags));
 						
@@ -925,8 +914,16 @@
 	return allowsKeyOnly;
 }
 
+- (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly {
+	allowsKeyOnly = nAllowsKeyOnly;
+}
+
 - (BOOL)escapeKeysRecord {
 	return escapeKeysRecord;
+}
+
+- (void)setEscapeKeysRecord:(BOOL)nEscapeKeysRecord {
+	escapeKeysRecord = nEscapeKeysRecord;
 }
 
 - (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly escapeKeysRecord:(BOOL)nEscapeKeysRecord {
@@ -1010,7 +1007,6 @@
 {
 	if (aName != autosaveName)
 	{
-		[autosaveName release];
 		autosaveName = [aName copy];
 	}
 }
@@ -1195,7 +1191,7 @@
 		
 		if (hasKeyChars) {
 			
-			NSMutableDictionary *mutableDefaultsValue = [[defaultsValue mutableCopy] autorelease];
+			NSMutableDictionary *mutableDefaultsValue = [defaultsValue mutableCopy];
 			[mutableDefaultsValue setObject:keyChars forKey:@"keyChars"];
 			[mutableDefaultsValue setObject:keyCharsIgnoringModifiers forKey:@"keyCharsIgnoringModifiers"];
 			
@@ -1229,8 +1225,8 @@
 		NSString *kc = [savedCombo valueForKey: @"keyChars"];
 		hasKeyChars = (nil != kc);
 		if (kc) {
-			keyCharsIgnoringModifiers = [[savedCombo valueForKey: @"keyCharsIgnoringModifiers"] retain];
-			keyChars = [kc retain];
+			keyCharsIgnoringModifiers = [savedCombo valueForKey: @"keyCharsIgnoringModifiers"];
+			keyChars = kc;
 		}
 		
 		// Notify delegate

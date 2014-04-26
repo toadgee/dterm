@@ -99,6 +99,8 @@ static NSArray              *padKeysArray        = nil;
     // generate the string to keycode mapping dict...
     stringToKeyCodeDict = [[NSMutableDictionary alloc] init];
     [self regenerateStringToKeyCodeMapping];
+
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(regenerateStringToKeyCodeMapping) name:(NSString*)kTISNotifySelectedKeyboardInputSourceChanged object:nil];
 }
 
 //---------------------------------------------------------- 
@@ -115,6 +117,18 @@ static NSArray              *padKeysArray        = nil;
 + (Class) transformedValueClass;
 {
     return [NSString class];
+}
+
+
+//---------------------------------------------------------- 
+//  init
+//---------------------------------------------------------- 
+- (id)init
+{
+	if((self = [super init]))
+	{
+	}
+	return self;
 }
 
 //---------------------------------------------------------- 
@@ -142,10 +156,20 @@ static NSArray              *padKeysArray        = nil;
 	CFDataRef layoutData;
 	UInt32 keysDown = 0;
 	layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
-	if(!layoutData) return nil;
+	
+	CFRelease(tisSource);
+	
+	// For non-unicode layouts such as Chinese, Japanese, and Korean, get the ASCII capable layout
+	if(!layoutData) {
+		tisSource = TISCopyCurrentASCIICapableKeyboardLayoutInputSource();
+		layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
+		CFRelease(tisSource);
+	}
 
+	if (!layoutData) return nil;
+	
 	const UCKeyboardLayout *keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
-			
+	
 	UniCharCount length = 4, realLength;
 	UniChar chars[4];
 	
@@ -190,7 +214,7 @@ static NSArray              *padKeysArray        = nil;
 //---------------------------------------------------------- 
 + (void) regenerateStringToKeyCodeMapping;
 {
-    SRKeyCodeTransformer *transformer = [[[self alloc] init] autorelease];
+    SRKeyCodeTransformer *transformer = [[self alloc] init];
     [stringToKeyCodeDict removeAllObjects];
     
     // loop over every keycode (0 - 127) finding its current string mapping...
