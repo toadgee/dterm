@@ -20,8 +20,10 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleVersion</key>
+	<string>REVISION</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.6</string>
+	<string>REVISION_PUBLIC</string>
 	<key>CFBundleSignature</key>
 	<string>DTrm</string>
 	<key>CFBundleURLTypes</key>
@@ -37,8 +39,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>BZR_REVISION</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5.0</string>
 	<key>LSMinimumSystemVersionByArchitecture</key>

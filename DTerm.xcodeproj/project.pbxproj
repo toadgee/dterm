@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		25A0CDCA0DE500010042D226 /* BZRRevision */ = {
+		25A0CDCA0DE500010042D226 /* Revision */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 25A0CDD20DE500200042D226 /* Build configuration list for PBXAggregateTarget "BZRRevision" */;
+			buildConfigurationList = 25A0CDD20DE500200042D226 /* Build configuration list for PBXAggregateTarget "Revision" */;
 			buildPhases = (
 				25A0CDC90DE500010042D226 /* ShellScript */,
 			);
 			dependencies = (
 			);
-			name = BZRRevision;
+			name = Revision;
 			productName = BZRRevision;
 		};
 /* End PBXAggregateTarget section */
@@ -579,7 +579,7 @@
 				8D1107260486CEB800E47090 /* DTerm */,
 				2529F7C20CF4D6F100CDF456 /* setaxtrusted */,
 				257159180CFFAA2C007181F4 /* Tests */,
-				25A0CDCA0DE500010042D226 /* BZRRevision */,
+				25A0CDCA0DE500010042D226 /* Revision */,
 			);
 		};
 /* End PBXProject section */
@@ -654,7 +654,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=\"$HOME/bin:/usr/local/bin:$PATH\"\nREVISION=201\necho \"*** Building BZR Revision: $REVISION\"\nmkdir -p \"$TARGET_BUILD_DIR/include\"\necho \"#define BZR_REVISION 5$REVISION\" > $TARGET_BUILD_DIR/include/BZRRevision.h";
+			shellScript = "PATH=\"$HOME/bin:/usr/local/bin:$PATH\"\ncd \"$PROJECT_DIR\"\nSHA=$(git rev-parse --short HEAD)\nCOUNT=$(git rev-list --count HEAD)\necho \"*** Building Git Revision: $COUNT @ $SHA\"\nmkdir -p \"$TARGET_BUILD_DIR/include\"\necho \"#define REVISION 1.7.$COUNT\" >  $TARGET_BUILD_DIR/include/Revision.h\n\ngit diff --quiet\nif [[ $? -eq 0 ]]; then\n  echo \"#define REVISION_PUBLIC 1.7.$COUNT-$SHA\" >> $TARGET_BUILD_DIR/include/Revision.h\nelse\n  echo \"#define REVISION_PUBLIC 1.7.$COUNT-$SHA+\" >> $TARGET_BUILD_DIR/include/Revision.h\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -723,7 +723,7 @@
 		};
 		25A0CDD40DE500950042D226 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 25A0CDCA0DE500010042D226 /* BZRRevision */;
+			target = 25A0CDCA0DE500010042D226 /* Revision */;
 			targetProxy = 25A0CDD30DE500950042D226 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -876,7 +876,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				PRODUCT_NAME = BZRRevision;
+				PRODUCT_NAME = Revision;
 			};
 			name = Debug;
 		};
@@ -886,7 +886,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = BZRRevision;
+				PRODUCT_NAME = Revision;
 			};
 			name = Release;
 		};
@@ -898,7 +898,7 @@
 				GCC_PREFIX_HEADER = DTerm_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/BZRRevision.h;
+				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/Revision.h;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-lcrypto";
@@ -916,7 +916,7 @@
 				GCC_PREFIX_HEADER = DTerm_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/BZRRevision.h;
+				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/Revision.h;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-lcrypto";
@@ -969,7 +969,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		25A0CDD20DE500200042D226 /* Build configuration list for PBXAggregateTarget "BZRRevision" */ = {
+		25A0CDD20DE500200042D226 /* Build configuration list for PBXAggregateTarget "Revision" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				25A0CDCB0DE500010042D226 /* Debug */,
