@@ -2,10 +2,10 @@
 
 
 @interface DTRunManager : NSObject {
-	NSString* __weak workingDirectory;
-	NSArray* __weak selectedURLStrings;
+	NSString* workingDirectory;
+	NSArray* selectedURLStrings;
 	
-	NSString* __weak command;
+	NSString* command;
 	NSTextStorage* resultsStorage;
 	NSAttributedString* trailingWhitespace;
 	NSMutableData* unprocessedResultsData;
@@ -17,9 +17,9 @@
 	NSFileHandle* stdErr;
 }
 
-@property (weak) NSString* workingDirectory;
-@property (weak) NSArray* selectedURLStrings;
-@property (weak, readonly) NSString* command;
+@property NSString* workingDirectory;
+@property NSArray* selectedURLStrings;
+@property (readonly) NSString* command;
 
 @property (readonly) NSTextStorage* resultsStorage;
 - (void)setDisplayFont:(NSFont*)font;
