@@ -10,13 +10,13 @@
 #import "PathFinder.h"
 #import "RTFWindowController.h"
 
-NSString* DTResultsToKeepKey = @"DTResultsToKeep";
-NSString* DTHotkeyAlsoDeactivatesKey = @"DTHotkeyAlsoDeactivates";
-NSString* DTShowDockIconKey = @"DTShowDockIcon";
-NSString* DTTextColorKey = @"DTTextColor";
-NSString* DTFontNameKey = @"DTFontName";
-NSString* DTFontSizeKey = @"DTFontSize";
-NSString* DTDisableAntialiasingKey = @"DTDisableAntialiasing";
+NSString* const DTResultsToKeepKey = @"DTResultsToKeep";
+NSString* const DTHotkeyAlsoDeactivatesKey = @"DTHotkeyAlsoDeactivates";
+NSString* const DTShowDockIconKey = @"DTShowDockIcon";
+NSString* const DTTextColorKey = @"DTTextColor";
+NSString* const DTFontNameKey = @"DTFontName";
+NSString* const DTFontSizeKey = @"DTFontSize";
+NSString* const DTDisableAntialiasingKey = @"DTDisableAntialiasing";
 
 OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 						 void *userData) {

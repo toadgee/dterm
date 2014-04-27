@@ -2,16 +2,12 @@
 
 #import "RTFWindowController.h"
 
-
 @implementation RTFWindowController
 
-@synthesize rtfPath;
-@synthesize windowTitle;
-
-- (id)initWithRTFFile:(NSString*)_rtfPath {
+- (id)initWithRTFFile:(NSString*)inRTFPath {
 	if((self = [super initWithWindowNibName:@"RTFWindow"])) {
-		self.rtfPath = _rtfPath;
-		self.windowTitle = [[rtfPath lastPathComponent] stringByDeletingPathExtension];
+		self.rtfPath = inRTFPath;
+		self.windowTitle = [[inRTFPath lastPathComponent] stringByDeletingPathExtension];
 	}
 	
 	return self;

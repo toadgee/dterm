@@ -1,9 +1,7 @@
 //  Copyright (c) 2007-2011 Decimus Software, Inc. All rights reserved.
 
 
-@interface DTPrefsAXController : NSViewController {
-	BOOL axGeneralAccessEnabled;
-}
+@interface DTPrefsAXController : NSViewController
 
 @property (readonly) BOOL axAppTrusted;
 @property (weak, readonly) NSString* axTrustStatusString;

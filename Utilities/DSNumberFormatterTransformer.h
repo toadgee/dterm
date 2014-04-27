@@ -1,10 +1,8 @@
 //  Copyright (c) 2007-2010 Decimus Software, Inc. All rights reserved.
 
 
-@interface DSNumberFormatterTransformer : NSValueTransformer {
-	NSNumberFormatter* formatter;
-}
+@interface DSNumberFormatterTransformer : NSValueTransformer
 
-- (id)initWithNumberFormatter:(NSNumberFormatter*)_formatter;
+- (id)initWithNumberFormatter:(NSNumberFormatter*)inFormatter;
 
 @end

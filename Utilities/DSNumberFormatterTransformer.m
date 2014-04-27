@@ -2,12 +2,17 @@
 
 #import "DSNumberFormatterTransformer.h"
 
+@interface DSNumberFormatterTransformer ()
+
+@property NSNumberFormatter *numberFormatter;
+
+@end
 
 @implementation DSNumberFormatterTransformer
 
-- (id)initWithNumberFormatter:(NSNumberFormatter*)_formatter {
+- (id)initWithNumberFormatter:(NSNumberFormatter*)inFormatter {
 	if((self = [super init])) {
-		formatter = _formatter;
+		self.numberFormatter = inFormatter;
 	}
 	
 	return self;
@@ -25,7 +30,7 @@
 	if(!value)
 		return nil;
 	
-	return [formatter stringFromNumber:value];
+	return [self.numberFormatter stringFromNumber:value];
 }
 
 @end
