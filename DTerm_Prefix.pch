@@ -6,3 +6,9 @@
     #import <Cocoa/Cocoa.h>
 	#import <Carbon/Carbon.h>
 #endif
+
+#define APP_DELEGATE (DTAppController *)[(NSApplication*)NSApp delegate]
+
+// http://stackoverflow.com/questions/17622237/which-is-the-best-way-to-suppress-unused-variable-warning
+#define DT_Internal_UnusedStringify(macro_arg_string_literal) #macro_arg_string_literal
+#define UnusedParameter(macro_arg_parameter) _Pragma(DT_Internal_UnusedStringify(unused(macro_arg_parameter)))

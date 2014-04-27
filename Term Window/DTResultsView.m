@@ -20,6 +20,8 @@
 }
 
 - (void)drawRect:(NSRect)rect {
+    UnusedParameter(rect);
+    
 	[[[NSColor whiteColor] colorWithAlphaComponent:0.7] setStroke];
 	
 	NSBezierPath* outlinePath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect([self bounds], 0.5, 0.5)

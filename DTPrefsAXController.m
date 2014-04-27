@@ -21,7 +21,7 @@
 #pragma mark accessors
 
 - (BOOL)axAppTrusted {
-	return [(DTAppController *)[NSApp delegate] isAXTrustedPromptIfNot:NO];
+	return (BOOL)[(DTAppController *)APP_DELEGATE isAXTrustedPromptIfNot:NO];
 }
 
 + (NSSet*) keyPathsForValuesAffectingAxTrustStatusString {
@@ -35,7 +35,7 @@
 }
 
 - (void)recheckGeneralAXAccess {
-	self.axGeneralAccessEnabled = [(DTAppController *)[NSApp delegate] isAXTrustedPromptIfNot:NO];
+	self.axGeneralAccessEnabled = (BOOL)[(DTAppController *)APP_DELEGATE isAXTrustedPromptIfNot:NO];
 }
 
 + (NSSet*)keyPathsForValuesAffectingAxGeneralAccessEnabledString {
@@ -52,8 +52,8 @@
 
 #pragma mark actions
 
-- (IBAction)setAXTrusted:(id)sender {
-    BOOL isTrusted = [(DTAppController *)[NSApp delegate] isAXTrustedPromptIfNot:YES];
+- (IBAction)setAXTrusted:(id) __unused sender {
+    BOOL isTrusted = [(DTAppController *)APP_DELEGATE isAXTrustedPromptIfNot:YES];
 
     if ( !isTrusted )
     {

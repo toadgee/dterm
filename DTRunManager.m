@@ -44,7 +44,7 @@
 		return @[@"-i", @"-c", command];
 }
 
-- (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command demoExpired:(BOOL)demoExpired {
+- (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command {
 	if((self = [super init])) {
 		resultsStorage = [[NSTextStorage alloc] init];
 		currentAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -152,7 +152,7 @@
 				self.task = nil;
 				
                 // TODO: re-add Growl support
-//				DTTermWindowController* termWindowController = [[NSApp delegate] termWindowController];
+//				DTTermWindowController* termWindowController = [APP_DELEGATE termWindowController];
 //				if(![[termWindowController window] isVisible] || ![[[termWindowController runsController] selectedObjects] containsObject:self]) {
 //					NSArray* lines = [[self.resultsStorage string] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 //					NSString* lastLine = [lines lastObject];
@@ -309,7 +309,7 @@
 					
 					if(!plainString) {
 						// Failed!  Cut off half of it and try again, rounding down so we'll eventually hit zero
-						lengthOfNormalString = trunc(lengthOfNormalString / 2.0);
+						lengthOfNormalString = (NSUInteger)trunc(lengthOfNormalString / 2.0);
 					}
 				}
 				
@@ -522,7 +522,7 @@
 	}
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(id) __unused sender {
 	@try {
 		if([task isRunning]) {
 			// Bash catches basically all signals, but terminates on SIGHUP, terminating subprocesses as well

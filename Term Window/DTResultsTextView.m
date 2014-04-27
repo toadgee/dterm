@@ -69,6 +69,8 @@
 }
 
 - (void)dtTextChanged:(NSNotification*)ntf {
+    UnusedParameter(ntf);
+    
 //	NSLog(@"dtTextChanged called: %@, %@", ntf, [self string]);
 
 //	-- Commenting this stuff out because we don't have a good way to tell here if 

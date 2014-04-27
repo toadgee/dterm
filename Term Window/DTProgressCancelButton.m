@@ -57,7 +57,7 @@
 	animationImages = [tmpImages copy];
 }
 
-- (void)updateAnimation:(NSTimer*)timer {
+- (void)updateAnimation:(NSTimer*) __unused timer {
 	if(![[self window] isVisible])
 		return;
 	
@@ -82,11 +82,11 @@
 	mouseInside = inside;
 }
 
-- (void)mouseEntered:(NSEvent*)event {
+- (void)mouseEntered:(NSEvent*) __unused event {
 	[self updateImageForMouseInside:YES];
 }
 
-- (void)mouseExited:(NSEvent*)event {
+- (void)mouseExited:(NSEvent*) __unused event {
 	[self updateImageForMouseInside:NO];
 }
 

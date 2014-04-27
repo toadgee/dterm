@@ -116,7 +116,7 @@ typedef enum {
 	FinderEdfmFTPFormat = 'dfft',
 	FinderEdfmPacketWrittenUDFFormat = 'dfpu',
 	FinderEdfmXsanFormat = 'dfac',
-	FinderEdfmUnknownFormat = 'df??'
+	FinderEdfmUnknownFormat = 'df\?\?'
 } FinderEdfm;
 
 

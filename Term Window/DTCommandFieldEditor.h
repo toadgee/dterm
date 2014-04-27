@@ -4,10 +4,9 @@
 
 @interface DTCommandFieldEditor : NSTextView {
 	DTTermWindowController* controller;
-	BOOL isFirstResponder;
 }
 
-@property (nonatomic) BOOL isFirstResponder;
+@property (nonatomic, readonly) BOOL isFirstResponder;
 
 - (id)initWithController:(DTTermWindowController*)_controller;
 - (void)insertFiles:(NSArray*)selectedPaths;

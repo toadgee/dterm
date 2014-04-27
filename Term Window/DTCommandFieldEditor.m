@@ -4,11 +4,11 @@
 
 #import "DTShellUtilities.h"
 #import "DTTermWindowController.h"
-
+#import "DTAppController.h"  // for -changeFont:
 
 @implementation DTCommandFieldEditor
 
-@synthesize isFirstResponder;
+@dynamic isFirstResponder;
 
 - (id)initWithController:(DTTermWindowController*)_controller {
 	if((self = [super init])) {
@@ -27,20 +27,6 @@
 	}
 	
 	return self;
-}
-
-- (BOOL)becomeFirstResponder {
-	BOOL retVal = [super becomeFirstResponder];
-	if(retVal)
-		self.isFirstResponder = YES;
-	return retVal;
-}
-
-- (BOOL)resignFirstResponder {
-	BOOL retVal = [super resignFirstResponder];
-	if(retVal)
-		self.isFirstResponder = NO;
-	return retVal;
 }
 
 - (BOOL)isFirstResponder {
@@ -142,7 +128,7 @@
 
 // We don't want this to eat our font changes
 - (void)changeFont:(id)sender {
-	[[NSApp delegate] changeFont:sender];
+	[APP_DELEGATE changeFont:sender];
 }
 
 @end

@@ -30,7 +30,7 @@
 + (NSString*)shellPath;
 + (NSArray*)argumentsToRunCommand:(NSString*)command;
 
-- (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command demoExpired:(BOOL)demoExpired;
+- (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command;
 - (IBAction)cancel:(id)sender;
 
 @end

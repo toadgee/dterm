@@ -128,9 +128,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 }
 
 - (void)deactivate {
-	NSInteger numRunsToKeep = [[NSUserDefaults standardUserDefaults] integerForKey:DTResultsToKeepKey];
-	if(numRunsToKeep < 0)
-		numRunsToKeep = 0;
+	NSUInteger numRunsToKeep = (NSUInteger)[[NSUserDefaults standardUserDefaults] integerForKey:DTResultsToKeepKey];
 	if(numRunsToKeep > 100)
 		numRunsToKeep = 100;
 	
@@ -156,7 +154,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	[[[self window] animator] setAlphaValue:0.0];
 	[NSAnimationContext endGrouping];
 	
-	[[self window] performSelector:@selector(orderOut:)
+	[[self window] performSelector:NSSelectorFromString(@"orderOut:")
 						withObject:self
 						afterDelay:0.11f];
 }
@@ -168,7 +166,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	[self deactivate];
 }
 
-- (IBAction)insertSelection:(id)sender {
+- (IBAction)insertSelection:(id) __unused sender {
 	NSMutableArray* paths = [NSMutableArray arrayWithCapacity:[selectedURLs count]];
 	for(NSString* urlString in self.selectedURLs) {
 		NSURL* url = [NSURL URLWithString:urlString];
@@ -185,7 +183,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	
 	[commandFieldEditor insertFiles:paths];
 }
-- (IBAction)insertSelectionFullPaths:(id)sender {
+- (IBAction)insertSelectionFullPaths:(id) __unused sender {
 	NSMutableArray* paths = [NSMutableArray arrayWithCapacity:[selectedURLs count]];
 	for(NSString* urlString in self.selectedURLs) {
 		NSURL* url = [NSURL URLWithString:urlString];
@@ -197,7 +195,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	
 	[commandFieldEditor insertFiles:paths];
 }
-- (IBAction)pullCommandFromResults:(id)sender {
+- (IBAction)pullCommandFromResults:(id) __unused sender {
 	id selection = [runsController selection];
 	NSString* resultsCommand = [selection valueForKey:@"command"];
 	if(resultsCommand) {
@@ -208,7 +206,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		[commandFieldEditor insertText:resultsCommand];
 	}
 }
-- (IBAction)executeCommand:(id)sender {
+- (IBAction)executeCommand:(id) __unused sender {
 	// Commit editing first
 	if(![[self window] makeFirstResponder:[self window]])
 		return;
@@ -218,12 +216,11 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	
     DTRunManager* runManager = [[DTRunManager alloc] initWithWD:self.workingDirectory
                                                       selection:self.selectedURLs
-                                                        command:self.command
-                                                    demoExpired:NO];
+                                                        command:self.command];
     [runsController addObject:runManager];
 }
 
-- (IBAction)executeCommandInTerminal:(id)sender {
+- (IBAction)executeCommandInTerminal:(id) __unused sender {
 	// Commit editing first
 	if(![[self window] makeFirstResponder:[self window]])
 		return;
@@ -247,8 +244,8 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 			[[terminal sessions] addObject:session];
 		} else {
 			// It wasn't running yet, so just use the "current" terminal/session so we don't open more than one
-			terminal = [iTerm currentTerminal];
-			session = [terminal currentSession];
+			terminal = [iTerm valueForKey:@"currentTerminal"];
+			session = [terminal valueForKey:@"currentSession"];
 		}
 		
 		// set shell to system attribute "SHELL"
@@ -290,11 +287,11 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 }
 
 
-- (void)cancelOperation:(id)sender {
+- (void)cancelOperation:(id) __unused sender {
 	[self deactivate];
 }
 
-- (IBAction)copyResultsToClipboard:(id)sender {
+- (IBAction)copyResultsToClipboard:(id) __unused sender {
 //	[[NSSound soundNamed:@"Blow"] play];
 	//	NSLog(@"Asked to copy results to clipboard");
 	
@@ -312,7 +309,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 
 - (IBAction)cancelCurrentCommand:(id)sender {
 	NSArray* selection = [runsController selectedObjects];
-	[selection makeObjectsPerformSelector:@selector(cancel:) withObject:sender];
+	[selection makeObjectsPerformSelector:NSSelectorFromString(@"cancel:") withObject:sender];
 }
 
 - (void)requestWindowHeightChange:(CGFloat)dHeight {
@@ -339,7 +336,10 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 
 - (NSArray*)completionsForPartialWord:(NSString*)partialWord
 							isCommand:(BOOL)isCommand
-				  indexOfSelectedItem:(NSInteger*)index {
+				  indexOfSelectedItem:(NSInteger*)index
+{
+    UnusedParameter(index);
+    
 	BOOL allowFiles = (!isCommand || [partialWord hasPrefix:@"/"] || [partialWord hasPrefix:@"./"] || [partialWord hasPrefix:@"../"]);
 	
 	NSTask* task = [[NSTask alloc] init];

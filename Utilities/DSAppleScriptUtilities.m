@@ -6,7 +6,7 @@
 
 @implementation DSAppleScriptUtilities
 
-+ (NSString*)stringFromAppleScript:(NSString*)source error:(NSDictionary**)error {
++ (NSString*)stringFromAppleScript:(NSString*)source error:(NSDictionary * __autoreleasing *)error {
 	NSAppleScript* appleScript = [[NSAppleScript alloc] initWithSource:source];
 	
 	NSAppleEventDescriptor* result = [appleScript executeAndReturnError:error];
@@ -16,7 +16,7 @@
 	return [result stringValue];
 }
 
-+ (BOOL)bringApplicationToFront:(NSString*)appName error:(NSDictionary**)error {
++ (BOOL)bringApplicationToFront:(NSString*)appName error:(NSDictionary * __autoreleasing *)error {
 	NSString* source = [NSString stringWithFormat:@"tell application \"%@\" to activate", appName];
 	
 	NSAppleScript* appleScript = [[NSAppleScript alloc] initWithSource:source];

@@ -43,7 +43,6 @@ typedef enum {
 - (SBObject *) move:(NSArray *)x to:(NSString *)to replacing:(BOOL)replacing;  // Move object(s) to a new location.
 - (void) reveal:(id)x;  // Reveal an item.
 - (void) select:(id)x;
-- (BOOL) exists:(id)x;
 - (void) delete:(id)x;
 - (void) addToFavorites:(id)x;
 - (void) eject:(id)x;
@@ -67,7 +66,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -98,7 +96,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -132,7 +129,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -160,7 +156,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -188,7 +183,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -216,7 +210,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -244,7 +237,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder
@@ -299,7 +291,6 @@ typedef enum {
 - (void) reveal;  // Reveal an item.
 - (void) select;
 - (BOOL) exists;
-- (void) delete;
 - (void) addToFavorites;
 - (void) eject;
 - (void) PFOpenUsing:(NSString *)using_;  // used by DragThing to open a folder

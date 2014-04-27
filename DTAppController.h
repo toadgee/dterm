@@ -16,7 +16,6 @@ extern NSString* const DTFontSizeKey;
 
 @interface DTAppController : NSObject {
 	IBOutlet SUUpdater* __unsafe_unretained sparkleUpdater;
-	DTPrefsWindowController* prefsWindowController;
 	DTTermWindowController* termWindowController;
 	
 	RTFWindowController* acknowledgmentsWindowController;
@@ -27,7 +26,7 @@ extern NSString* const DTFontSizeKey;
 }
 
 @property (unsafe_unretained) SUUpdater* sparkleUpdater;
-@property (weak, readonly) DTPrefsWindowController* prefsWindowController;
+@property (readonly, nonatomic) DTPrefsWindowController* prefsWindowController;
 @property (readonly) DTTermWindowController* termWindowController;
 
 - (BOOL) isAXTrustedPromptIfNot:(BOOL)shouldPrompt;

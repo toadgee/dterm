@@ -30,16 +30,16 @@
 }
 
 // Don't allow closing if we can't commit editing
-- (BOOL)windowShouldClose:(id)window {
+- (BOOL)windowShouldClose:(id) __unused window {
 	return [[self window] makeFirstResponder:nil];
 }
 
 - (void)windowDidLoad {
 	[shortcutRecorder setAllowsKeyOnly:NO escapeKeysRecord:NO];
-	[shortcutRecorder setKeyCombo:[[NSApp delegate] hotKey]];
+	[shortcutRecorder setKeyCombo:[APP_DELEGATE hotKey]];
 }
 
-- (void)windowDidBecomeKey:(NSNotification *)notification {
+- (void)windowDidBecomeKey:(NSNotification *) __unused notification {
 	[axPrefsController recheckGeneralAXAccess];
 }
 
@@ -55,14 +55,23 @@
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder
 			   isKeyCode:(NSInteger)keyCode
 		   andFlagsTaken:(NSUInteger)flags
-				  reason:(NSString **)aReason {
+				  reason:(NSString * __autoreleasing *)aReason
+{
+    UnusedParameter(aRecorder);
+    UnusedParameter(keyCode);
+    UnusedParameter(flags);
+    UnusedParameter(aReason);
+    
 	return NO;
 }
 
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder
-	   keyComboDidChange:(KeyCombo)newKeyCombo {
+	   keyComboDidChange:(KeyCombo)newKeyCombo
+{
+    UnusedParameter(aRecorder);
+    
 //	NSLog(@"New key combo: key code %d, flags %d", newKeyCombo.code, newKeyCombo.flags);
-	[[NSApp delegate] setHotKey:newKeyCombo];
+	[APP_DELEGATE setHotKey:newKeyCombo];
 }
 
 - (void)showView:(NSView*)prefsView {
@@ -95,7 +104,7 @@
 	return [toolbar valueForKeyPath:@"items.itemIdentifier"];
 }
 
-- (IBAction)showGeneral:(id)sender {
+- (IBAction)showGeneral:(id) __unused sender {
 	// make sure we have a window
 	[self window];
 	
@@ -110,7 +119,7 @@
 	
 	[self showView:generalPrefsView];
 }
-- (IBAction)showAccessibility:(id)sender {
+- (IBAction)showAccessibility:(id) __unused sender {
 	// make sure we have a window
 	[self window];
 	
@@ -126,7 +135,7 @@
 	[self showView:accessibilityPrefsView];
 }
 
-- (IBAction)showUpdates:(id)sender {
+- (IBAction)showUpdates:(id) __unused sender {
 	// make sure we have a window
 	[self window];
 	
@@ -144,7 +153,7 @@
 
 #pragma mark font selection
 
-- (IBAction)showFontPanel:(id)sender {
+- (IBAction)showFontPanel:(id) __unused sender {
 	// Get font name and size from user defaults
 	NSDictionary *values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 	NSString *fontName = [values valueForKey:DTFontNameKey];
@@ -163,7 +172,7 @@
     [[self window] makeFirstResponder:[self window]];
 }
 
-- (IBAction)resetColorAndFont:(id)sender {
+- (IBAction)resetColorAndFont:(id) __unused sender {
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:DTFontNameKey];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:DTFontSizeKey];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:DTTextColorKey];
@@ -171,8 +180,10 @@
 
 #pragma mark Updates support
 
-- (IBAction)checkForUpdatesNow:(id)sender {
-//	[[[NSApp delegate] sparkleUpdater] checkForUpdates:sender];
+- (IBAction)checkForUpdatesNow:(id) sender
+{
+    UnusedParameter(sender);
+//	[[APP_DELEGATE sparkleUpdater] checkForUpdates:sender];
     NSLog(@"enable the preceding line of code");
 }
 

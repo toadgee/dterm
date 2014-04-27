@@ -18,12 +18,22 @@ NSString* const DTFontNameKey = @"DTFontName";
 NSString* const DTFontSizeKey = @"DTFontSize";
 NSString* const DTDisableAntialiasingKey = @"DTDisableAntialiasing";
 
-OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
-						 void *userData) {
-	[[NSApp delegate] hotkeyPressed];
+OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void *userData);
+OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void *userData)
+{
+    UnusedParameter(nextHandler);
+    UnusedParameter(theEvent);
+    UnusedParameter(userData);
+
+	[APP_DELEGATE hotkeyPressed];
 	return noErr;
 }
 
+@interface DTAppController ()
+
+@property (readwrite, nonatomic) DTPrefsWindowController* prefsWindowController;
+
+@end
 
 @implementation DTAppController
 
@@ -31,7 +41,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 
 @synthesize termWindowController;
 
-- (void)applicationWillFinishLaunching:(NSNotification*)ntf {
+- (void)applicationWillFinishLaunching:(NSNotification*) __unused ntf {
 	// Ignore SIGPIPE
 	signal(SIGPIPE, SIG_IGN);
 	
@@ -77,14 +87,14 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	}
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification*)ntf {
+- (void)applicationDidFinishLaunching:(NSNotification*) __unused ntf {
 	if( ![self isAXTrustedPromptIfNot:NO] )
     {
 		[self.prefsWindowController showAccessibility:self];
 	}
 }
 
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag {
+- (BOOL)applicationShouldHandleReopen:(NSApplication *) __unused theApplication hasVisibleWindows:(BOOL)flag {
 	if(!flag) {
 		[self performSelector:@selector(showPrefs:)
 				   withObject:nil
@@ -108,10 +118,11 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	[self loadHotKeyFromUserDefaults];
 }
 
-- (DTPrefsWindowController*) prefsWindowController {
-	if(!prefsWindowController)
-		prefsWindowController = [[DTPrefsWindowController alloc] init];
-	return prefsWindowController;
+- (DTPrefsWindowController *) prefsWindowController {
+	if(!_prefsWindowController)
+		self.prefsWindowController = [[DTPrefsWindowController alloc] init];
+
+	return _prefsWindowController;
 }
 
 - (KeyCombo)hotKey {
@@ -132,8 +143,8 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	// Register new hotkey, if we have one
 	if((hotKey.code != -1) && (hotKey.flags != 0)) {
 		EventHotKeyID hotKeyID = { 'htk1', 1 };
-		RegisterEventHotKey(hotKey.code, 
-							SRCocoaToCarbonFlags(hotKey.flags),
+		RegisterEventHotKey((UInt32)hotKey.code,
+							(UInt32)SRCocoaToCarbonFlags(hotKey.flags),
 							hotKeyID,
 							GetApplicationEventTarget(), 
 							0, 
@@ -238,7 +249,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	return nil;
 }
 
-- (BOOL)findWindowURL:(NSURL**)windowURL selectionURLs:(NSArray**)selectionURLStrings windowFrame:(NSRect*)windowFrame ofAXApplication:(CFTypeRef)focusedApplication {
+- (BOOL)findWindowURL:(NSURL * __autoreleasing *)windowURL selectionURLs:(NSArray* __autoreleasing *)selectionURLStrings windowFrame:(NSRect*)windowFrame ofAXApplication:(CFTypeRef)focusedApplication {
 	AXError axErr = kAXErrorSuccess;
 	
 	if(windowURL)
@@ -307,8 +318,8 @@ failedAXDocument:	;
 	}
 	if((axErr == kAXErrorSuccess) && focusedSelectedChildren) {
 		// If it *worked*, we see if we can extract URLs from these selected children
-		NSMutableArray* tmpSelectionURLs = [NSMutableArray arrayWithCapacity:CFArrayGetCount(focusedSelectedChildren)];
-		for(NSUInteger i=0; i<CFArrayGetCount(focusedSelectedChildren); i++) {
+		NSMutableArray* tmpSelectionURLs = [NSMutableArray array];
+		for(CFIndex i=0; i<CFArrayGetCount(focusedSelectedChildren); i++) {
 			CFTypeRef selectedChild = CFArrayGetValueAtIndex(focusedSelectedChildren, i);
 			NSString* selectedChildURLString = [self fileAXURLStringOfAXUIElement:selectedChild];
 			if(selectedChildURLString)
@@ -546,12 +557,12 @@ done:
 {
     NSDictionary* options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @(shouldPrompt)};
 
-    return AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
+    return (BOOL)AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
 }
 
 #pragma mark URL actions
 
-- (void)getURL:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+- (void)getURL:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *) __unused replyEvent {
 	NSString* urlString = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
 	NSURL* url = [NSURL URLWithString:urlString];
 	
@@ -592,7 +603,7 @@ done:
 
 #pragma mark font panel support
 
-- (void)changeFont:(id)sender{
+- (void)changeFont:(id) __unused sender{
 	/*
 	 This is the message the font panel sends when a new font is selected
 	 */
