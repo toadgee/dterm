@@ -1,9 +1,9 @@
 //  Copyright (c) 2007-2010 Decimus Software, Inc. All rights reserved.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 
-@interface ShellUtilitiesTests : SenTestCase {
+@interface ShellUtilitiesTests : XCTestCase {
 
 }
 

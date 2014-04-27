@@ -79,6 +79,8 @@
 		3B3E1FB8190C10C500B31D3E /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3E1FAD190C10C500B31D3E /* SRRecorderCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3B3E1FB9190C10C500B31D3E /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3E1FAF190C10C500B31D3E /* SRRecorderControl.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3B3E1FBA190C10C500B31D3E /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3E1FB1190C10C500B31D3E /* SRValidator.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3B6316B4190D51B500D62E4E /* DTShellUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 257158E80CFF9A99007181F4 /* DTShellUtilities.m */; };
+		3B6316B6190D51E100D62E4E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6316B5190D51E100D62E4E /* XCTest.framework */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -129,7 +131,7 @@
 		2559EB0E0D36EC58002BCF4E /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinder.h; sourceTree = "<group>"; };
 		257158E70CFF9A99007181F4 /* DTShellUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTShellUtilities.h; sourceTree = "<group>"; };
 		257158E80CFF9A99007181F4 /* DTShellUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTShellUtilities.m; sourceTree = "<group>"; };
-		257159190CFFAA2C007181F4 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		257159190CFFAA2C007181F4 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2571591A0CFFAA2C007181F4 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		257159270CFFAB52007181F4 /* ShellUtilitiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShellUtilitiesTests.h; sourceTree = "<group>"; };
 		257159280CFFAB52007181F4 /* ShellUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShellUtilitiesTests.m; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		3B3E1FAF190C10C500B31D3E /* SRRecorderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRecorderControl.m; sourceTree = "<group>"; };
 		3B3E1FB0190C10C500B31D3E /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRValidator.h; sourceTree = "<group>"; };
 		3B3E1FB1190C10C500B31D3E /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRValidator.m; sourceTree = "<group>"; };
+		3B6316B5190D51E100D62E4E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* DTerm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTerm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -206,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6316B6190D51E100D62E4E /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* DTerm.app */,
-				257159190CFFAA2C007181F4 /* Tests.octest */,
+				257159190CFFAA2C007181F4 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,6 +410,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B6316B5190D51E100D62E4E /* XCTest.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -461,8 +466,8 @@
 			);
 			name = Tests;
 			productName = Tests;
-			productReference = 257159190CFFAA2C007181F4 /* Tests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 257159190CFFAA2C007181F4 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8D1107260486CEB800E47090 /* DTerm */ = {
 			isa = PBXNativeTarget;
@@ -603,6 +608,7 @@
 			files = (
 				257159290CFFAB52007181F4 /* ShellUtilitiesTests.m in Sources */,
 				25E6DA3F0EB262AB003C1E84 /* DSAppleScriptUtilities.m in Sources */,
+				3B6316B4190D51B500D62E4E /* DTShellUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,7 +716,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DTerm.app/Contents/MacOS/DTerm";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -723,13 +732,10 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -739,7 +745,10 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DTerm.app/Contents/MacOS/DTerm";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -750,13 +759,10 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
 			name = Release;
