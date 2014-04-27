@@ -104,10 +104,17 @@
 	// Setting the accessibility flag gives us a sticky egid of 'accessibility', which seems to interfere with shells using .bashrc and whatnot.
 	// We temporarily set our gid back before launching to work around this problem.
 	// Case 8042: http://fogbugz.decimus.net/default.php?8042
+    int egidResult = 0;
 	gid_t savedEGID = getegid();
-	setegid(getgid());
+	egidResult = setegid(getgid());
+    if (egidResult != 0)
+        NSLog(@"WARNING: failed to set EGID");
+
 	[task launch];
-	setegid(savedEGID);
+
+	egidResult = setegid(savedEGID);
+    if (egidResult != 0)
+        NSLog(@"WARNING: failed to set EGID");
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(readData:)
@@ -147,12 +154,13 @@
 			if(!stdOut && !stdErr) {				
 				self.task = nil;
 				
-				DTTermWindowController* termWindowController = [[NSApp delegate] termWindowController];
-				if(![[termWindowController window] isVisible] || ![[[termWindowController runsController] selectedObjects] containsObject:self]) {
-					NSArray* lines = [[self.resultsStorage string] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-					NSString* lastLine = [lines lastObject];
-					if(![lastLine length])
-						lastLine = NSLocalizedString(@"<no results>", @"Growl notification description");
+                // TODO: re-add Growl support
+//				DTTermWindowController* termWindowController = [[NSApp delegate] termWindowController];
+//				if(![[termWindowController window] isVisible] || ![[[termWindowController runsController] selectedObjects] containsObject:self]) {
+//					NSArray* lines = [[self.resultsStorage string] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+//					NSString* lastLine = [lines lastObject];
+//					if(![lastLine length])
+//						lastLine = NSLocalizedString(@"<no results>", @"Growl notification description");
 //					[GrowlApplicationBridge notifyWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Command finished: %@", @"Growl notification title"), self.command]
 //												description:lastLine 
 //										   notificationName:@"DTCommandCompleted"
@@ -160,7 +168,7 @@
 //												   priority:0 
 //												   isSticky:NO 
 //											   clickContext:nil];
-				}
+//				}
 			}
 		}
 	}

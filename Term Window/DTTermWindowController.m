@@ -383,11 +383,18 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	// Setting the accessibility flag gives us a sticky egid of 'accessibility', which seems to interfere with shells using .bashrc and whatnot.
 	// We temporarily set our gid back before launching to work around this problem.
 	// Case 8042: http://fogbugz.decimus.net/default.php?8042
+    int egidResult = 0;
 	gid_t savedEGID = getegid();
-	setegid(getgid());
+	egidResult = setegid(getgid());
+    if (egidResult != 0)
+        NSLog(@"WARNING: failed to set EGID");
+
 	[task launch];
-	setegid(savedEGID);
-	
+
+	egidResult = setegid(savedEGID);
+    if (egidResult != 0)
+        NSLog(@"WARNING: failed to set EGID");
+
 	NSData* resultsData = [stdOut readDataToEndOfFile];
 	NSString* results = [[NSString alloc] initWithData:resultsData encoding:NSUTF8StringEncoding];
 	
