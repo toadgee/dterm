@@ -112,7 +112,7 @@
 	
 	if ([aCoder allowsKeyedCoding]) {
 		[aCoder encodeObject:[self autosaveName] forKey:@"autosaveName"];
-		[aCoder encodeObject:[NSNumber numberWithShort: keyCombo.code] forKey:@"keyComboCode"];
+		[aCoder encodeObject:@(keyCombo.code) forKey:@"keyComboCode"];
 		[aCoder encodeObject:@(keyCombo.flags) forKey:@"keyComboFlags"];
 	
 		[aCoder encodeObject:@(allowedFlags) forKey:@"allowedFlags"];
@@ -127,11 +127,11 @@
 		[aCoder encodeObject:@(escapeKeysRecord) forKey:@"escapeKeysRecord"];
 		
 		[aCoder encodeObject:@(isAnimating) forKey:@"isAnimating"];
-		[aCoder encodeObject:[NSNumber numberWithShort:style] forKey:@"style"];
+		[aCoder encodeObject:@(style) forKey:@"style"];
 	} else {
 		// Unkeyed archiving and encoding is deprecated and unsupported. Use keyed archiving and encoding.
 		[aCoder encodeObject: [self autosaveName]];
-		[aCoder encodeObject: [NSNumber numberWithShort: keyCombo.code]];
+		[aCoder encodeObject: @(keyCombo.code)];
 		[aCoder encodeObject: @(keyCombo.flags)];
 		
 		[aCoder encodeObject: @(allowedFlags)];
@@ -1180,7 +1180,7 @@
 	{
 		id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
 		
-		NSDictionary *defaultsValue = @{@"keyCode": [NSNumber numberWithShort: keyCombo.code],
+		NSDictionary *defaultsValue = @{@"keyCode": @(keyCombo.code),
 			@"modifierFlags": @(keyCombo.flags), // cocoa
 			@"modifiers": @(SRCocoaToCarbonFlags(keyCombo.flags))};
 		

@@ -168,8 +168,8 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 - (void)saveHotKeyToUserDefaults {
 	KeyCombo myHotKey = [self hotKey];
 	
-	NSDictionary* hotKeyDict = @{@"flags": [NSNumber numberWithUnsignedInt:myHotKey.flags],
-								@"code": [NSNumber numberWithShort:myHotKey.code]};
+	NSDictionary* hotKeyDict = @{@"flags": @(myHotKey.flags),
+								@"code": @(myHotKey.code)};
 	[[NSUserDefaults standardUserDefaults] setObject:hotKeyDict forKey:@"DTHotKey"];
 }
 
@@ -443,7 +443,7 @@ failedAXDocument:	;
 		// If it wasn't the desktop, grab it from the frontmost window
 		if(!workingDirectory) {
 			@try {
-				FinderFinderWindow* frontWindow = [finder FinderWindows][0];
+				FinderFinderWindow* frontWindow = [[finder FinderWindows] firstObject];
 				if([frontWindow exists]) {
 					
 					
@@ -481,7 +481,7 @@ failedAXDocument:	;
 		@try {
 			SBElementArray* finderWindows = [pf finderWindows];
 			if([finderWindows count]) {
-				PathFinderFinderWindow* frontWindow = finderWindows[0];
+				PathFinderFinderWindow* frontWindow = [finderWindows firstObject];
 				// [frontWindow exists] returns false here (???), but it works anyway
 				frontWindowBounds = frontWindow.bounds;
 				frontWindowBounds.origin.y += 20.0;
@@ -527,7 +527,7 @@ failedAXDocument:	;
 	
 	// Numbers returned by AS are funky; adjust to NSWindow coordinates
 	if(!NSEqualRects(frontWindowBounds, NSZeroRect)) {
-		CGFloat screenHeight = [[NSScreen screens][0] frame].size.height;
+		CGFloat screenHeight = [[[NSScreen screens] firstObject] frame].size.height;
 		frontWindowBounds.origin.y = screenHeight - frontWindowBounds.origin.y - frontWindowBounds.size.height;	
 	}
 	
@@ -551,7 +551,7 @@ done:
 	
 	// If there's no explicit WD but we have a selection, try to deduce a working directory from that
 	if(!workingDirectory && [selectionURLStrings count]) {
-		NSURL* url = [NSURL URLWithString:selectionURLStrings[0]];
+		NSURL* url = [NSURL URLWithString:[selectionURLStrings firstObject]];
 		NSString* path = [url path];
 		workingDirectory = [path stringByDeletingLastPathComponent];
 	}
@@ -679,7 +679,7 @@ static const char* DTNumCommandsRunXattrName = "net.decimus.dterm.commands";
 	// Get and store details of selected font
 	// Note: use fontName, not displayName.  The font name identifies the font to
 	// the system, we use a value transformer to show the user the display name
-	NSNumber *fontSize = [NSNumber numberWithFloat:[panelFont pointSize]];	
+	NSNumber *fontSize = @([panelFont pointSize]);
 	
 	id currentPrefsValues =
 	[[NSUserDefaultsController sharedUserDefaultsController] values];

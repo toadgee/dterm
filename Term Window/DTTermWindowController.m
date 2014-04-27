@@ -290,7 +290,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		TerminalApplication* terminal = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
 		BOOL terminalAlreadyRunning = [terminal isRunning];
 		
-		TerminalWindow* frontWindow = [terminal windows][0];
+		TerminalWindow* frontWindow = [[terminal windows] firstObject];
 		if(![frontWindow exists])
 			frontWindow = nil;
 		else
@@ -299,7 +299,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		TerminalTab* tab = nil;
 		if(frontWindow) {
 			if(!terminalAlreadyRunning) {
-				tab = [frontWindow tabs][0];
+				tab = [[frontWindow tabs] firstObject];
 			} else if(/*terminalUsesTabs*/false) {
 				tab = [[[terminal classForScriptingClass:@"tab"] alloc] init];
 				[[frontWindow tabs] addObject:tab];

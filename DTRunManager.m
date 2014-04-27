@@ -270,7 +270,7 @@
 					[resultsStorage replaceCharactersInRange:NSMakeRange(cursorLoc, 1)
 												  withString:[NSString stringWithCharacters:&newChar length:1]];
 				}
-				[resultsStorage addAttributes:@{NSUnderlineStyleAttributeName: [NSNumber numberWithUnsignedInt:(NSUnderlineStyleSingle|NSUnderlinePatternSolid)]}
+				[resultsStorage addAttributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}
 										range:NSMakeRange(cursorLoc, 1)];
 			} else if(newChar == '\n') {
 				// For newlines, seek forward to the next newline

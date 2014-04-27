@@ -28,11 +28,10 @@
 
 @class SRRecorderControl, SRValidator;
 
-enum SRRecorderStyle {
+typedef NS_ENUM(NSUInteger, SRRecorderStyle) {
     SRGradientBorderStyle = 0,
     SRGreyStyle = 1
 };
-typedef enum SRRecorderStyle SRRecorderStyle;
 
 @interface SRRecorderCell : NSActionCell <NSCoding>
 {	

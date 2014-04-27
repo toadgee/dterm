@@ -41,7 +41,7 @@ NSString * SRStringForKeyCode( NSInteger keyCode )
     static SRKeyCodeTransformer *keyCodeTransformer = nil;
     if ( !keyCodeTransformer )
         keyCodeTransformer = [[SRKeyCodeTransformer alloc] init];
-    return [keyCodeTransformer transformedValue:[NSNumber numberWithShort:keyCode]];
+    return [keyCodeTransformer transformedValue:@(keyCode)];
 }
 
 //---------------------------------------------------------- 
@@ -240,8 +240,8 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 + (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
 {
 	NSString *reason = [error localizedRecoverySuggestion];
-	return [self alertWithMessageText:[error localizedDescription]
-						defaultButton:[error localizedRecoveryOptions][0U]
+	return [self alertWithMessageText: [error localizedDescription]
+						defaultButton:[[error localizedRecoveryOptions] firstObject]
 					  alternateButton:nil
 						  otherButton:nil
 			informativeTextWithFormat:(reason ? reason : @""), nil];
