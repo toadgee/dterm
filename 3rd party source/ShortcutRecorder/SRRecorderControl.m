@@ -72,7 +72,7 @@
 }
 
 // Allow the control to be activated with the first click on it even if it's window isn't the key window
-- (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+- (BOOL)acceptsFirstMouse:(NSEvent *) __unused theEvent
 {
 	return YES;
 }
@@ -124,7 +124,7 @@
 	}
 }
 
-- (void)viewFrameDidChange:(NSNotification *)aNotification
+- (void)viewFrameDidChange:(NSNotification *) __unused aNotification
 {
 	[self resetTrackingRects];
 }
@@ -307,7 +307,7 @@
 	return SRCocoaToCarbonFlags( cocoaFlags );
 }
 
-- (NSUInteger)carbonToCocoaFlags:(NSUInteger)carbonFlags;
+- (NSUInteger)carbonToCocoaFlags:(NSUInteger)carbonFlags
 {
 	return SRCarbonToCocoaFlags( carbonFlags );
 }
@@ -327,7 +327,10 @@
 
 #pragma mark *** Delegate pass-through ***
 
-- (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
+- (BOOL)shortcutRecorderCell:(SRRecorderCell *) __unused aRecorderCell
+                   isKeyCode:(NSInteger)keyCode
+               andFlagsTaken:(NSUInteger)flags
+                      reason:(NSString * __autoreleasing *)aReason
 {
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorder:isKeyCode:andFlagsTaken:reason:)])
 		return [delegate shortcutRecorder:self isKeyCode:keyCode andFlagsTaken:flags reason:aReason];
@@ -337,7 +340,8 @@
 
 #define NilOrNull(o) ((o) == nil || (id)(o) == [NSNull null])
 
-- (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(KeyCombo)newKeyCombo
+- (void)shortcutRecorderCell:(SRRecorderCell *) __unused aRecorderCell
+           keyComboDidChange:(KeyCombo)newKeyCombo
 {
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorder:keyComboDidChange:)])
 		[delegate shortcutRecorder:self keyComboDidChange:newKeyCombo];

@@ -20,7 +20,7 @@
 //---------------------------------------------------------- 
 // iinitWithDelegate:
 //---------------------------------------------------------- 
-- (id) initWithDelegate:(id)theDelegate;
+- (id) initWithDelegate:(id)theDelegate
 {
     self = [super init];
     if ( !self )
@@ -34,7 +34,7 @@
 //---------------------------------------------------------- 
 // isKeyCode:andFlagsTaken:error:
 //---------------------------------------------------------- 
-- (BOOL) isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags error:(NSError **)error;
+- (BOOL) isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags error:(NSError * __autoreleasing *)error
 {
     // if we have a delegate, it goes first...
 	if ( delegate )
@@ -145,7 +145,7 @@
 //---------------------------------------------------------- 
 // isKeyCode:andFlags:takenInMenu:error:
 //---------------------------------------------------------- 
-- (BOOL) isKeyCode:(NSInteger)keyCode andFlags:(NSUInteger)flags takenInMenu:(NSMenu *)menu error:(NSError **)error;
+- (BOOL) isKeyCode:(NSInteger)keyCode andFlags:(NSUInteger)flags takenInMenu:(NSMenu *)menu error:(NSError * __autoreleasing *)error
 {
     NSArray *menuItemsArray = [menu itemArray];
 	NSEnumerator *menuItemsEnumerator = [menuItemsArray objectEnumerator];
@@ -244,7 +244,10 @@
 //---------------------------------------------------------- 
 // shortcutValidator:isKeyCode:andFlagsTaken:reason:
 //---------------------------------------------------------- 
-- (BOOL) shortcutValidator:(SRValidator *)validator isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
+- (BOOL) shortcutValidator:(SRValidator *) __unused validator
+                 isKeyCode:(NSInteger) __unused keyCode
+             andFlagsTaken:(NSUInteger) __unused flags
+                    reason:(NSString * __autoreleasing *) __unused aReason
 {
     return NO;
 }

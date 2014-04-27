@@ -31,7 +31,7 @@ static NSArray              *padKeysArray        = nil;
 //---------------------------------------------------------- 
 //  initialize
 //---------------------------------------------------------- 
-+ (void) initialize;
++ (void) initialize
 {
     if ( self != [SRKeyCodeTransformer class] )
         return;
@@ -110,7 +110,7 @@ static NSArray              *padKeysArray        = nil;
 //---------------------------------------------------------- 
 //  transformedValueClass
 //---------------------------------------------------------- 
-+ (Class) transformedValueClass;
++ (Class) transformedValueClass
 {
     return [NSString class];
 }
@@ -170,7 +170,7 @@ static NSArray              *padKeysArray        = nil;
 	UniChar chars[4];
 	
 	err = UCKeyTranslate( keyLayout, 
-						 keyCode,
+						 (UInt16)keyCode,
 						 kUCKeyActionDisplay,
 						 0,
 						 LMGetKbdType(),
@@ -208,7 +208,7 @@ static NSArray              *padKeysArray        = nil;
 //---------------------------------------------------------- 
 //  regenerateStringToKeyCodeMapping: 
 //---------------------------------------------------------- 
-+ (void) regenerateStringToKeyCodeMapping;
++ (void) regenerateStringToKeyCodeMapping
 {
     SRKeyCodeTransformer *transformer = [[self alloc] init];
     [stringToKeyCodeDict removeAllObjects];

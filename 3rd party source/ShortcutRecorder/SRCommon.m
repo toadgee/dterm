@@ -237,7 +237,7 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 //---------------------------------------------------------- 
 // + alertWithNonRecoverableError:
 //---------------------------------------------------------- 
-+ (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
++ (NSAlert *) alertWithNonRecoverableError:(NSError *)error
 {
 	NSString *reason = [error localizedRecoverySuggestion];
 	return [self alertWithMessageText: [error localizedDescription]

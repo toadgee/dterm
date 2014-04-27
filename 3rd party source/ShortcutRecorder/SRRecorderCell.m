@@ -88,7 +88,7 @@
 		escapeKeysRecord = [[aDecoder decodeObjectForKey:@"escapeKeysRecord"] boolValue];
 		isAnimating = [[aDecoder decodeObjectForKey:@"isAnimating"] boolValue];
 		
-		style = [[aDecoder decodeObjectForKey:@"style"] shortValue];
+		style = [[aDecoder decodeObjectForKey:@"style"] unsignedIntegerValue];
 	} else {
 		autosaveName = [aDecoder decodeObject];
 		
@@ -204,7 +204,7 @@
 	}
 }
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *) __unused controlView
 {
 	CGFloat radius = 0;
 
@@ -641,7 +641,7 @@
 	}
 }
 
-- (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(SRRecorderControl *)controlView untilMouseUp:(BOOL)flag
+- (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(SRRecorderControl *)controlView untilMouseUp:(BOOL) __unused flag
 {		
 	NSEvent *currentEvent = theEvent;
 	NSPoint mouseLocation;
@@ -738,7 +738,7 @@
 
 #pragma mark *** Responder Control ***
 
-- (BOOL) becomeFirstResponder;
+- (BOOL) becomeFirstResponder
 {
     // reset tracking rects and redisplay
     [self resetTrackingRects];
@@ -747,7 +747,7 @@
     return YES;
 }
 
-- (BOOL)resignFirstResponder;
+- (BOOL)resignFirstResponder
 {
 	if (isRecording) {
 		[self _endRecordingTransition];
@@ -1130,7 +1130,7 @@
 	}
 }
 
-- (void)_startRecording;
+- (void)_startRecording
 {
     // Jump into recording mode if mouse was inside the control but not over any image
     isRecording = YES;
@@ -1149,7 +1149,7 @@
     if (globalHotKeys) hotKeyModeToken = PushSymbolicHotKeyMode(kHIHotKeyModeAllDisabled);
 }
 
-- (void)_endRecording;
+- (void)_endRecording
 {
     isRecording = NO;
 	comboJustChanged = NO;
@@ -1318,9 +1318,12 @@
 
 #pragma mark *** Delegate pass-through ***
 
-- (BOOL) shortcutValidator:(SRValidator *)validator isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
+- (BOOL) shortcutValidator:(SRValidator *) __unused validator
+                 isKeyCode:(NSInteger)keyCode
+             andFlagsTaken:(NSUInteger)flags
+                    reason:(NSString * __autoreleasing *)aReason
 {
-    SEL selector = @selector( shortcutRecorderCell:isKeyCode:andFlagsTaken:reason: );
+    SEL selector = NSSelectorFromString( @"shortcutRecorderCell:isKeyCode:andFlagsTaken:reason:" );
     if ( ( delegate ) && ( [delegate respondsToSelector:selector] ) )
     {
         return [delegate shortcutRecorderCell:self isKeyCode:keyCode andFlagsTaken:flags reason:aReason];
