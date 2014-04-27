@@ -241,7 +241,7 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 {
 	NSString *reason = [error localizedRecoverySuggestion];
 	return [self alertWithMessageText:[error localizedDescription]
-						defaultButton:[[error localizedRecoveryOptions] objectAtIndex:0U]
+						defaultButton:[error localizedRecoveryOptions][0U]
 					  alternateButton:nil
 						  otherButton:nil
 			informativeTextWithFormat:(reason ? reason : @""), nil];
@@ -272,7 +272,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 //		NSLog(@"inited cache");
 	}
 	NSImage *cachedImage = nil;
-	if (nil != (cachedImage = [SRSharedImageCache objectForKey:name])) {
+	if (nil != (cachedImage = SRSharedImageCache[name])) {
 //		NSLog(@"returned cached image: %@", cachedImage);
 		return cachedImage;
 	}
@@ -292,7 +292,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	NSImage *returnImage = [[NSImage alloc] initWithSize:size];
 	[returnImage addRepresentation:customImageRep];
 	[returnImage setScalesWhenResized:YES];
-	[SRSharedImageCache setObject:returnImage forKey:name];
+	SRSharedImageCache[name] = returnImage;
 	
 #ifdef SRCommonWriteDebugImagery
 	

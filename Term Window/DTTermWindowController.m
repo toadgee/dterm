@@ -156,7 +156,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		
 		unsigned i=0;
 		while(([newRuns count] > numRunsToKeep) && (i < [newRuns count])) {
-			DTRunManager* run = [newRuns objectAtIndex:i];
+			DTRunManager* run = newRuns[i];
 			if(run.task)
 				i++;
 			else
@@ -290,7 +290,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		TerminalApplication* terminal = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
 		BOOL terminalAlreadyRunning = [terminal isRunning];
 		
-		TerminalWindow* frontWindow = [[terminal windows] objectAtIndex:0];
+		TerminalWindow* frontWindow = [terminal windows][0];
 		if(![frontWindow exists])
 			frontWindow = nil;
 		else
@@ -299,7 +299,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		TerminalTab* tab = nil;
 		if(frontWindow) {
 			if(!terminalAlreadyRunning) {
-				tab = [[frontWindow tabs] objectAtIndex:0];
+				tab = [frontWindow tabs][0];
 			} else if(/*terminalUsesTabs*/false) {
 				tab = [[[terminal classForScriptingClass:@"tab"] alloc] init];
 				[[frontWindow tabs] addObject:tab];
@@ -328,7 +328,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		return;
 	
 	NSPasteboard* pb = [NSPasteboard generalPasteboard];
-	[pb declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+	[pb declareTypes:@[NSStringPboardType] owner:self];
 	[pb setString:[resultsStorage string] forType:NSStringPboardType];
 	
 	[self deactivate];
@@ -415,10 +415,8 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	if(![completions count])
 		return nil;
 	
-	[completions sortUsingDescriptors:[NSArray arrayWithObjects:
-									   [[NSSortDescriptor alloc] initWithKey:@"length" ascending:YES],
-									   [[NSSortDescriptor alloc] initWithKey:@"lowercaseString" ascending:YES],
-									   nil]];
+	[completions sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"length" ascending:YES],
+									   [[NSSortDescriptor alloc] initWithKey:@"lowercaseString" ascending:YES]]];
 	
 	return completions;
 }

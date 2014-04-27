@@ -29,7 +29,7 @@
 		
 		if(!sharedPath || ![sharedPath hasPrefix:@"/"]) {
 			NSDictionary* env = [[NSProcessInfo processInfo] environment];
-			sharedPath = [env objectForKey:@"SHELL"];
+			sharedPath = env[@"SHELL"];
 		}
 		
 		if(!sharedPath)
@@ -42,9 +42,9 @@
 + (NSArray*)argumentsToRunCommand:(NSString*)command {
 	NSString* shell = [[DTRunManager shellPath] lastPathComponent];
 	if([shell isEqualToString:@"bash"] || [shell isEqualToString:@"sh"])
-		return [NSArray arrayWithObjects:@"-l", @"-i", @"-c", command, nil];
+		return @[@"-l", @"-i", @"-c", command];
 	else
-		return [NSArray arrayWithObjects:@"-i", @"-c", command, nil];
+		return @[@"-i", @"-c", command];
 }
 
 - (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command demoExpired:(BOOL)demoExpired {
@@ -132,7 +132,7 @@
 - (void)readData:(NSNotification*)notification {
 	id fileHandle = [notification object];
 	if((fileHandle == stdOut) || (fileHandle == stdErr)) {
-		NSData* data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+		NSData* data = [notification userInfo][NSFileHandleNotificationDataItem];
 		if([data length]) {
 			// Data was returned; append it
 			if(!unprocessedResultsData)
@@ -270,8 +270,7 @@
 					[resultsStorage replaceCharactersInRange:NSMakeRange(cursorLoc, 1)
 												  withString:[NSString stringWithCharacters:&newChar length:1]];
 				}
-				[resultsStorage addAttributes:[NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:(NSUnderlineStyleSingle|NSUnderlinePatternSolid)]
-																		  forKey:NSUnderlineStyleAttributeName]
+				[resultsStorage addAttributes:@{NSUnderlineStyleAttributeName: [NSNumber numberWithUnsignedInt:(NSUnderlineStyleSingle|NSUnderlinePatternSolid)]}
 										range:NSMakeRange(cursorLoc, 1)];
 			} else if(newChar == '\n') {
 				// For newlines, seek forward to the next newline
@@ -360,8 +359,8 @@
 	switch(type) {
 		case 'm':
 		{
-			NSColor* fgColor = [currentAttributes objectForKey:NSForegroundColorAttributeName];
-			NSColor* bgColor = [currentAttributes objectForKey:NSBackgroundColorAttributeName];
+			NSColor* fgColor = currentAttributes[NSForegroundColorAttributeName];
+			NSColor* bgColor = currentAttributes[NSBackgroundColorAttributeName];
 			
 			for(NSString* paramString in params) {
 				switch([paramString integerValue]) {
@@ -369,18 +368,15 @@
 						fgColor = nil;
 						bgColor = nil;
 						[currentAttributes removeObjectForKey:NSUnderlineStyleAttributeName];
-						[currentAttributes setObject:[[NSFontManager sharedFontManager] convertFont:[currentAttributes objectForKey:NSFontAttributeName]
-																					 toNotHaveTrait:NSFontBoldTrait]
-											  forKey:NSFontAttributeName];
+						currentAttributes[NSFontAttributeName] = [[NSFontManager sharedFontManager] convertFont:currentAttributes[NSFontAttributeName]
+																					 toNotHaveTrait:NSFontBoldTrait];
 						break;
 					case 1:		// bold
-						[currentAttributes setObject:[[NSFontManager sharedFontManager] convertFont:[currentAttributes objectForKey:NSFontAttributeName]
-																						toHaveTrait:NSFontBoldTrait]
-											  forKey:NSFontAttributeName];
+						currentAttributes[NSFontAttributeName] = [[NSFontManager sharedFontManager] convertFont:currentAttributes[NSFontAttributeName]
+																						toHaveTrait:NSFontBoldTrait];
 						break;
 					case 4:		// underline single
-						[currentAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
-											  forKey:NSUnderlineStyleAttributeName];
+						currentAttributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
 						break;
 					case 5:		// blink
 						// not supported
@@ -393,17 +389,14 @@
 						fgColor = bgColor;
 						break;
 					case 21:	// underline double
-						[currentAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleDouble]
-											  forKey:NSUnderlineStyleAttributeName];
+						currentAttributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleDouble);
 						break;
 					case 22:	// stop bold
-						[currentAttributes setObject:[[NSFontManager sharedFontManager] convertFont:[currentAttributes objectForKey:NSFontAttributeName]
-																					 toNotHaveTrait:NSFontBoldTrait]
-											  forKey:NSFontAttributeName];
+						currentAttributes[NSFontAttributeName] = [[NSFontManager sharedFontManager] convertFont:currentAttributes[NSFontAttributeName]
+																					 toNotHaveTrait:NSFontBoldTrait];
 						break;
 					case 24:	// underline none
-						[currentAttributes setObject:[NSNumber numberWithInteger:NSUnderlineStyleNone]
-											  forKey:NSUnderlineStyleAttributeName];
+						currentAttributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleNone);
 						break;
 					case 30:	// FG black
 						fgColor = [NSColor blackColor];
@@ -514,9 +507,9 @@
 			fgColor = ( fgColor ? [fgColor colorWithAlphaComponent:[standardFGColor alphaComponent]] : standardFGColor );
 			bgColor = [bgColor colorWithAlphaComponent:[standardFGColor alphaComponent]];
 			
-			[currentAttributes setObject:fgColor forKey:NSForegroundColorAttributeName];
+			currentAttributes[NSForegroundColorAttributeName] = fgColor;
 			if(bgColor)
-				[currentAttributes setObject:bgColor forKey:NSBackgroundColorAttributeName];
+				currentAttributes[NSBackgroundColorAttributeName] = bgColor;
 			else
 				[currentAttributes removeObjectForKey:NSBackgroundColorAttributeName];
 		}
@@ -557,7 +550,7 @@
 						   range:NSMakeRange(0, [resultsStorage length])];
 	[resultsStorage endEditing];
 	
-	[currentAttributes setObject:font forKey:NSFontAttributeName];
+	currentAttributes[NSFontAttributeName] = font;
 }
 
 - (void)setDisplayColor:(NSColor*)color {
@@ -567,7 +560,7 @@
 						   range:NSMakeRange(0, [resultsStorage length])];
 	[resultsStorage endEditing];
 	
-	[currentAttributes setObject:color forKey:NSForegroundColorAttributeName];
+	currentAttributes[NSForegroundColorAttributeName] = color;
 }
 
 @end

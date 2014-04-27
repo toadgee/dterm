@@ -11,7 +11,7 @@ int main(int argc, const char * argv[]) {
 		return -1;
 	}
 	
-	AXError err = AXMakeProcessTrusted((__bridge CFStringRef)[NSString stringWithCString:argv[1] encoding:NSUTF8StringEncoding]);
+	AXError err = AXMakeProcessTrusted((__bridge CFStringRef)@(argv[1]));
 	if(err != kAXErrorSuccess)
 		NSLog(@"AXMakeProcessTrusted failed: %d", err);
 	

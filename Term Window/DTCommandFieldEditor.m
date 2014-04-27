@@ -53,7 +53,7 @@
 	NSArray* selectedRanges = [self selectedRanges];
 	if([selectedRanges count] == 1) {
 		// Selection needs to be zero length
-		NSRange selectedRange = [[selectedRanges objectAtIndex:0] rangeValue];
+		NSRange selectedRange = [selectedRanges[0] rangeValue];
 		if(selectedRange.length == 0) {
 			// If it's at the end of the field, do the autocompletion
 			if(selectedRange.location == [[self string] length]) {
@@ -75,7 +75,7 @@
 }
 
 - (NSRange)rangeForUserCompletion {
-	NSRange selectedRange = [[[self selectedRanges] objectAtIndex:0] rangeValue];
+	NSRange selectedRange = [[self selectedRanges][0] rangeValue];
 	NSString* str = [self string];
 	
 	return lastShellWordBeforeIndex(str, selectedRange.location);

@@ -15,9 +15,7 @@
 	[self bind:@"disableAntialiasing"
 	  toObject:[NSUserDefaultsController sharedUserDefaultsController]
    withKeyPath:@"values.DTDisableAntialiasing"
-	   options:[NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithBool:NO], NSNullPlaceholderBindingOption,
-				nil]];
+	   options:@{NSNullPlaceholderBindingOption: @NO}];
 }
 
 - (void)setDisableAntialiasing:(BOOL)b {

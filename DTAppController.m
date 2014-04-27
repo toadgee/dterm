@@ -39,15 +39,13 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	setenv("TERM_PROGRAM", "DTerm", 1);
 	setenv("TERM_PROGRAM_VERSION", [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] cStringUsingEncoding:NSASCIIStringEncoding], 1);
 	
-	NSDictionary* defaultsDict = [NSDictionary dictionaryWithObjectsAndKeys:
-								  @"5", DTResultsToKeepKey,
-								  [NSNumber numberWithBool:NO], DTHotkeyAlsoDeactivatesKey,
-								  [NSNumber numberWithBool:YES], DTShowDockIconKey,
-								  [NSKeyedArchiver archivedDataWithRootObject:[[NSColor whiteColor] colorWithAlphaComponent:0.9]], DTTextColorKey,
-								  @"Monaco", DTFontNameKey,
-								  [NSNumber numberWithFloat:10.0], DTFontSizeKey,
-								  [NSNumber numberWithBool:NO], DTDisableAntialiasingKey,
-								  nil];
+	NSDictionary* defaultsDict = @{DTResultsToKeepKey: @"5",
+								  DTHotkeyAlsoDeactivatesKey: @NO,
+								  DTShowDockIconKey: @YES,
+								  DTTextColorKey: [NSKeyedArchiver archivedDataWithRootObject:[[NSColor whiteColor] colorWithAlphaComponent:0.9]],
+								  DTFontNameKey: @"Monaco",
+								  DTFontSizeKey: @10.0f,
+								  DTDisableAntialiasingKey: @NO};
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
 	
 	[self loadStats];
@@ -170,10 +168,8 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 - (void)saveHotKeyToUserDefaults {
 	KeyCombo myHotKey = [self hotKey];
 	
-	NSDictionary* hotKeyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSNumber numberWithUnsignedInt:myHotKey.flags], @"flags",
-								[NSNumber numberWithShort:myHotKey.code], @"code",
-								nil];
+	NSDictionary* hotKeyDict = @{@"flags": [NSNumber numberWithUnsignedInt:myHotKey.flags],
+								@"code": [NSNumber numberWithShort:myHotKey.code]};
 	[[NSUserDefaults standardUserDefaults] setObject:hotKeyDict forKey:@"DTHotKey"];
 }
 
@@ -181,8 +177,8 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	KeyCombo myHotKey = { NSCommandKeyMask | NSShiftKeyMask, 36 /* return */ };
 	
 	NSDictionary* hotKeyDict = [[NSUserDefaults standardUserDefaults] objectForKey:@"DTHotKey"];
-	NSNumber* newFlags = [hotKeyDict objectForKey:@"flags"];
-	NSNumber* newCode = [hotKeyDict objectForKey:@"code"];
+	NSNumber* newFlags = hotKeyDict[@"flags"];
+	NSNumber* newCode = hotKeyDict[@"code"];
 	if(newFlags)
 		myHotKey.flags = [newFlags unsignedIntValue];
 	if(newCode)
@@ -304,7 +300,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	if(windowURL)
 		*windowURL = [NSURL URLWithString:(__bridge NSString*)axDocumentURLString];
 	if(selectionURLStrings)
-		*selectionURLStrings = [NSArray arrayWithObject:(__bridge NSString*)axDocumentURLString];
+		*selectionURLStrings = @[(__bridge NSString*)axDocumentURLString];
 	if(windowFrame)
 		*windowFrame = [self windowFrameOfAXWindow:mainWindow];
 	return YES;
@@ -368,7 +364,7 @@ failedAXDocument:	;
 		if((axErr == kAXErrorSuccess) && focusWindow) {
 			// We're good with this! Return the values.
 			if(selectionURLStrings)
-				*selectionURLStrings = [NSArray arrayWithObject:focusedUIElementURLString];
+				*selectionURLStrings = @[focusedUIElementURLString];
 			if(windowFrame)
 				*windowFrame = [self windowFrameOfAXWindow:focusWindow];
 			return YES;
@@ -396,7 +392,7 @@ failedAXDocument:	;
 	NSArray* selectionURLStrings = nil;
 	NSRect frontWindowBounds = NSZeroRect;
 	
-	NSString* frontmostAppBundleID = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSApplicationBundleIdentifier"];
+	NSString* frontmostAppBundleID = [[NSWorkspace sharedWorkspace] activeApplication][@"NSApplicationBundleIdentifier"];
 	
 	// If the Finder is frontmost, talk to it using ScriptingBridge
 	if([frontmostAppBundleID isEqualToString:@"com.apple.finder"]) {
@@ -414,7 +410,7 @@ failedAXDocument:	;
 				if(!insertionLocation)
 					return;
 				
-				selection = [NSArray arrayWithObject:insertionLocation];
+				selection = @[insertionLocation];
 			}
 			
 			// Get the URLs of the selection
@@ -447,7 +443,7 @@ failedAXDocument:	;
 		// If it wasn't the desktop, grab it from the frontmost window
 		if(!workingDirectory) {
 			@try {
-				FinderFinderWindow* frontWindow = [[finder FinderWindows] objectAtIndex:0];
+				FinderFinderWindow* frontWindow = [finder FinderWindows][0];
 				if([frontWindow exists]) {
 					
 					
@@ -485,7 +481,7 @@ failedAXDocument:	;
 		@try {
 			SBElementArray* finderWindows = [pf finderWindows];
 			if([finderWindows count]) {
-				PathFinderFinderWindow* frontWindow = [finderWindows objectAtIndex:0];
+				PathFinderFinderWindow* frontWindow = finderWindows[0];
 				// [frontWindow exists] returns false here (???), but it works anyway
 				frontWindowBounds = frontWindow.bounds;
 				frontWindowBounds.origin.y += 20.0;
@@ -531,7 +527,7 @@ failedAXDocument:	;
 	
 	// Numbers returned by AS are funky; adjust to NSWindow coordinates
 	if(!NSEqualRects(frontWindowBounds, NSZeroRect)) {
-		CGFloat screenHeight = [[[NSScreen screens] objectAtIndex:0] frame].size.height;
+		CGFloat screenHeight = [[NSScreen screens][0] frame].size.height;
 		frontWindowBounds.origin.y = screenHeight - frontWindowBounds.origin.y - frontWindowBounds.size.height;	
 	}
 	
@@ -555,7 +551,7 @@ done:
 	
 	// If there's no explicit WD but we have a selection, try to deduce a working directory from that
 	if(!workingDirectory && [selectionURLStrings count]) {
-		NSURL* url = [NSURL URLWithString:[selectionURLStrings objectAtIndex:0]];
+		NSURL* url = [NSURL URLWithString:selectionURLStrings[0]];
 		NSString* path = [url path];
 		workingDirectory = [path stringByDeletingLastPathComponent];
 	}
@@ -661,7 +657,7 @@ static const char* DTNumCommandsRunXattrName = "net.decimus.dterm.commands";
 	if(noErr != err)
 		return;
 	
-	const char* commandsAttr = [[[NSNumber numberWithUnsignedInteger:numCommandsExecuted] stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
+	const char* commandsAttr = [[@(numCommandsExecuted) stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
 	setxattr(path, DTNumCommandsRunXattrName, commandsAttr, strlen(commandsAttr), 0, 0);
 }
 

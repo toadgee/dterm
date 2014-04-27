@@ -67,7 +67,7 @@
 	if(mouseInside)
 		return;
 	
-	[self setImage:[animImages objectAtIndex:nextAnimImg]];
+	[self setImage:animImages[nextAnimImg]];
 	[self setNeedsDisplay];
 	nextAnimImg = (nextAnimImg+1) % [animImages count];
 }
