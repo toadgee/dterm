@@ -24,7 +24,7 @@
 
 @property NSString* workingDirectory;
 @property NSArray* selectedURLs;
-@property NSString* command;
+@property (nonatomic) NSString* command;
 @property NSMutableArray* runs;
 @property NSArrayController* runsController;
 

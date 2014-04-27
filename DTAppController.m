@@ -374,6 +374,8 @@ failedAXDocument:	;
 			return YES;
 		}
 	}
+    
+    return NO;
 }
 
 - (void)hotkeyPressed {

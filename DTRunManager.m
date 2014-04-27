@@ -199,8 +199,8 @@
 				
 				// Grab ##;###;### sequence
 				NSUInteger lengthOfEscapeString = 0;
-				while((lengthOfEscapeString < remainingLength) &&
-					  ((data[lengthOfEscapeString] >= '0') && (data[lengthOfEscapeString] <= '9')) ||
+				while(((lengthOfEscapeString < remainingLength) &&
+					  ((data[lengthOfEscapeString] >= '0') && (data[lengthOfEscapeString] <= '9'))) ||
 					  (data[lengthOfEscapeString] == ';'))
 					lengthOfEscapeString++;
 				

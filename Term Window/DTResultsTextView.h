@@ -8,7 +8,7 @@
 	BOOL disableAntialiasing;
 }
 
-@property BOOL disableAntialiasing;
+@property (nonatomic) BOOL disableAntialiasing;
 
 - (NSSize)minSizeForContent;
 - (CGFloat)desiredHeightChange;
