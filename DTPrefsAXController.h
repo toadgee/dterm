@@ -4,13 +4,12 @@
 @interface DTPrefsAXController : NSViewController
 
 @property (readonly) BOOL axAppTrusted;
-@property (weak, readonly) NSString* axTrustStatusString;
+@property (readonly) NSString* axTrustStatusString;
 @property (readonly) BOOL axGeneralAccessEnabled;
-@property (weak, readonly) NSString* axGeneralAccessEnabledString;
+@property (readonly) NSString* axGeneralAccessEnabledString;
 
 - (void)recheckGeneralAXAccess;
 
 - (IBAction)setAXTrusted:(id)sender;
-- (IBAction)showUniversalAccessPrefPane:(id)sender;
 
 @end

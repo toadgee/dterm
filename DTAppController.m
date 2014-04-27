@@ -80,7 +80,8 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)ntf {
-	if(!AXAPIEnabled() && !AXIsProcessTrusted()) {
+	if( ![self isAXTrustedPromptIfNot:NO] )
+    {
 		[self.prefsWindowController showAccessibility:self];
 	}
 }
@@ -499,7 +500,7 @@ failedAXDocument:	;
 	}
 
 	// Otherwise, try to talk to the frontmost app with the Accessibility APIs
-	else if(AXAPIEnabled() || AXIsProcessTrusted()) {
+	else if([self isAXTrustedPromptIfNot:NO]) {
 		// Use Accessibility API
 		AXError axErr = kAXErrorSuccess;
 		
@@ -564,6 +565,13 @@ done:
 											 selection:selectionURLStrings
 										   windowFrame:frontWindowBounds];
 	
+}
+
+- (BOOL) isAXTrustedPromptIfNot:(BOOL)shouldPrompt
+{
+    NSDictionary* options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @(shouldPrompt)};
+
+    return AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
 }
 
 #pragma mark URL actions

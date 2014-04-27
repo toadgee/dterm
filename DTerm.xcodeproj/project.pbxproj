@@ -32,8 +32,6 @@
 		2525DE5F0D234AE0009A5592 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 2525DE5E0D234AE0009A5592 /* Growl Registration Ticket.growlRegDict */; };
 		2529F6BC0CF4CD0700CDF456 /* DTBlackRedStatusTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2529F6BB0CF4CD0700CDF456 /* DTBlackRedStatusTransformer.m */; };
 		2529F76E0CF4D61100CDF456 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2529F76D0CF4D61100CDF456 /* Security.framework */; };
-		2529F7CC0CF4D71900CDF456 /* setaxtrusted in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2529F7C30CF4D6F100CDF456 /* setaxtrusted */; };
-		2529F7CE0CF4D73600CDF456 /* setaxtrusted.m in Sources */ = {isa = PBXBuildFile; fileRef = 2529F7CD0CF4D73600CDF456 /* setaxtrusted.m */; };
 		2529F8510CF5F6AB00CDF456 /* DTerm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2529F8500CF5F6AB00CDF456 /* DTerm.icns */; };
 		254036C610FFCDCC0076CE83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 254036C410FFCDCC0076CE83 /* Localizable.strings */; };
 		257158E90CFF9A99007181F4 /* DTShellUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 257158E80CFF9A99007181F4 /* DTShellUtilities.m */; };
@@ -87,13 +85,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2529F7C70CF4D70600CDF456 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2529F7C20CF4D6F100CDF456;
-			remoteInfo = setaxtrusted;
-		};
 		257159200CFFAABF007181F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -109,28 +100,6 @@
 			remoteInfo = BZRRevision;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		2529F7D00CF4D73600CDF456 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-				2529F7CC0CF4D71900CDF456 /* setaxtrusted in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25A8706A0D0AF5DB00D88D65 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -153,8 +122,6 @@
 		2529F6BA0CF4CD0700CDF456 /* DTBlackRedStatusTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBlackRedStatusTransformer.h; sourceTree = "<group>"; };
 		2529F6BB0CF4CD0700CDF456 /* DTBlackRedStatusTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBlackRedStatusTransformer.m; sourceTree = "<group>"; };
 		2529F76D0CF4D61100CDF456 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		2529F7C30CF4D6F100CDF456 /* setaxtrusted */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = setaxtrusted; sourceTree = BUILT_PRODUCTS_DIR; };
-		2529F7CD0CF4D73600CDF456 /* setaxtrusted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setaxtrusted.m; sourceTree = "<group>"; };
 		2529F8500CF5F6AB00CDF456 /* DTerm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DTerm.icns; sourceTree = "<group>"; };
 		2529F8E90CF7575000CDF456 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
 		252FA10D1141A4D00043EA6C /* iTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTerm.h; sourceTree = "<group>"; };
@@ -235,13 +202,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2529F7C10CF4D6F100CDF456 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		257159160CFFAA2C007181F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,10 +230,10 @@
 			children = (
 				2500751A0CF0B2B600949B95 /* DTAppController.h */,
 				2500751B0CF0B2B600949B95 /* DTAppController.m */,
-				25E651520CF3B0860072997F /* DTPrefsWindowController.h */,
-				25E651530CF3B0860072997F /* DTPrefsWindowController.m */,
 				25A8719F0D0B157F00D88D65 /* DTPrefsAXController.h */,
 				25A871A00D0B157F00D88D65 /* DTPrefsAXController.m */,
+				25E651520CF3B0860072997F /* DTPrefsWindowController.h */,
+				25E651530CF3B0860072997F /* DTPrefsWindowController.m */,
 				258373420CFE12A000943791 /* DTRunManager.h */,
 				258373430CFE12A000943791 /* DTRunManager.m */,
 			);
@@ -306,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* DTerm.app */,
-				2529F7C30CF4D6F100CDF456 /* setaxtrusted */,
 				257159190CFFAA2C007181F4 /* Tests.octest */,
 			);
 			name = Products;
@@ -352,7 +311,6 @@
 				2529F6BB0CF4CD0700CDF456 /* DTBlackRedStatusTransformer.m */,
 				257158E70CFF9A99007181F4 /* DTShellUtilities.h */,
 				257158E80CFF9A99007181F4 /* DTShellUtilities.m */,
-				2529F7CD0CF4D73600CDF456 /* setaxtrusted.m */,
 				257355F40D108839008E7D0F /* RTFWindowController.h */,
 				257355F50D108839008E7D0F /* RTFWindowController.m */,
 				257357B90D10F231008E7D0F /* DSNumberFormatterTransformer.h */,
@@ -487,22 +445,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2529F7C20CF4D6F100CDF456 /* setaxtrusted */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2529F7CF0CF4D73600CDF456 /* Build configuration list for PBXNativeTarget "setaxtrusted" */;
-			buildPhases = (
-				2529F7C00CF4D6F100CDF456 /* Sources */,
-				2529F7C10CF4D6F100CDF456 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = setaxtrusted;
-			productName = setaxtrusted;
-			productReference = 2529F7C30CF4D6F100CDF456 /* setaxtrusted */;
-			productType = "com.apple.product-type.tool";
-		};
 		257159180CFFAA2C007181F4 /* Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2571591D0CFFAA2C007181F4 /* Build configuration list for PBXNativeTarget "Tests" */;
@@ -529,14 +471,11 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				2529F7D00CF4D73600CDF456 /* CopyFiles */,
-				25A8706A0D0AF5DB00D88D65 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				25A0CDD40DE500950042D226 /* PBXTargetDependency */,
-				2529F7C80CF4D70600CDF456 /* PBXTargetDependency */,
 			);
 			name = DTerm;
 			productInstallPath = "$(HOME)/Applications";
@@ -577,7 +516,6 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* DTerm */,
-				2529F7C20CF4D6F100CDF456 /* setaxtrusted */,
 				257159180CFFAA2C007181F4 /* Tests */,
 				25A0CDCA0DE500010042D226 /* Revision */,
 			);
@@ -659,14 +597,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2529F7C00CF4D6F100CDF456 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2529F7CE0CF4D73600CDF456 /* setaxtrusted.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		257159150CFFAA2C007181F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -711,11 +641,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2529F7C80CF4D70600CDF456 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2529F7C20CF4D6F100CDF456 /* setaxtrusted */;
-			targetProxy = 2529F7C70CF4D70600CDF456 /* PBXContainerItemProxy */;
-		};
 		257159210CFFAABF007181F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* DTerm */;
@@ -780,42 +705,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2529F7C50CF4D6F200CDF456 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PRODUCT_NAME = setaxtrusted;
-				ZERO_LINK = NO;
-			};
-			name = Debug;
-		};
-		2529F7C60CF4D6F200CDF456 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PRODUCT_NAME = setaxtrusted;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		2571591B0CFFAA2C007181F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -951,15 +840,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2529F7CF0CF4D73600CDF456 /* Build configuration list for PBXNativeTarget "setaxtrusted" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2529F7C50CF4D6F200CDF456 /* Debug */,
-				2529F7C60CF4D6F200CDF456 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2571591D0CFFAA2C007181F4 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

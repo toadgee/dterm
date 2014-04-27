@@ -33,6 +33,8 @@ extern NSString* const DTFontSizeKey;
 @property (weak, readonly) DTPrefsWindowController* prefsWindowController;
 @property (readonly) DTTermWindowController* termWindowController;
 
+- (BOOL) isAXTrustedPromptIfNot:(BOOL)shouldPrompt;
+
 - (IBAction)showPrefs:(id)sender;
 - (IBAction)showAcknowledgments:(id)sender;
 - (IBAction)showLicense:(id)sender;
