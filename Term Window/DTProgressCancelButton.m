@@ -5,7 +5,7 @@
 
 @interface DTProgressCancelButton ()
 - (void)updateImageForMouseInside:(BOOL)inside;
-- (void)loadAnimImages;
+- (void)loadAnimationImages;
 - (void)updateAnimation:(NSTimer*)timer;
 @end
 
@@ -33,12 +33,12 @@
 		[animationTimer invalidate];
 		animationTimer = nil;
 	} else {
-		if(!animImages)
-			[self loadAnimImages];
+		if(!animationImages)
+            [self loadAnimationImages];
 		
 		nextAnimImg = 0;
 		if(!animationTimer)
-			animationTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/[animImages count])
+			animationTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/[animationImages count])
 															  target:self
 															selector:@selector(updateAnimation:)
 															userInfo:nil
@@ -47,29 +47,29 @@
 	}
 }
 
-- (void)loadAnimImages {
+- (void)loadAnimationImages {
 	NSMutableArray* tmpImages = [NSMutableArray arrayWithCapacity:12];
 	for(unsigned i=0; i<12; i++) {
 		[tmpImages addObject:[NSImage imageNamed:[NSString stringWithFormat:@"ProgressWhite-%d", i]]];
 	}
 	
 	// Make an immutable copy so this is reasonably fast
-	animImages = [tmpImages copy];
+	animationImages = [tmpImages copy];
 }
 
 - (void)updateAnimation:(NSTimer*)timer {
 	if(![[self window] isVisible])
 		return;
 	
-	if(!animImages)
-		[self loadAnimImages];
+	if(!animationImages)
+        [self loadAnimationImages];
 	
 	if(mouseInside)
 		return;
 	
-	[self setImage:animImages[nextAnimImg]];
+	[self setImage:animationImages[nextAnimImg]];
 	[self setNeedsDisplay];
-	nextAnimImg = (nextAnimImg+1) % [animImages count];
+	nextAnimImg = (nextAnimImg+1) % [animationImages count];
 }
 
 - (void)updateImageForMouseInside:(BOOL)inside {

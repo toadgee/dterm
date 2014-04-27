@@ -6,7 +6,7 @@
 	BOOL mouseInside;
 	
 	NSTimer* animationTimer;
-	NSArray* animImages;
+	NSArray*animationImages;
 	unsigned char nextAnimImg;
 }
 

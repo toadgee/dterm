@@ -102,7 +102,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 	NSURL* fileURL = [NSURL fileURLWithPath:filename];
 	
 	FSRef fsRef;
-	if(!CFURLGetFSRef((CFURLRef)fileURL, &fsRef))
+	if(!CFURLGetFSRef((__bridge CFURLRef)fileURL, &fsRef))
 		return NO;
 	
 	CFTypeRef outValue;
@@ -396,7 +396,7 @@ failedAXDocument:	;
 	
 	// If the Finder is frontmost, talk to it using ScriptingBridge
 	if([frontmostAppBundleID isEqualToString:@"com.apple.finder"]) {
-		FinderApplication* finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.finder"];
+		FinderApplication* finder = (FinderApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.finder"];
 		
 		// Selection URLs
 		@try {
@@ -465,7 +465,7 @@ failedAXDocument:	;
 	
 	// Also use ScriptingBridge special case for Path Finder
 	else if([frontmostAppBundleID isEqualToString:@"com.cocoatech.PathFinder"]) {
-		PathFinderApplication* pf = [SBApplication applicationWithBundleIdentifier:@"com.cocoatech.PathFinder"];
+		PathFinderApplication* pf = (PathFinderApplication *)[SBApplication applicationWithBundleIdentifier:@"com.cocoatech.PathFinder"];
 		
 		// Selection URLs
 		@try {

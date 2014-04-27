@@ -5,7 +5,6 @@
 
 #import "DTAppController.h"
 #import "DTCommandFieldEditor.h"
-#import "DTTermWindowContentView.h"
 #import "DTResultsView.h"
 #import "DTResultsTextView.h"
 #import "DTRunManager.h"
@@ -287,7 +286,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		
 		[iTerm activate];
 	} else {
-		TerminalApplication* terminal = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
+		TerminalApplication* terminal = (TerminalApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
 		BOOL terminalAlreadyRunning = [terminal isRunning];
 		
 		TerminalWindow* frontWindow = [[terminal windows] firstObject];

@@ -2,10 +2,7 @@
 
 #import "DTRunManager.h"
 
-#import "DSUniqueTextStorage.h"
 #import "DTAppController.h"
-#import "DTPrefsWindowController.h"
-#import "DTTermWindowController.h"
 
 
 #define DTUserDefault_ShellPath @"ShellPath"
