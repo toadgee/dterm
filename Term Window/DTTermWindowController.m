@@ -39,13 +39,6 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	NSPanel* panel = (NSPanel*)[self window];
 	[panel setHidesOnDeactivate:NO];
 	
-	// On Lion, change the type of actionButton because they broke its display
-	SInt32 minorOSVersion;
-	if((noErr == Gestalt(gestaltSystemVersionMinor, &minorOSVersion)) &&
-	   (minorOSVersion >= 7)) {
-		[actionButton setBezelStyle:NSSmallSquareBezelStyle];
-	}
-	
 	// Bind the results text storage up
 	[resultsTextView bind:@"resultsStorage"
 				 toObject:runsController
@@ -58,24 +51,16 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	[[[self window] contentView] addSubview:resultsView];
 	
 	// Remove the excess action menu items if we're showing the dock icon
-	ProcessSerialNumber psn = { 0, kCurrentProcess };
-	CFDictionaryRef processInfo = ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask);
-	if(processInfo) {
-		CFBooleanRef isLSUIElement = NULL;
-		if(CFDictionaryGetValueIfPresent(processInfo, CFSTR("LSUIElement"), (const void **)&isLSUIElement) && isLSUIElement) {
-			if(!CFBooleanGetValue(isLSUIElement)) {
-				// It's not a UIElement, i.e. the dock icon is shown
-				// Remove the menu items up to the last separator
-				BOOL wasSeparator = NO;
-				do {
-					NSMenuItem* lastItem = [actionMenu itemAtIndex:([actionMenu numberOfItems]-1)];
-					wasSeparator = [lastItem isSeparatorItem];
-					[actionMenu removeItem:lastItem];
-				} while(!wasSeparator && [actionMenu numberOfItems]);
-			}
-		}
-		CFRelease(processInfo);
-	}
+    if( ![[NSBundle mainBundle] objectForInfoDictionaryKey:@"LSUIElement"] ) {
+        // It's not a UIElement, i.e. the dock icon is shown
+        // Remove the menu items up to the last separator
+        BOOL wasSeparator = NO;
+        do {
+            NSMenuItem* lastItem = [actionMenu itemAtIndex:([actionMenu numberOfItems]-1)];
+            wasSeparator = [lastItem isSeparatorItem];
+            [actionMenu removeItem:lastItem];
+        } while(!wasSeparator && [actionMenu numberOfItems]);
+    }
 }
 
 - (id)windowWillReturnFieldEditor:(NSWindow*)window toObject:(id)anObject {
@@ -174,8 +159,6 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	[[self window] performSelector:@selector(orderOut:)
 						withObject:self
 						afterDelay:0.11f];
-	
-	[[NSApp delegate] saveStats];
 }
 
 - (void)windowDidResignKey:(NSNotification*)notification {
@@ -233,9 +216,6 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	if(!self.command || ![self.command length])
 		return;
 	
-	DTAppController* appController = [NSApp delegate];
-	
-    appController.numCommandsExecuted++;
     DTRunManager* runManager = [[DTRunManager alloc] initWithWD:self.workingDirectory
                                                       selection:self.selectedURLs
                                                         command:self.command
@@ -248,10 +228,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	if(![[self window] makeFirstResponder:[self window]])
 		return;
 	
-	DTAppController* appController = [NSApp delegate];
 	NSString* cdCommandString = [NSString stringWithFormat:@"cd %@", escapedPath(self.workingDirectory)];
-	
-	appController.numCommandsExecuted++;
 	
 	id iTerm = [SBApplication applicationWithBundleIdentifier:@"net.sourceforge.iTerm"];
 	if(!iTerm)

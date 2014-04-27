@@ -29,7 +29,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 
 @synthesize sparkleUpdater;
 
-@synthesize numCommandsExecuted, termWindowController;
+@synthesize termWindowController;
 
 - (void)applicationWillFinishLaunching:(NSNotification*)ntf {
 	// Ignore SIGPIPE
@@ -47,8 +47,6 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 								  DTFontSizeKey: @10.0f,
 								  DTDisableAntialiasingKey: @NO};
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDict];
-	
-	[self loadStats];
 	
 	// Register for URL handling
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
@@ -92,29 +90,6 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 				   withObject:nil
 				   afterDelay:0.0];
 	}
-	
-	return YES;
-}
-
-- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
-	if(![[NSFileManager defaultManager] fileExistsAtPath:filename])
-		return NO;
-	
-	NSURL* fileURL = [NSURL fileURLWithPath:filename];
-	
-	FSRef fsRef;
-	if(!CFURLGetFSRef((__bridge CFURLRef)fileURL, &fsRef))
-		return NO;
-	
-	CFTypeRef outValue;
-	OSStatus err = LSCopyItemAttribute(&fsRef, kLSRolesAll, kLSItemContentType, &outValue);
-	if(outValue)
-		CFBridgingRelease(outValue);
-	if(noErr != err)
-		return NO;
-	
-	if(kCFCompareEqualTo != CFStringCompare(outValue, CFSTR("net.decimus.dterm.license"), kCFCompareCaseInsensitive))
-		return NO;
 	
 	return YES;
 }
@@ -613,60 +588,6 @@ done:
 	}
 	
 	[licenseWindowController showWindow:sender];
-}
-
-#pragma mark stats tracking
-
-#include <sys/xattr.h>
-
-static NSString* DTNumCommandsRunKey = @"DTNumCommandsRun";
-static const char* DTNumCommandsRunXattrName = "net.decimus.dterm.commands";
-#define MAXATTRSIZE 64
-
-- (void)loadStats {
-	NSInteger tmp;
-	
-	// Check NSUserDefaults first
-	tmp = [[NSUserDefaults standardUserDefaults] integerForKey:DTNumCommandsRunKey];
-	if(tmp > numCommandsExecuted)
-		numCommandsExecuted = tmp;
-	
-	// Also check xattrs on user preferences folder
-	FSRef fsRef;
-	OSErr err = FSFindFolder(kUserDomain, kPreferencesFolderType, kDontCreateFolder, &fsRef);
-	if(noErr != err)
-		return;
-	char path[PATH_MAX];
-	err = FSRefMakePath(&fsRef, (UInt8*)path, PATH_MAX);
-	if(noErr != err)
-		return;
-	
-	UInt8 attr[MAXATTRSIZE];
-	ssize_t attrSize;
-	attrSize = getxattr(path, DTNumCommandsRunXattrName, attr, MAXATTRSIZE, 0, 0);
-	if(attrSize > 0) {
-		tmp = [[[NSString alloc] initWithBytes:attr length:attrSize encoding:NSUTF8StringEncoding] integerValue];
-		if(tmp > numCommandsExecuted)
-			numCommandsExecuted = tmp;
-	}
-}
-
-- (void)saveStats {
-	// Save to NSUserDefaults
-	[[NSUserDefaults standardUserDefaults] setInteger:numCommandsExecuted forKey:DTNumCommandsRunKey];
-	
-	// Save to xattrs on user preferences folder
-	FSRef fsRef;
-	OSErr err = FSFindFolder(kUserDomain, kPreferencesFolderType, kCreateFolder, &fsRef);
-	if(noErr != err)
-		return;
-	char path[PATH_MAX];
-	err = FSRefMakePath(&fsRef, (UInt8*)path, PATH_MAX);
-	if(noErr != err)
-		return;
-	
-	const char* commandsAttr = [[@(numCommandsExecuted) stringValue] cStringUsingEncoding:NSUTF8StringEncoding];
-	setxattr(path, DTNumCommandsRunXattrName, commandsAttr, strlen(commandsAttr), 0, 0);
 }
 
 #pragma mark font panel support

@@ -24,12 +24,9 @@ extern NSString* const DTFontSizeKey;
 	
 	EventHotKeyRef hotKeyRef;
 	KeyCombo hotKey;
-	
-	NSUInteger numCommandsExecuted;
 }
 
 @property (unsafe_unretained) SUUpdater* sparkleUpdater;
-@property NSUInteger numCommandsExecuted;
 @property (weak, readonly) DTPrefsWindowController* prefsWindowController;
 @property (readonly) DTTermWindowController* termWindowController;
 
@@ -45,8 +42,5 @@ extern NSString* const DTFontSizeKey;
 
 - (void)saveHotKeyToUserDefaults;
 - (void)loadHotKeyFromUserDefaults;
-
-- (void)loadStats;
-- (void)saveStats;
 
 @end
