@@ -11,6 +11,7 @@
 #import "DTShellUtilities.h"
 #import "iTerm.h"
 #import "iTerm2.h"
+#import "iTerm2Nightly.h"
 #import "Terminal.h"
 
 static void * DTPreferencesContext = &DTPreferencesContext;
@@ -230,7 +231,27 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	id iTerm = [SBApplication applicationWithBundleIdentifier:@"net.sourceforge.iTerm"];
 	if(!iTerm)
 		iTerm = [SBApplication applicationWithBundleIdentifier:@"com.googlecode.iterm2"];
-	if(iTerm) {
+    
+    // test for iTerms newer scripting bridge
+    if(iTerm && [iTerm respondsToSelector:@selector(createWindowWithDefaultProfileCommand:)]) {
+        id /*iTermTerminal*/ terminal = nil;
+        id /*iTermSession*/ session = nil;
+        if([iTerm isRunning]) {
+            [iTerm createWindowWithDefaultProfileCommand:nil];
+        }
+        terminal = [iTerm valueForKey:@"currentWindow"];
+        session = [terminal valueForKey:@"currentSession"];
+        
+        // write text "cd ~/whatever"
+        [session writeContentsOfFile:nil text:cdCommandString];
+        
+        // write text "thecommand"
+        if ([self.command length] > 0) {
+            [session writeContentsOfFile:nil text:self.command];
+        }
+        
+        [iTerm activate];
+    } else if(iTerm) { // assume old scripting bridge
 		id /*iTermTerminal*/ terminal = nil;
 		id /*iTermSession*/ session = nil;
 		
