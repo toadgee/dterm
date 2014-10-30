@@ -276,9 +276,10 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		// write text "cd ~/whatever"
 		[session writeContentsOfFile:nil text:cdCommandString];
 		
-		// write text "thecommand"
-		[session writeContentsOfFile:nil text:self.command];
-		
+        // write text "thecommand"
+        if ([self.command length] > 0) {
+            [session writeContentsOfFile:nil text:self.command];
+        }
 		[iTerm activate];
 	} else {
 		TerminalApplication* terminal = (TerminalApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
@@ -301,7 +302,10 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		}
 		
 		tab = [terminal doScript:cdCommandString in:tab];
-		[terminal doScript:self.command in:tab];
+        
+        if ([self.command length] > 0) {
+            [terminal doScript:self.command in:tab];
+        }
 		
 		[terminal activate];
 	}
