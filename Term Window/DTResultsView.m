@@ -29,9 +29,9 @@
 	[outlinePath stroke];
 	
 	NSPoint startPoint = NSMakePoint(0.0, [self bounds].size.height - 18.0);
-	startPoint = [self convertPointToBase:startPoint];
+    startPoint = [self convertPointToBacking:startPoint];
 	startPoint.y = floor(startPoint.y) + 0.5;
-	startPoint = [self convertPointFromBase:startPoint];
+    startPoint = [self convertPointFromBacking:startPoint];
 	
 	NSPoint endPoint = NSMakePoint([self bounds].size.width, startPoint.y);
 	
