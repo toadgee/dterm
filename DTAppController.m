@@ -29,6 +29,10 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	return noErr;
 }
 
+// Calling `CFAutorelease()` on NULL objects crashes with a EXC_BREAKPOINT and the message:
+//      *** CFAutorelease() called with NULL ***
+#define CF_AUTORELEASE(x) if(x) CFAutorelease(x)
+
 @interface DTAppController ()
 
 @property (readwrite, nonatomic) DTPrefsWindowController* prefsWindowController;
@@ -184,7 +188,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	// Get AXPosition of the main window
 	CFTypeRef axPosition = NULL;
 	axErr = AXUIElementCopyAttributeValue(axWindow, kAXPositionAttribute, &axPosition);
-	CFBridgingRelease(axPosition);
+	CF_AUTORELEASE(axPosition);
 	if((axErr != kAXErrorSuccess) || !axPosition) {
 		NSLog(@"Couldn't get AXPosition: %d", axErr);
 		return NSZeroRect;
@@ -200,7 +204,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	// Get AXSize
 	CFTypeRef axSize = NULL;
 	axErr = AXUIElementCopyAttributeValue(axWindow, kAXSizeAttribute, &axSize);
-	CFBridgingRelease(axSize);
+	CF_AUTORELEASE(axSize);
 	if((axErr != kAXErrorSuccess) || !axSize) {
 		NSLog(@"Couldn't get AXSize: %d", axErr);
 		return NSZeroRect;
@@ -225,7 +229,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	CFTypeRef axURL = NULL;
 	
 	AXError axErr = AXUIElementCopyAttributeValue(uiElement, kAXURLAttribute, &axURL);
-	CFBridgingRelease(axURL);
+	CF_AUTORELEASE(axURL);
 	if((axErr != kAXErrorSuccess) || !axURL)
 		return nil;
 	
@@ -264,7 +268,8 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	// Follow to main window
 	CFTypeRef mainWindow = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXMainWindowAttribute, &mainWindow);
-	CFBridgingRelease(mainWindow);
+    mainWindow = NULL;
+	CF_AUTORELEASE(mainWindow);
 	if((axErr != kAXErrorSuccess) || !mainWindow) {
 #ifdef DEVBUILD
 		NSLog(@"Couldn't get main window: %d", axErr);
@@ -275,7 +280,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	// Get the window's AXDocument URL string
 	CFTypeRef axDocumentURLString = NULL;
 	axErr = AXUIElementCopyAttributeValue(mainWindow, kAXDocumentAttribute, &axDocumentURLString);
-	CFBridgingRelease(axDocumentURLString);
+	CF_AUTORELEASE(axDocumentURLString);
 	if((axErr != kAXErrorSuccess) || !axDocumentURLString) {
 #ifdef DEVBUILD
 		NSLog(@"Couldn't get AXDocument: %d", axErr);
@@ -300,7 +305,7 @@ failedAXDocument:	;
 	// Find focused UI element
 	CFTypeRef focusedUIElement = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXFocusedUIElementAttribute, &focusedUIElement);
-	CFBridgingRelease(focusedUIElement);
+	CF_AUTORELEASE(focusedUIElement);
 	if((axErr != kAXErrorSuccess) || !focusedUIElement) {
 #ifdef DEVBUILD
 		NSLog(@"Couldn't get AXFocusedUIElement");
@@ -311,10 +316,10 @@ failedAXDocument:	;
 	// Does the focused UI element have any selected children or selected rows? Great for file views.
 	CFTypeRef focusedSelectedChildren = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXSelectedChildrenAttribute, &focusedSelectedChildren);
-	CFBridgingRelease(focusedSelectedChildren);
+	CF_AUTORELEASE(focusedSelectedChildren);
 	if((axErr != kAXErrorSuccess) || !focusedSelectedChildren || !CFArrayGetCount(focusedSelectedChildren)) {
 		axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXSelectedRowsAttribute, &focusedSelectedChildren);
-		CFBridgingRelease(focusedSelectedChildren);
+		CF_AUTORELEASE(focusedSelectedChildren);
 	}
 	if((axErr == kAXErrorSuccess) && focusedSelectedChildren) {
 		// If it *worked*, we see if we can extract URLs from these selected children
@@ -330,7 +335,7 @@ failedAXDocument:	;
 		if([tmpSelectionURLs count]) {
 			CFTypeRef focusWindow = NULL;
 			axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXWindowAttribute, &focusWindow);
-			CFBridgingRelease(focusWindow);
+			CF_AUTORELEASE(focusWindow);
 			if((axErr == kAXErrorSuccess) && focusWindow) {
 				// We're good with this! Return the values.
 				if(selectionURLStrings)
@@ -347,7 +352,7 @@ failedAXDocument:	;
 	if(focusedUIElementURLString) {
 		CFTypeRef focusWindow = NULL;
 		axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXWindowAttribute, &focusWindow);
-		CFBridgingRelease(focusWindow);
+		CF_AUTORELEASE(focusWindow);
 		if((axErr == kAXErrorSuccess) && focusWindow) {
 			// We're good with this! Return the values.
 			if(selectionURLStrings)
@@ -496,7 +501,7 @@ failedAXDocument:	;
 			NSLog(@"Couldn't get systemElement");
 			goto done;
 		}
-		CFBridgingRelease(systemElement);
+		CF_AUTORELEASE(systemElement);
 		
 		// Follow to focused application
 		CFTypeRef focusedApplication = NULL;
@@ -507,7 +512,7 @@ failedAXDocument:	;
 			NSLog(@"Couldn't get focused application: %d", axErr);
 			goto done;
 		}
-		CFBridgingRelease(focusedApplication);
+		CF_AUTORELEASE(focusedApplication);
 		
 		[self findWindowURL:&frontWindowURL selectionURLs:&selectionURLStrings windowFrame:&frontWindowBounds ofAXApplication:focusedApplication];
 	}
