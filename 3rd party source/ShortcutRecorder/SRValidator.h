@@ -17,7 +17,7 @@
     id              delegate;
 }
 
-- (id) initWithDelegate:(id)theDelegate;
+- (instancetype) initWithDelegate:(id)theDelegate NS_DESIGNATED_INITIALIZER;
 
 - (BOOL) isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags error:(NSError **)error;
 - (BOOL) isKeyCode:(NSInteger)keyCode andFlags:(NSUInteger)flags takenInMenu:(NSMenu *)menu error:(NSError **)error;

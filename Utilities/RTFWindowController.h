@@ -6,6 +6,6 @@
 @property NSString* rtfPath;
 @property NSString* windowTitle;
 
-- (id)initWithRTFFile:(NSString*)_rtfPath;
+- (instancetype)initWithRTFFile:(NSString*)_rtfPath;
 
 @end

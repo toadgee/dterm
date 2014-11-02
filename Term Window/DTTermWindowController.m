@@ -19,7 +19,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 
 @synthesize workingDirectory, selectedURLs, command, runs, runsController;
 
-- (id)init {
+- (instancetype)init {
 	if((self = [super initWithWindowNibName:@"TermWindow"])) {
 		[self setShouldCascadeWindows:NO];
 		

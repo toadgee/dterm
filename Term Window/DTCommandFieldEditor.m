@@ -10,7 +10,7 @@
 
 @dynamic isFirstResponder;
 
-- (id)initWithController:(DTTermWindowController*)_controller {
+- (instancetype)initWithController:(DTTermWindowController*)_controller {
 	if((self = [super init])) {
 		controller = _controller;
 		

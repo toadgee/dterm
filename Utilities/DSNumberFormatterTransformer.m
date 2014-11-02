@@ -10,7 +10,7 @@
 
 @implementation DSNumberFormatterTransformer
 
-- (id)initWithNumberFormatter:(NSNumberFormatter*)inFormatter {
+- (instancetype)initWithNumberFormatter:(NSNumberFormatter*)inFormatter {
 	if((self = [super init])) {
 		self.numberFormatter = inFormatter;
 	}

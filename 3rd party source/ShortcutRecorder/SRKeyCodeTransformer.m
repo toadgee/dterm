@@ -119,7 +119,7 @@ static NSArray              *padKeysArray        = nil;
 //---------------------------------------------------------- 
 //  init
 //---------------------------------------------------------- 
-- (id)init
+- (instancetype)init
 {
 	if((self = [super init]))
 	{

@@ -4,7 +4,7 @@
 
 @implementation RTFWindowController
 
-- (id)initWithRTFFile:(NSString*)inRTFPath {
+- (instancetype)initWithRTFFile:(NSString*)inRTFPath {
 	if((self = [super initWithWindowNibName:@"RTFWindow"])) {
 		self.rtfPath = inRTFPath;
 		self.windowTitle = [[inRTFPath lastPathComponent] stringByDeletingPathExtension];

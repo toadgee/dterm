@@ -44,7 +44,7 @@
 		return @[@"-i", @"-c", command];
 }
 
-- (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command {
+- (instancetype)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command {
 	if((self = [super init])) {
 		resultsStorage = [[NSTextStorage alloc] init];
 		currentAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:

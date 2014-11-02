@@ -19,7 +19,7 @@
 	[NSValueTransformer setValueTransformer:transformer forName:@"FontNameToDisplayNameTransformer"];
 }
 
-- (id)init {
+- (instancetype)init {
 	if((self = [super initWithWindowNibName:@"Preferences"])) {
 		[self setShouldCascadeWindows:NO];
 		

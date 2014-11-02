@@ -8,7 +8,7 @@
 
 @property (nonatomic, readonly) BOOL isFirstResponder;
 
-- (id)initWithController:(DTTermWindowController*)_controller;
+- (instancetype)initWithController:(DTTermWindowController*)_controller;
 - (void)insertFiles:(NSArray*)selectedPaths;
 
 @end

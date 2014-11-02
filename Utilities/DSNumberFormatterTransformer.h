@@ -3,6 +3,6 @@
 
 @interface DSNumberFormatterTransformer : NSValueTransformer
 
-- (id)initWithNumberFormatter:(NSNumberFormatter*)inFormatter;
+- (instancetype)initWithNumberFormatter:(NSNumberFormatter*)inFormatter NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -20,7 +20,7 @@
 //---------------------------------------------------------- 
 // iinitWithDelegate:
 //---------------------------------------------------------- 
-- (id) initWithDelegate:(id)theDelegate
+- (instancetype) initWithDelegate:(id)theDelegate
 {
     self = [super init];
     if ( !self )

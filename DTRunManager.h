@@ -30,7 +30,7 @@
 + (NSString*)shellPath;
 + (NSArray*)argumentsToRunCommand:(NSString*)command;
 
-- (id)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command;
+- (instancetype)initWithWD:(NSString*)_wd selection:(NSArray*)_selection command:(NSString*)_command NS_DESIGNATED_INITIALIZER;
 - (IBAction)cancel:(id)sender;
 
 @end
