@@ -268,7 +268,6 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	// Follow to main window
 	CFTypeRef mainWindow = NULL;
 	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXMainWindowAttribute, &mainWindow);
-    mainWindow = NULL;
 	CF_AUTORELEASE(mainWindow);
 	if((axErr != kAXErrorSuccess) || !mainWindow) {
 #ifdef DEVBUILD
