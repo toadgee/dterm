@@ -201,6 +201,7 @@
 		3B3E1FB1190C10C500B31D3E /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRValidator.m; sourceTree = "<group>"; };
 		3B6316B5190D51E100D62E4E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		75B0EC781A022E5900C023D1 /* iTerm2Nightly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTerm2Nightly.h; sourceTree = "<group>"; };
+		75BDB76D1A07EAA9006BB694 /* SystemEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* DTerm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTerm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -285,6 +286,7 @@
 				252FA10D1141A4D00043EA6C /* iTerm.h */,
 				25FA394212E5E47100DE744A /* iTerm2.h */,
 				75B0EC781A022E5900C023D1 /* iTerm2Nightly.h */,
+				75BDB76D1A07EAA9006BB694 /* SystemEvents.h */,
 			);
 			path = ScriptingBridge;
 			sourceTree = SOURCE_ROOT;
@@ -599,7 +601,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=\"$HOME/bin:/usr/local/bin:$PATH\"\ncd \"$PROJECT_DIR\"\nSHA=$(git rev-parse --short HEAD)\nCOUNT=$(git rev-list --count HEAD)\necho \"*** Building Git Revision: $COUNT @ $SHA\"\nmkdir -p \"$TARGET_BUILD_DIR/include\"\necho \"#define REVISION 1.7.$COUNT\" >  $TARGET_BUILD_DIR/include/Revision.h\n\ngit diff --quiet\nif [[ $? -eq 0 ]]; then\n  echo \"#define REVISION_PUBLIC 1.7.$COUNT-$SHA\" >> $TARGET_BUILD_DIR/include/Revision.h\nelse\n  echo \"#define REVISION_PUBLIC 1.7.$COUNT-$SHA+\" >> $TARGET_BUILD_DIR/include/Revision.h\nfi\n";
+			shellScript = "PATH=\"$HOME/bin:/usr/local/bin:$PATH\"\ncd \"$PROJECT_DIR\"\nSHA=$(git rev-parse --short HEAD)\nCOUNT=$(git rev-list --count HEAD)\necho \"*** Building Git Revision: $COUNT @ $SHA\"\nmkdir -p \"$BUILT_PRODUCTS_DIR/include\"\necho \"#define REVISION 1.7.$COUNT\" >  $BUILT_PRODUCTS_DIR/include/Revision.h\n\ngit diff --quiet\nif [[ $? -eq 0 ]]; then\n  echo \"#define REVISION_PUBLIC 1.7.$COUNT-$SHA\" >> $BUILT_PRODUCTS_DIR/include/Revision.h\nelse\n  echo \"#define REVISION_PUBLIC 1.7.$COUNT-$SHA+\" >> $BUILT_PRODUCTS_DIR/include/Revision.h\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -830,7 +832,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/Revision.h;
+				INFOPLIST_PREFIX_HEADER = $BUILT_PRODUCTS_DIR/include/Revision.h;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = DTerm;
@@ -883,7 +885,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
-				INFOPLIST_PREFIX_HEADER = $TARGET_BUILD_DIR/include/Revision.h;
+				INFOPLIST_PREFIX_HEADER = $BUILT_PRODUCTS_DIR/include/Revision.h;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = DTerm;

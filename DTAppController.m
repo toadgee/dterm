@@ -9,6 +9,7 @@
 #import "Finder.h"
 #import "PathFinder.h"
 #import "RTFWindowController.h"
+#import "SystemEvents.h"
 
 NSString* const DTResultsToKeepKey = @"DTResultsToKeep";
 NSString* const DTHotkeyAlsoDeactivatesKey = @"DTHotkeyAlsoDeactivates";
@@ -486,11 +487,75 @@ failedAXDocument:	;
 		@catch (NSException* e) {
 			// Fall through to the default attempts to set WD from selection
 		}
-		
+        
+    }
+    
+    // Also use ScriptingBridge special case for Eclipse IDE
+    else if([frontmostAppBundleID isEqualToString:@"org.eclipse.platform.ide"]) {
+        
+        SystemEventsApplication * SBSysEvents = (SystemEventsApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+        SystemEventsProcess * process = [[SBSysEvents applicationProcesses] objectWithName:@"Eclipse"];
+        
+        NSString * windowTitle = @"";
+        for (SystemEventsWindow * win in [process windows]) {
+            NSNumber * isMain  = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXMain"] value] get];
+            if (![isMain boolValue]) {
+                continue;
+            }
+            windowTitle  = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXTitle"] value] get];
+            NSArray * windowPos = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXPosition"] value] get];
+            NSArray * windowSize = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXSize"] value] get];
+            NSRect windowBounds = NSMakeRect(
+                       [[windowPos objectAtIndex:0] floatValue],
+                       [[windowPos objectAtIndex:1] floatValue],
+                       [[windowSize objectAtIndex:0] floatValue],
+                       [[windowSize objectAtIndex:1] floatValue]
+            );
+            //NSLog(@"Eclipse window bounds: %@", NSStringFromRect(windowBounds));
+            CGFloat screenHeight = [[[NSScreen screens] firstObject] frame].size.height;
+            windowBounds.origin.y = screenHeight - windowBounds.origin.y - windowBounds.size.height;
+            //NSLog(@"Eclipse window bounds: %@", NSStringFromRect(windowBounds));
+            frontWindowBounds = windowBounds;
+        }
+        if ([windowTitle length] == 0) {
+            NSLog(@"Could not find Eclipse window title");
+            goto done;
+        }
+        //NSLog(@"Ecliplse Title: %@", windowTitle);
+        
+        NSArray * parts = [windowTitle componentsSeparatedByString:@" - "];
+        NSString * workspacePath = [parts lastObject];
+        NSString * filepathWithPackage = [parts objectAtIndex:([parts count] - 3)];
+        NSRange firstSlash = [filepathWithPackage rangeOfString:@"/"];
+        NSString * package = [filepathWithPackage substringToIndex:firstSlash.location];
+        NSString * filepathWithinPackage = [filepathWithPackage substringFromIndex:firstSlash.location+1];
+        
+        
+        //NSLog(@"WORKSPACE: %@", workspacePath);
+        //NSLog(@"PACKAGE: %@", package);
+        //NSLog(@"FILEPATH_WITHIN_PACKAGE: %@", filepathWithinPackage);
+        
+        NSString *findPackagePathCmd = [NSString stringWithFormat:@"find \"%@\" -type f -name .project | xargs -n10 grep \"<name>%@</name>\" | awk 'BEGIN{FS=\"/.project:\"}{print $1}'", workspacePath, package];
+        NSString *packagePath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findPackagePathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([packagePath length] == 0) {
+            NSLog(@"Empty Package path");
+            goto done;
+        }
+        //NSLog(@"PACKAGE_PATH: %@", packagePath);
+
+        
+        NSString *findFullFilepathCmd = [NSString stringWithFormat:@"find \"%@\" -type f -path '*%@'", packagePath, filepathWithinPackage];
+        NSString *fullFilepath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findFullFilepathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
+        //NSLog(@"FULL_FILEPATH: %@", fullFilepath);
+        //NSLog(@"FULL_FILEPATH (URL): %@", [[NSURL fileURLWithPath:fullFilepath] absoluteString]);
+        
+        workingDirectory = packagePath;
+        selectionURLStrings = @[[[NSURL fileURLWithPath:fullFilepath] absoluteString]];
+        goto done;
 	}
 
 	// Otherwise, try to talk to the frontmost app with the Accessibility APIs
-	else if([self isAXTrustedPromptIfNot:NO]) {
+    else if([self isAXTrustedPromptIfNot:NO]) {
 		// Use Accessibility API
 		AXError axErr = kAXErrorSuccess;
 		
@@ -629,6 +694,35 @@ done:
 	[[NSUserDefaultsController sharedUserDefaultsController] values];
 	[currentPrefsValues setValue:[panelFont fontName] forKey:DTFontNameKey];
 	[currentPrefsValues setValue:fontSize forKey:DTFontSizeKey];
+}
+
+#pragma mark util
+
+-(NSString *)outputStringFromCommand:(NSString *)command
+                       withArguments:(NSArray *)arguments {
+    NSTask *task;
+    task = [[NSTask alloc] init];
+    [task setLaunchPath: command];
+    
+    NSLog(@"run task: %@",task);
+    [task setArguments: arguments];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    
+    [task launch];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *output;
+    output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    NSLog(@"output: %@", output);
+    return output;
 }
 
 @end
