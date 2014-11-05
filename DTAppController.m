@@ -537,6 +537,7 @@ failedAXDocument:	;
         
         NSString *findPackagePathCmd = [NSString stringWithFormat:@""
                                         "find \"%@\" "
+                                        " -maxdepth 3 "
                                         " -type f "
                                         " -name .project "
                                         "| xargs -n10 grep \"<name>%@</name>\" "
@@ -551,10 +552,11 @@ failedAXDocument:	;
 
         
         NSString *findFullFilepathCmd = [NSString stringWithFormat:@""
-                                         "find \"%@\" "
+                                         "test -f \"%1$@/%2$@\" && echo \"%1$@/%2$@\" ||"
+                                         "(find \"%1$@\" "
                                          " -type f "
-                                         " -path '*%@' "
-                                         "", packagePath, filepathWithinPackage];
+                                         " -path '*/%2$@' "
+                                         ")", packagePath, filepathWithinPackage];
         NSString *fullFilepath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findFullFilepathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
         //NSLog(@"FULL_FILEPATH: %@", fullFilepath);
         //NSLog(@"FULL_FILEPATH (URL): %@", [[NSURL fileURLWithPath:fullFilepath] absoluteString]);
