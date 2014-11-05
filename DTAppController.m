@@ -535,7 +535,13 @@ failedAXDocument:	;
         //NSLog(@"PACKAGE: %@", package);
         //NSLog(@"FILEPATH_WITHIN_PACKAGE: %@", filepathWithinPackage);
         
-        NSString *findPackagePathCmd = [NSString stringWithFormat:@"find \"%@\" -type f -name .project | xargs -n10 grep \"<name>%@</name>\" | awk 'BEGIN{FS=\"/.project:\"}{print $1}'", workspacePath, package];
+        NSString *findPackagePathCmd = [NSString stringWithFormat:@""
+                                        "find \"%@\" "
+                                        " -type f "
+                                        " -name .project "
+                                        "| xargs -n10 grep \"<name>%@</name>\" "
+                                        "| awk 'BEGIN{FS=\"/.project:\"}{print $1}' "
+                                        "", workspacePath, package];
         NSString *packagePath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findPackagePathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([packagePath length] == 0) {
             NSLog(@"Empty Package path");
@@ -544,7 +550,11 @@ failedAXDocument:	;
         //NSLog(@"PACKAGE_PATH: %@", packagePath);
 
         
-        NSString *findFullFilepathCmd = [NSString stringWithFormat:@"find \"%@\" -type f -path '*%@'", packagePath, filepathWithinPackage];
+        NSString *findFullFilepathCmd = [NSString stringWithFormat:@""
+                                         "find \"%@\" "
+                                         " -type f "
+                                         " -path '*%@' "
+                                         "", packagePath, filepathWithinPackage];
         NSString *fullFilepath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findFullFilepathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
         //NSLog(@"FULL_FILEPATH: %@", fullFilepath);
         //NSLog(@"FULL_FILEPATH (URL): %@", [[NSURL fileURLWithPath:fullFilepath] absoluteString]);
