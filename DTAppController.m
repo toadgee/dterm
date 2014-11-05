@@ -542,6 +542,7 @@ failedAXDocument:	;
                                         " -name .project "
                                         "| xargs -n10 grep \"<name>%@</name>\" "
                                         "| awk 'BEGIN{FS=\"/.project:\"}{print $1}' "
+                                        "| head -1"
                                         "", workspacePath, package];
         NSString *packagePath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findPackagePathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([packagePath length] == 0) {
@@ -556,6 +557,7 @@ failedAXDocument:	;
                                          "(find \"%1$@\" "
                                          " -type f "
                                          " -path '*/%2$@' "
+                                         "| head -1"
                                          ")", packagePath, filepathWithinPackage];
         NSString *fullFilepath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findFullFilepathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
         //NSLog(@"FULL_FILEPATH: %@", fullFilepath);
