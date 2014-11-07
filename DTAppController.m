@@ -524,9 +524,20 @@ failedAXDocument:	;
         //NSLog(@"Ecliplse Title: %@", windowTitle);
         
         NSArray * parts = [windowTitle componentsSeparatedByString:@" - "];
+        if ([parts count] < 3) {
+            NSLog(@"Could not find Eclipse window title");
+            goto done;
+        }
         NSString * workspacePath = [parts lastObject];
+        workingDirectory = workspacePath;
+        
         NSString * filepathWithPackage = [parts objectAtIndex:([parts count] - 3)];
         NSRange firstSlash = [filepathWithPackage rangeOfString:@"/"];
+        if (firstSlash.location == NSNotFound) {
+            NSLog(@"Could not find Eclipse filepath within package");
+            goto done;
+        }
+        
         NSString * package = [filepathWithPackage substringToIndex:firstSlash.location];
         NSString * filepathWithinPackage = [filepathWithPackage substringFromIndex:firstSlash.location+1];
         
