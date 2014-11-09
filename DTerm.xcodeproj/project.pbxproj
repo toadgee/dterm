@@ -84,6 +84,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A22BEA3F1A10155400BE7E00 /* build.sh in Resources */ = {isa = PBXBuildFile; fileRef = A22BEA3E1A10155400BE7E00 /* build.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +205,7 @@
 		75BDB76D1A07EAA9006BB694 /* SystemEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* DTerm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTerm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A22BEA3E1A10155400BE7E00 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +397,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A22BEA3E1A10155400BE7E00 /* build.sh */,
 				2525DE5E0D234AE0009A5592 /* Growl Registration Ticket.growlRegDict */,
 				25BEBAE60D171C8D00F7A797 /* DTermHelp */,
 				257355F20D1087D6008E7D0F /* License.rtf */,
@@ -558,6 +561,7 @@
 				25878BDD0D03598500255595 /* ProgressWhite-4.png in Resources */,
 				25878BDE0D03598500255595 /* ProgressWhite-5.png in Resources */,
 				25878BDF0D03598500255595 /* ProgressWhite-6.png in Resources */,
+				A22BEA3F1A10155400BE7E00 /* build.sh in Resources */,
 				25878BE00D03598500255595 /* ProgressWhite-7.png in Resources */,
 				25878BE10D03598500255595 /* ProgressWhite-8.png in Resources */,
 				25878BE20D03598500255595 /* ProgressWhite-9.png in Resources */,
