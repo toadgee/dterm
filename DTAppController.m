@@ -548,7 +548,7 @@ failedAXDocument:	;
         
         NSString *findPackagePathCmd = [NSString stringWithFormat:@""
                                         "find \"%@\" "
-                                        " -maxdepth 3 "
+                                        " -maxdepth 5 "
                                         " -type f "
                                         " -name .project "
                                         "| xargs -n10 grep \"<name>%@</name>\" "
