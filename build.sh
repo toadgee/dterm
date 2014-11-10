@@ -78,7 +78,7 @@ main() {
     cp -r "$TARGET_APP" "$SOURCE_DIR"
     create_dmg \
       --window-size 500 300 \
-      --background "./Images/dmg-background.png" \
+      --background "./Images/dmg-background@2x.png" \
       --icon-size 96 \
       --volname "DTerm" \
       --app-drop-link 380 116 \
