@@ -81,6 +81,7 @@ main() {
     -configuration "Release"
 
   TARGET_APP="./build/Release/DTerm.app"
+  TARGET_VERSION="$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$TARGET_APP/Contents/Info.plist")"
 
   if [[ ! -d "$TARGET_APP" ]]; then
     error "missing $TARGET_APP"
@@ -118,9 +119,10 @@ main() {
 
   echo "---------------------------------------------------"
   echo ">> Build Complete: $(dirname $TARGET_APP)"
-  echo ">>   APP: $TARGET_APP"
+  echo ">>   Version:      $TARGET_VERSION"
+  echo ">>   APP:          $TARGET_APP"
   if [[ "$WITH_DMG" == "yes" ]]; then
-    echo ">>   DMG: $TARGET_DMG"
+    echo ">>   DMG:          $TARGET_DMG"
   fi
   if [[ "$WITH_CODESIGN" == "yes" ]]; then
     echo ">> Codesigning Details:"
