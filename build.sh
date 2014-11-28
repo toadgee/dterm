@@ -3,12 +3,14 @@ set -e -o pipefail
 
 help() {
   cat <<HELP
-Usage: $(basename $0) [--help] [--no-code-sign] [--code-sign-identity NAME] [--with-dmg]
+Usage: $(basename $0) [--help] [--clean] [--no-code-sign] [--code-sign-identity NAME] [--with-dmg]
 HELP
 }
 
 
 main() {
+  CLEAN=""
+  BUILD=""
   WITH_DMG="no"
   WITH_CODESIGN="yes"
   CODESIGN_IDENTITY=""
@@ -19,11 +21,21 @@ main() {
         help;
         exit 0;
         ;;
+      --clean)
+        CLEAN="yes";
+        shift;
+        ;;
+      --build)
+        BUILD="yes";
+        shift;
+        ;;
       --no-code-sign)
+        BUILD="yes";
         WITH_CODESIGN="no";
         shift;
         ;;
       --code-sign-identity)
+        BUILD="yes";
         shift;
         if [ -z "$1" ]; then
           error "missing code-sign-identity NAME"
@@ -32,6 +44,7 @@ main() {
         CODESIGN_IDENTITY="$1"
         ;;
       --with-dmg)
+        BUILD="yes";
         WITH_DMG="yes";
         shift;
         ;;
@@ -42,8 +55,24 @@ main() {
     esac
   done
 
+  if [[ -z "$CLEAN" ]]; then
+    CLEAN="$WITH_DMG"
+  fi
+
   if [[ "$WITH_DMG" == "yes" ]]; then
     ensure_create_dmg
+  fi
+
+  if [[ "$CLEAN" == "yes" ]]; then
+    xcodebuild \
+      -project "./DTerm.xcodeproj" \
+      -target "DTerm" \
+      -configuration "Release" \
+      clean
+    EX=$?
+    if [[ -z "$BUILD" ]]; then
+      exit $EX
+    fi
   fi
 
   xcodebuild \
@@ -88,7 +117,7 @@ main() {
   fi
 
   echo "---------------------------------------------------"
-  echo ">> Build Complete!"
+  echo ">> Build Complete: $(dirname $TARGET_APP)"
   echo ">>   APP: $TARGET_APP"
   if [[ "$WITH_DMG" == "yes" ]]; then
     echo ">>   DMG: $TARGET_DMG"
