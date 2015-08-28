@@ -233,9 +233,9 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		iTerm = [SBApplication applicationWithBundleIdentifier:@"com.googlecode.iterm2"];
     
     // test for iTerms newer scripting bridge
-    if(iTerm && [iTerm respondsToSelector:@selector(createWindowWithDefaultProfileCommand:)]) {
-        iTermTerminal *terminal = nil;
-        iTermSession  *session  = nil;
+    if(iTerm && [iTerm respondsToSelector:@selector(quitSaving:)]) {
+        iTerm2NightlyWindow *terminal = nil;
+        iTerm2NightlySession  *session  = nil;
         
         if([iTerm isRunning]) {
             [iTerm createWindowWithDefaultProfileCommand:nil];
@@ -244,11 +244,11 @@ static void * DTPreferencesContext = &DTPreferencesContext;
         session = [terminal valueForKey:@"currentSession"];
         
         // write text "cd ~/whatever"
-        [session writeContentsOfFile:nil text:cdCommandString];
+        [session writeContentsOfFile:nil text:cdCommandString newline:true];
         
         // write text "thecommand"
         if ([self.command length] > 0) {
-            [session writeContentsOfFile:nil text:self.command];
+            [session writeContentsOfFile:nil text:self.command newline:true];
         }
         
         [iTerm activate];
