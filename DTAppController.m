@@ -432,7 +432,7 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	if(!workingDirectory && [selectionURLStrings count]) {
 		NSURL* url = [NSURL URLWithString:[selectionURLStrings firstObject]];
 		NSString* path = [url path];
-		workingDirectory = [path stringByDeletingLastPathComponent];
+        workingDirectory = [self findMostReasonableWorkingDirFromPath:path];
 	}
 	
 	// default to the home directory if we *still* don't have an explicit WD
@@ -460,6 +460,42 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
         NSLog(@"Could not get focused window of frontmost application via systemevents");
     }
     return win;
+}
+
+- (NSString *) findMostReasonableWorkingDirFromPath:(NSString *)path {
+    NSLog(@"Find WorkDir: path=%@", path);
+
+    // Try to find reasonable directory, e.g. containing a Makefile/Rakefile/build.xml or .git/.svn/.hg
+    BOOL pathIsDir;
+    BOOL pathExists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&pathIsDir];
+    if (!pathExists) {
+        NSLog(@"Find WorkDir: FAILED: path doesn't exist");
+        return nil;
+    }
+    if (pathIsDir) {
+        NSLog(@"Find WorkDir: OK: path is a direcory");
+        return path;
+    }
+    
+    // TODO: make these user-configurable...
+    NSArray * names = @[@"Makefile", @"Rakefile", @"build.xml", @"pom.xml", @".git", @".svn", @".hg"];
+    
+    NSString * findArgs = [@"-name " stringByAppendingString:[names componentsJoinedByString:@" -o -name "]];
+    NSString * findWorkDirUpwardCMD = [NSString stringWithFormat:@""
+                                            "((cd \"%1$@\";while [[ \"$PWD\" != / ]]; do "
+                                            "find \"$PWD\" -maxdepth 1 '(' %2$@ ')' -exec dirname {} ';'"
+                                            "| grep -E '.*' && break; "
+                                            "cd ..; done"
+                                            ")|head -1)", [path stringByDeletingLastPathComponent], findArgs ];
+    NSString *workingDir = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findWorkDirUpwardCMD]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if (![workingDir isEqualToString:@""]) {
+        NSLog(@"Find WorkDir: OK: workdir found: %@", workingDir);
+        return workingDir;
+    }
+    workingDir = [path stringByDeletingLastPathComponent];
+    NSLog(@"Find WorkDir: OK: workdir NOT found, use fallback: %@", workingDir);
+    return workingDir;
 }
 
 - (BOOL) isAXTrustedPromptIfNot:(BOOL)shouldPrompt
