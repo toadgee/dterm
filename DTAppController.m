@@ -226,6 +226,18 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	return windowBounds;
 }
 
+- (NSRect)windowFrameOfSystemEventsWindow:(SystemEventsWindow *)win {
+    NSArray * position = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXPosition"] value] get];
+    NSArray * size = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXSize"] value] get];
+    NSRect windowBounds;
+    windowBounds.size.width = [[size objectAtIndex:0] floatValue];
+    windowBounds.size.height = [[size objectAtIndex:1] floatValue];
+    windowBounds.origin.x = [[position objectAtIndex:0] floatValue];
+    windowBounds.origin.y = [[position objectAtIndex:1] floatValue];
+    NSLog(@"   window bounds: %@", NSStringFromRect(windowBounds));
+    return windowBounds;
+}
+
 - (NSString*)fileAXURLStringOfAXUIElement:(AXUIElementRef)uiElement {
 	CFTypeRef axURL = NULL;
 	
@@ -254,117 +266,6 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	return nil;
 }
 
-- (BOOL)findWindowURL:(NSURL * __autoreleasing *)windowURL selectionURLs:(NSArray* __autoreleasing *)selectionURLStrings windowFrame:(NSRect*)windowFrame ofAXApplication:(CFTypeRef)focusedApplication {
-	AXError axErr = kAXErrorSuccess;
-	
-	if(windowURL)
-		*windowURL = nil;
-	if(selectionURLStrings)
-		*selectionURLStrings = nil;
-	if(windowFrame)
-		*windowFrame = NSZeroRect;
-	
-	// Mechanism 1: Find front window AXDocument (a CFURL), and use that window
-	
-	// Follow to main window
-	CFTypeRef mainWindow = NULL;
-	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXMainWindowAttribute, &mainWindow);
-	CF_AUTORELEASE(mainWindow);
-	if((axErr != kAXErrorSuccess) || !mainWindow) {
-#ifdef DEVBUILD
-		NSLog(@"Couldn't get main window: %d", axErr);
-#endif
-		goto failedAXDocument;
-	}
-	
-	// Get the window's AXDocument URL string
-	CFTypeRef axDocumentURLString = NULL;
-	axErr = AXUIElementCopyAttributeValue(mainWindow, kAXDocumentAttribute, &axDocumentURLString);
-	CF_AUTORELEASE(axDocumentURLString);
-	if((axErr != kAXErrorSuccess) || !axDocumentURLString) {
-#ifdef DEVBUILD
-		NSLog(@"Couldn't get AXDocument: %d", axErr);
-#endif
-		goto failedAXDocument;
-	}
-	
-	// OK, we're a go with this method!
-	if(windowURL)
-		*windowURL = [NSURL URLWithString:(__bridge NSString*)axDocumentURLString];
-	if(selectionURLStrings)
-		*selectionURLStrings = @[(__bridge NSString*)axDocumentURLString];
-	if(windowFrame)
-		*windowFrame = [self windowFrameOfAXWindow:mainWindow];
-	return YES;
-	
-	
-failedAXDocument:	;
-	
-	// Mechanism 2: Find focused UI element and try to find a selection from it.
-	
-	// Find focused UI element
-	CFTypeRef focusedUIElement = NULL;
-	axErr = AXUIElementCopyAttributeValue(focusedApplication, kAXFocusedUIElementAttribute, &focusedUIElement);
-	CF_AUTORELEASE(focusedUIElement);
-	if((axErr != kAXErrorSuccess) || !focusedUIElement) {
-#ifdef DEVBUILD
-		NSLog(@"Couldn't get AXFocusedUIElement");
-#endif
-		return NO;
-	}
-	
-	// Does the focused UI element have any selected children or selected rows? Great for file views.
-	CFTypeRef focusedSelectedChildren = NULL;
-	axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXSelectedChildrenAttribute, &focusedSelectedChildren);
-	CF_AUTORELEASE(focusedSelectedChildren);
-	if((axErr != kAXErrorSuccess) || !focusedSelectedChildren || !CFArrayGetCount(focusedSelectedChildren)) {
-		axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXSelectedRowsAttribute, &focusedSelectedChildren);
-		CF_AUTORELEASE(focusedSelectedChildren);
-	}
-	if((axErr == kAXErrorSuccess) && focusedSelectedChildren) {
-		// If it *worked*, we see if we can extract URLs from these selected children
-		NSMutableArray* tmpSelectionURLs = [NSMutableArray array];
-		for(CFIndex i=0; i<CFArrayGetCount(focusedSelectedChildren); i++) {
-			CFTypeRef selectedChild = CFArrayGetValueAtIndex(focusedSelectedChildren, i);
-			NSString* selectedChildURLString = [self fileAXURLStringOfAXUIElement:selectedChild];
-			if(selectedChildURLString)
-				[tmpSelectionURLs addObject:selectedChildURLString];
-		}
-		
-		// If we have selection URLs now, grab the window the focused UI element belongs to
-		if([tmpSelectionURLs count]) {
-			CFTypeRef focusWindow = NULL;
-			axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXWindowAttribute, &focusWindow);
-			CF_AUTORELEASE(focusWindow);
-			if((axErr == kAXErrorSuccess) && focusWindow) {
-				// We're good with this! Return the values.
-				if(selectionURLStrings)
-					*selectionURLStrings = tmpSelectionURLs;
-				if(windowFrame)
-					*windowFrame = [self windowFrameOfAXWindow:focusWindow];
-				return YES;
-			}
-		}
-	}
-	
-	// Does the focused UI element have an AXURL of its own?
-	NSString* focusedUIElementURLString = [self fileAXURLStringOfAXUIElement:focusedUIElement];
-	if(focusedUIElementURLString) {
-		CFTypeRef focusWindow = NULL;
-		axErr = AXUIElementCopyAttributeValue(focusedUIElement, kAXWindowAttribute, &focusWindow);
-		CF_AUTORELEASE(focusWindow);
-		if((axErr == kAXErrorSuccess) && focusWindow) {
-			// We're good with this! Return the values.
-			if(selectionURLStrings)
-				*selectionURLStrings = @[focusedUIElementURLString];
-			if(windowFrame)
-				*windowFrame = [self windowFrameOfAXWindow:focusWindow];
-			return YES;
-		}
-	}
-    
-    return NO;
-}
 
 - (void)hotkeyPressed {
 //	NSLog(@"HotKey pressed");
@@ -490,120 +391,18 @@ failedAXDocument:	;
         
     }
     
-    // Also use ScriptingBridge special case for Eclipse IDE
-    else if([frontmostAppBundleID isEqualToString:@"org.eclipse.platform.ide"]) {
-        
-        SystemEventsApplication * SBSysEvents = (SystemEventsApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-        SystemEventsProcess * process = [[SBSysEvents applicationProcesses] objectWithName:@"Eclipse"];
-        
-        NSString * windowTitle = @"";
-        for (SystemEventsWindow * win in [process windows]) {
-            NSNumber * isMain  = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXMain"] value] get];
-            if (![isMain boolValue]) {
-                continue;
-            }
-            windowTitle  = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXTitle"] value] get];
-            NSArray * windowPos = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXPosition"] value] get];
-            NSArray * windowSize = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXSize"] value] get];
-            NSRect windowBounds = NSMakeRect(
-                       [[windowPos objectAtIndex:0] floatValue],
-                       [[windowPos objectAtIndex:1] floatValue],
-                       [[windowSize objectAtIndex:0] floatValue],
-                       [[windowSize objectAtIndex:1] floatValue]
-            );
-            //NSLog(@"Eclipse window bounds: %@", NSStringFromRect(windowBounds));
-            CGFloat screenHeight = [[[NSScreen screens] firstObject] frame].size.height;
-            windowBounds.origin.y = screenHeight - windowBounds.origin.y - windowBounds.size.height;
-            //NSLog(@"Eclipse window bounds: %@", NSStringFromRect(windowBounds));
-            frontWindowBounds = windowBounds;
-        }
-        if ([windowTitle length] == 0) {
-            NSLog(@"Could not find Eclipse window title");
-            goto done;
-        }
-        //NSLog(@"Ecliplse Title: %@", windowTitle);
-        
-        NSArray * parts = [windowTitle componentsSeparatedByString:@" - "];
-        if ([parts count] < 3) {
-            NSLog(@"Could not find Eclipse window title");
-            goto done;
-        }
-        NSString * workspacePath = [parts lastObject];
-        workingDirectory = workspacePath;
-        
-        NSString * filepathWithPackage = [parts objectAtIndex:([parts count] - 3)];
-        NSRange firstSlash = [filepathWithPackage rangeOfString:@"/"];
-        if (firstSlash.location == NSNotFound) {
-            NSLog(@"Could not find Eclipse filepath within package");
-            goto done;
-        }
-        
-        NSString * package = [filepathWithPackage substringToIndex:firstSlash.location];
-        NSString * filepathWithinPackage = [filepathWithPackage substringFromIndex:firstSlash.location+1];
-        
-        
-        //NSLog(@"WORKSPACE: %@", workspacePath);
-        //NSLog(@"PACKAGE: %@", package);
-        //NSLog(@"FILEPATH_WITHIN_PACKAGE: %@", filepathWithinPackage);
-        
-        NSString *findPackagePathCmd = [NSString stringWithFormat:@""
-                                        "find \"%@\" "
-                                        " -maxdepth 5 "
-                                        " -type f "
-                                        " -name .project "
-                                        "| xargs -n10 grep \"<name>%@</name>\" "
-                                        "| awk 'BEGIN{FS=\"/.project:\"}{print $1}' "
-                                        "| head -1"
-                                        "", workspacePath, package];
-        NSString *packagePath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findPackagePathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([packagePath length] == 0) {
-            NSLog(@"Empty Package path");
-            goto done;
-        }
-        //NSLog(@"PACKAGE_PATH: %@", packagePath);
-
-        
-        NSString *findFullFilepathCmd = [NSString stringWithFormat:@""
-                                         "test -f \"%1$@/%2$@\" && echo \"%1$@/%2$@\" ||"
-                                         "(find \"%1$@\" "
-                                         " -type f "
-                                         " -path '*/%2$@' "
-                                         "| head -1"
-                                         ")", packagePath, filepathWithinPackage];
-        NSString *fullFilepath = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findFullFilepathCmd]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
-        //NSLog(@"FULL_FILEPATH: %@", fullFilepath);
-        //NSLog(@"FULL_FILEPATH (URL): %@", [[NSURL fileURLWithPath:fullFilepath] absoluteString]);
-        
-        workingDirectory = packagePath;
-        selectionURLStrings = @[[[NSURL fileURLWithPath:fullFilepath] absoluteString]];
-        goto done;
-	}
-
 	// Otherwise, try to talk to the frontmost app with the Accessibility APIs
     else if([self isAXTrustedPromptIfNot:NO]) {
-		// Use Accessibility API
-		AXError axErr = kAXErrorSuccess;
-		
-		// Grab system-wide UI Element
-		AXUIElementRef systemElement = AXUIElementCreateSystemWide();
-		if(!systemElement) {
-			NSLog(@"Couldn't get systemElement");
-			goto done;
-		}
-		CF_AUTORELEASE(systemElement);
-		
-		// Follow to focused application
-		CFTypeRef focusedApplication = NULL;
-		axErr = AXUIElementCopyAttributeValue(systemElement, 
-											  kAXFocusedApplicationAttribute,
-											  &focusedApplication);
-		if((axErr != kAXErrorSuccess) || !focusedApplication) {
-			NSLog(@"Couldn't get focused application: %d", axErr);
-			goto done;
-		}
-		CF_AUTORELEASE(focusedApplication);
-		
-		[self findWindowURL:&frontWindowURL selectionURLs:&selectionURLStrings windowFrame:&frontWindowBounds ofAXApplication:focusedApplication];
+		//NSLog(@"try to find application using systemevents api...");
+        
+        SystemEventsWindow * win = [self frontmostWindow];
+        if (win) {
+            NSString * document = [(SBObject *)[(SystemEventsAttribute *)[[win attributes] objectWithName:@"AXDocument"] value] get];
+            if (document != nil) {
+                selectionURLStrings = @[[[NSURL URLWithString:document] absoluteString]];
+            }
+            frontWindowBounds = [self windowFrameOfSystemEventsWindow:win];
+        }
 	}
 	
 	// Numbers returned by AS are funky; adjust to NSWindow coordinates
@@ -616,7 +415,6 @@ failedAXDocument:	;
 //	NSLog(@"Selection URLs: %@", selectionURLs);
 //	NSLog(@"Front window bounds: %@", NSStringFromRect(frontWindowBounds));
 	
-done:
 	// If there's no explicit WD, but we have a front window URL, try to deduce a working directory from that
 	if(!workingDirectory && [frontWindowURL isFileURL]) {
 		LSItemInfoRecord outItemInfo;
@@ -645,6 +443,23 @@ done:
 											 selection:selectionURLStrings
 										   windowFrame:frontWindowBounds];
 	
+}
+
+- (SystemEventsWindow *)frontmostWindow {
+    SystemEventsApplication * SBSysEvents = (SystemEventsApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    NSArray * frontmostProcesses = [[SBSysEvents applicationProcesses]  filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"frontmost == 1 && focused != nil"]];
+    // NSLog(@"frontmostProcesses: %lu", [frontmostProcesses count]);
+    if ([frontmostProcesses count] < 1) {
+        NSLog(@"Could not get frontmost application via systemevents");
+        return nil;
+    }
+    SystemEventsProcess * process = [frontmostProcesses firstObject];
+    // NSLog(@"frontmostProcess: %@", [process name]);
+    SystemEventsWindow * win = [(SBObject *)[(SystemEventsAttribute *)[[process attributes] objectWithName:@"AXFocusedWindow"] value] get];
+    if (win == nil) {
+        NSLog(@"Could not get focused window of frontmost application via systemevents");
+    }
+    return win;
 }
 
 - (BOOL) isAXTrustedPromptIfNot:(BOOL)shouldPrompt
