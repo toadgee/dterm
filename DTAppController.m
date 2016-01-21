@@ -18,6 +18,8 @@ NSString* const DTTextColorKey = @"DTTextColor";
 NSString* const DTFontNameKey = @"DTFontName";
 NSString* const DTFontSizeKey = @"DTFontSize";
 NSString* const DTDisableAntialiasingKey = @"DTDisableAntialiasing";
+NSString* const DTDisableWorkdirUpfind = @"DTDisableWorkdirUpfind";
+NSString* const DTWorkdirUpfindEntries = @"DTWorkdirUpfindEntries";
 
 OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void *userData);
 OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void *userData)
@@ -54,8 +56,10 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
 	setenv("TERM_PROGRAM", "DTerm", 1);
 	setenv("TERM_PROGRAM_VERSION", [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] cStringUsingEncoding:NSASCIIStringEncoding], 1);
 	
-	NSDictionary* defaultsDict = @{DTResultsToKeepKey: @"5",
-								  DTHotkeyAlsoDeactivatesKey: @NO,
+	NSDictionary* defaultsDict =@{DTResultsToKeepKey: @"5",
+                                  DTHotkeyAlsoDeactivatesKey: @NO,
+                                  DTDisableWorkdirUpfind: @NO,
+                                  DTWorkdirUpfindEntries: @"Makefile, Rakefile, build.xml, pom.xml, .git, .svn, .hg",
 								  DTShowDockIconKey: @YES,
 								  DTTextColorKey: [NSKeyedArchiver archivedDataWithRootObject:[[NSColor whiteColor] colorWithAlphaComponent:0.9]],
 								  DTFontNameKey: @"Monaco",
@@ -477,18 +481,29 @@ OSStatus DTHotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent, void
         return path;
     }
     
-    // TODO: make these user-configurable...
-    NSArray * names = @[@"Makefile", @"Rakefile", @"build.xml", @"pom.xml", @".git", @".svn", @".hg"];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:DTDisableWorkdirUpfind]) {
+        NSString * workingDir = [path stringByDeletingLastPathComponent];
+        NSLog(@"Find WorkDir: OK: workdir-via-upfind is disabled, so use file's directory: %@", workingDir);
+        return workingDir;
+    }
     
-    NSString * findArgs = [@"-name " stringByAppendingString:[names componentsJoinedByString:@" -o -name "]];
+    NSString * upfindEntriesStr = [[NSUserDefaults standardUserDefaults] stringForKey:DTWorkdirUpfindEntries];
+    NSMutableCharacterSet * splitSet = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
+    [splitSet addCharactersInString:@","];
+    NSArray * upfindEntries = [[upfindEntriesStr componentsSeparatedByCharactersInSet:splitSet] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@" SELF != \"\" "]];
+    // NSLog(@"Find WorkDir: upfindEntries: %@", upfindEntries);
+
+    NSString * findArgs = [@"-name " stringByAppendingString:[upfindEntries componentsJoinedByString:@" -o -name "]];
     NSString * findWorkDirUpwardCMD = [NSString stringWithFormat:@""
                                             "((cd \"%1$@\";while [[ \"$PWD\" != / ]]; do "
                                             "find \"$PWD\" -maxdepth 1 '(' %2$@ ')' -exec dirname {} ';'"
                                             "| grep -E '.*' && break; "
                                             "cd ..; done"
                                             ")|head -1)", [path stringByDeletingLastPathComponent], findArgs ];
-    NSString *workingDir = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findWorkDirUpwardCMD]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    // NSLog(@"Find WorkDir: findWorkDirUpwardCMD: %@", findWorkDirUpwardCMD);
 
+    NSString *workingDir = [[self outputStringFromCommand:@"/bin/sh" withArguments:@[@"-c",findWorkDirUpwardCMD]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+       
     if (![workingDir isEqualToString:@""]) {
         NSLog(@"Find WorkDir: OK: workdir found: %@", workingDir);
         return workingDir;
