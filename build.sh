@@ -93,7 +93,7 @@ main() {
       CODESIGN_IDENTITY="$(git config --get user.name)"
     fi
     set -x
-    codesign -s "$CODESIGN_IDENTITY" -f "$TARGET_APP" -v
+    codesign --deep -s "$CODESIGN_IDENTITY" -f "$TARGET_APP" -v
     set +x
   fi
 
