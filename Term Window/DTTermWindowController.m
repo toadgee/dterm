@@ -9,7 +9,6 @@
 #import "DTResultsTextView.h"
 #import "DTRunManager.h"
 #import "DTShellUtilities.h"
-#import "iTerm.h"
 #import "iTerm2.h"
 #import "iTerm2Nightly.h"
 #import "Terminal.h"
@@ -233,7 +232,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 		iTerm = [SBApplication applicationWithBundleIdentifier:@"com.googlecode.iterm2"];
     
     // test for iTerms newer scripting bridge
-    if(iTerm && [iTerm respondsToSelector:@selector(quitSaving:)]) {
+    if(iTerm && [iTerm respondsToSelector:@selector(createWindowWithDefaultProfileCommand:)]) {
         iTerm2NightlyWindow *terminal = nil;
         iTerm2NightlySession  *session  = nil;
         
@@ -252,9 +251,9 @@ static void * DTPreferencesContext = &DTPreferencesContext;
         }
         
         [iTerm activate];
-    } else if(iTerm) { // assume old scripting bridge
-		iTermTerminal *terminal = nil;
-		iTermSession  *session  = nil;
+    } else if(iTerm && [iTerm respondsToSelector:@selector(isRunning)]) { // assume old scripting bridge
+		iTerm2Terminal *terminal = nil;
+		iTerm2Session  *session  = nil;
 		
 		if([iTerm isRunning]) {
 			// set terminal to (make new terminal at the end of terminals)

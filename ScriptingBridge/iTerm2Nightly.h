@@ -15,6 +15,28 @@ enum iTerm2NightlySaveOptions {
 };
 typedef enum iTerm2NightlySaveOptions iTerm2NightlySaveOptions;
 
+@protocol iTerm2NightlyGenericMethods
+
+- (void) delete;  // Delete an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy object(s) and put the copies at a new location.
+- (BOOL) exists;  // Verify if an object exists.
+- (void) moveTo:(SBObject *)to;  // Move object(s) to a new location.
+- (void) close;  // Close a document.
+- (iTerm2NightlyTab *) createTabWithProfile:(NSString *)withProfile command:(NSString *)command;  // Create a new tab
+- (iTerm2NightlyTab *) createTabWithDefaultProfileCommand:(NSString *)command;  // Create a new tab with the default profile
+- (void) writeContentsOfFile:(NSURL *)contentsOfFile text:(NSString *)text newline:(BOOL)newline;  // Send text as though it was typed.
+- (void) select;  // Make receiver visible and selected.
+- (iTerm2NightlySession *) splitVerticallyWithProfile:(NSString *)withProfile command:(NSString *)command;  // Split a session vertically.
+- (iTerm2NightlySession *) splitVerticallyWithDefaultProfileCommand:(NSString *)command;  // Split a session vertically, using the default profile for the new session
+- (iTerm2NightlySession *) splitVerticallyWithSameProfileCommand:(NSString *)command;  // Split a session vertically, using the original session's profile for the new session
+- (iTerm2NightlySession *) splitHorizontallyWithProfile:(NSString *)withProfile command:(NSString *)command;  // Split a session horizontally.
+- (iTerm2NightlySession *) splitHorizontallyWithDefaultProfileCommand:(NSString *)command;  // Split a session horizontally, using the default profile for the new session
+- (iTerm2NightlySession *) splitHorizontallyWithSameProfileCommand:(NSString *)command;  // Split a session horizontally, using the original session's profile for the new session
+- (NSString *) variableNamed:(NSString *)named;  // Returns the value of a session variable with the given name
+- (NSString *) setVariableNamed:(NSString *)named to:(NSString *)to;  // Sets the value of a session variable
+
+@end
+
 
 
 /*
@@ -24,24 +46,24 @@ typedef enum iTerm2NightlySaveOptions iTerm2NightlySaveOptions;
 // The application's top-level scripting object.
 @interface iTerm2NightlyApplication : SBApplication
 
-- (SBElementArray *) windows;
+- (SBElementArray<iTerm2NightlyWindow *> *) windows;
 
 @property (copy) iTerm2NightlyWindow *currentWindow;  // The frontmost window
 @property (copy, readonly) NSString *name;  // The name of the application.
 @property (readonly) BOOL frontmost;  // Is this the frontmost (active) application?
 @property (copy, readonly) NSString *version;  // The version of the application.
 
-- (void) quitSaving:(iTerm2NightlySaveOptions)saving;  // Quit the application.
 - (iTerm2NightlyWindow *) createWindowWithProfile:(NSString *)x command:(NSString *)command;  // Create a new window
 - (iTerm2NightlyWindow *) createWindowWithDefaultProfileCommand:(NSString *)command;  // Create a new window with the default profile
 
 @end
 
 // A window.
-@interface iTerm2NightlyWindow : SBObject
+@interface iTerm2NightlyWindow : SBObject <iTerm2NightlyGenericMethods>
 
-- (SBElementArray *) tabs;
+- (SBElementArray<iTerm2NightlyTab *> *) tabs;
 
+- (NSString *) id;  // The unique identifier of the session.
 @property (copy, readonly) NSString *name;  // The full title of the window.
 @property NSInteger index;  // The index of the window, ordered front to back.
 @property NSRect bounds;  // The bounding rectangle of the window.
@@ -60,21 +82,6 @@ typedef enum iTerm2NightlySaveOptions iTerm2NightlySaveOptions;
 @property NSPoint size;  // The width and height of the window
 @property NSRect frame;  // The bounding rectangle, relative to the lower left corner of the screen.
 
-- (void) delete;  // Delete an object.
-- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy object(s) and put the copies at a new location.
-- (BOOL) exists;  // Verify if an object exists.
-- (void) moveTo:(SBObject *)to;  // Move object(s) to a new location.
-- (void) close;  // Close a document.
-- (iTerm2NightlyTab *) createTabWithProfile:(NSString *)withProfile command:(NSString *)command;  // Create a new tab
-- (iTerm2NightlyTab *) createTabWithDefaultProfileCommand:(NSString *)command;  // Create a new tab with the default profile
-- (void) writeContentsOfFile:(NSURL *)contentsOfFile text:(NSString *)text newline:(BOOL)newline;  // Send text as though it was typed.
-- (void) select;  // Make receiver visible and selected.
-- (iTerm2NightlySession *) splitVerticallyWithProfile:(NSString *)withProfile;  // Split a session vertically.
-- (iTerm2NightlySession *) splitVerticallyWithDefaultProfile;  // Split a session vertically, using the default profile for the new session
-- (iTerm2NightlySession *) splitVerticallyWithSameProfile;  // Split a session vertically, using the original session's profile for the new session
-- (iTerm2NightlySession *) splitHorizontallyWithProfile:(NSString *)withProfile;  // Split a session horizontally.
-- (iTerm2NightlySession *) splitHorizontallyWithDefaultProfile;  // Split a session horizontally, using the default profile for the new session
-- (iTerm2NightlySession *) splitHorizontallyWithSameProfile;  // Split a session horizontally, using the original session's profile for the new session
 
 @end
 
@@ -85,34 +92,20 @@ typedef enum iTerm2NightlySaveOptions iTerm2NightlySaveOptions;
  */
 
 // A terminal tab
-@interface iTerm2NightlyTab : SBObject
+@interface iTerm2NightlyTab : SBObject <iTerm2NightlyGenericMethods>
 
-- (SBElementArray *) sessions;
+- (SBElementArray<iTerm2NightlySession *> *) sessions;
 
 @property (copy) iTerm2NightlySession *currentSession;  // The current session in a tab
 @property NSInteger index;  // Index of tab in parent tab view control
 
-- (void) delete;  // Delete an object.
-- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy object(s) and put the copies at a new location.
-- (BOOL) exists;  // Verify if an object exists.
-- (void) moveTo:(SBObject *)to;  // Move object(s) to a new location.
-- (void) close;  // Close a document.
-- (iTerm2NightlyTab *) createTabWithProfile:(NSString *)withProfile command:(NSString *)command;  // Create a new tab
-- (iTerm2NightlyTab *) createTabWithDefaultProfileCommand:(NSString *)command;  // Create a new tab with the default profile
-- (void) writeContentsOfFile:(NSURL *)contentsOfFile text:(NSString *)text newline:(BOOL)newline;  // Send text as though it was typed.
-- (void) select;  // Make receiver visible and selected.
-- (iTerm2NightlySession *) splitVerticallyWithProfile:(NSString *)withProfile;  // Split a session vertically.
-- (iTerm2NightlySession *) splitVerticallyWithDefaultProfile;  // Split a session vertically, using the default profile for the new session
-- (iTerm2NightlySession *) splitVerticallyWithSameProfile;  // Split a session vertically, using the original session's profile for the new session
-- (iTerm2NightlySession *) splitHorizontallyWithProfile:(NSString *)withProfile;  // Split a session horizontally.
-- (iTerm2NightlySession *) splitHorizontallyWithDefaultProfile;  // Split a session horizontally, using the default profile for the new session
-- (iTerm2NightlySession *) splitHorizontallyWithSameProfile;  // Split a session horizontally, using the original session's profile for the new session
 
 @end
 
 // A terminal session
-@interface iTerm2NightlySession : SBObject
+@interface iTerm2NightlySession : SBObject <iTerm2NightlyGenericMethods>
 
+- (NSString *) id;  // The unique identifier of the session.
 @property BOOL isProcessing;  // The session has received output recently.
 @property BOOL isAtShellPrompt;  // The terminal is at the shell prompt. Requires shell integration.
 @property NSInteger columns;
@@ -146,22 +139,9 @@ typedef enum iTerm2NightlySaveOptions iTerm2NightlySaveOptions;
 @property (copy) NSString *name;
 @property double transparency;
 @property (copy, readonly) NSString *uniqueID;
+@property (copy, readonly) NSString *profileName;  // The session's profile name
+@property (copy) NSString *answerbackString;  // ENQ Answerback string
 
-- (void) delete;  // Delete an object.
-- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy object(s) and put the copies at a new location.
-- (BOOL) exists;  // Verify if an object exists.
-- (void) moveTo:(SBObject *)to;  // Move object(s) to a new location.
-- (void) close;  // Close a document.
-- (iTerm2NightlyTab *) createTabWithProfile:(NSString *)withProfile command:(NSString *)command;  // Create a new tab
-- (iTerm2NightlyTab *) createTabWithDefaultProfileCommand:(NSString *)command;  // Create a new tab with the default profile
-- (void) writeContentsOfFile:(NSURL *)contentsOfFile text:(NSString *)text newline:(BOOL)newline;  // Send text as though it was typed.
-- (void) select;  // Make receiver visible and selected.
-- (iTerm2NightlySession *) splitVerticallyWithProfile:(NSString *)withProfile;  // Split a session vertically.
-- (iTerm2NightlySession *) splitVerticallyWithDefaultProfile;  // Split a session vertically, using the default profile for the new session
-- (iTerm2NightlySession *) splitVerticallyWithSameProfile;  // Split a session vertically, using the original session's profile for the new session
-- (iTerm2NightlySession *) splitHorizontallyWithProfile:(NSString *)withProfile;  // Split a session horizontally.
-- (iTerm2NightlySession *) splitHorizontallyWithDefaultProfile;  // Split a session horizontally, using the default profile for the new session
-- (iTerm2NightlySession *) splitHorizontallyWithSameProfile;  // Split a session horizontally, using the original session's profile for the new session
 
 @end
 

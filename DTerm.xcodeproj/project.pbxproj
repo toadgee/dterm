@@ -127,7 +127,6 @@
 		2529F76D0CF4D61100CDF456 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		2529F8500CF5F6AB00CDF456 /* DTerm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DTerm.icns; sourceTree = "<group>"; };
 		2529F8E90CF7575000CDF456 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
-		252FA10D1141A4D00043EA6C /* iTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTerm.h; sourceTree = "<group>"; };
 		254036C510FFCDCC0076CE83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2559EB0E0D36EC58002BCF4E /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinder.h; sourceTree = "<group>"; };
 		257158E70CFF9A99007181F4 /* DTShellUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTShellUtilities.h; sourceTree = "<group>"; };
@@ -285,7 +284,6 @@
 				2500756D0CF0C1CF00949B95 /* Finder.h */,
 				2559EB0E0D36EC58002BCF4E /* PathFinder.h */,
 				2529F8E90CF7575000CDF456 /* Terminal.h */,
-				252FA10D1141A4D00043EA6C /* iTerm.h */,
 				25FA394212E5E47100DE744A /* iTerm2.h */,
 				75B0EC781A022E5900C023D1 /* iTerm2Nightly.h */,
 				75BDB76D1A07EAA9006BB694 /* SystemEvents.h */,
