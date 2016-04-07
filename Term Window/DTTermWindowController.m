@@ -105,15 +105,23 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	// Select all of the command field
 	[commandFieldEditor setSelectedRange:NSMakeRange(0, [[commandFieldEditor string] length])];
 	[window makeFirstResponder:commandField];
-	
-	// If no parent window; use main screen
+    
+    // desired width = 70% window width, with max window/screen width at 1680
+    // 1680 = 22" is a good cap, anything above looks redicoulous on larger screens like 2560 = 29"
+    NSScreen* mainScreen = [NSScreen mainScreen];
+    CGFloat screenWidth = mainScreen.visibleFrame.size.width;
+    CGFloat maxReasonableScreenWidth = 1680.0;
+    CGFloat minWidth = 640.0;
+    CGFloat maxWidth = fmin(maxReasonableScreenWidth,screenWidth)*0.7;
+    CGFloat desiredWidth = fmax(fmin(frame.size.width*0.7, maxWidth), minWidth);
+    
+    // If no parent window; use main screen
 	if(NSEqualRects(frame, NSZeroRect)) {
-		NSScreen* mainScreen = [NSScreen mainScreen];
-		frame = [mainScreen visibleFrame];
+        frame = [mainScreen visibleFrame];
+        desiredWidth = fmax(maxWidth, minWidth);
 	}
 	
 	// Set frame according to parent window location
-	CGFloat desiredWidth = fmin(frame.size.width - 20.0, 640.0);
 	NSRect newFrame = NSInsetRect(frame, (frame.size.width - desiredWidth) / 2.0, 0.0);
 	newFrame.size.height = [window frame].size.height + [resultsTextView desiredHeightChange];
 	newFrame.origin.y = frame.origin.y + frame.size.height - newFrame.size.height;
