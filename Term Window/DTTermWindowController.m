@@ -10,7 +10,6 @@
 #import "DTRunManager.h"
 #import "DTShellUtilities.h"
 #import "iTerm2.h"
-#import "iTerm2Nightly.h"
 #import "Terminal.h"
 
 static void * DTPreferencesContext = &DTPreferencesContext;
@@ -235,14 +234,14 @@ static void * DTPreferencesContext = &DTPreferencesContext;
 	
 	NSString* cdCommandString = [NSString stringWithFormat:@"cd %@", escapedPath(self.workingDirectory)];
 	
-	id iTerm = [SBApplication applicationWithBundleIdentifier:@"net.sourceforge.iTerm"];
+	id iTerm = [SBApplication applicationWithBundleIdentifier:@"com.googlecode.iterm2"];
 	if(!iTerm)
-		iTerm = [SBApplication applicationWithBundleIdentifier:@"com.googlecode.iterm2"];
+		iTerm = [SBApplication applicationWithBundleIdentifier:@"net.sourceforge.iTerm"]; // legacy iTerm
     
     // test for iTerms newer scripting bridge
     if(iTerm && [iTerm respondsToSelector:@selector(createWindowWithDefaultProfileCommand:)]) {
-        iTerm2NightlyWindow *terminal = nil;
-        iTerm2NightlySession  *session  = nil;
+        iTerm2Window *terminal = nil;
+        iTerm2Session  *session  = nil;
         
         if([iTerm isRunning]) {
             [iTerm createWindowWithDefaultProfileCommand:nil];
@@ -259,37 +258,7 @@ static void * DTPreferencesContext = &DTPreferencesContext;
         }
         
         [iTerm activate];
-    } else if(iTerm && [iTerm respondsToSelector:@selector(isRunning)]) { // assume old scripting bridge
-		iTerm2Terminal *terminal = nil;
-		iTerm2Session  *session  = nil;
-		
-		if([iTerm isRunning]) {
-			// set terminal to (make new terminal at the end of terminals)
-			terminal = [[[iTerm classForScriptingClass:@"terminal"] alloc] init];
-			[[iTerm terminals] addObject:terminal];
-			
-			// set session to (make new session at the end of sessions)
-			session = [[[iTerm classForScriptingClass:@"session"] alloc] init];
-			[[terminal sessions] addObject:session];
-		} else {
-			// It wasn't running yet, so just use the "current" terminal/session so we don't open more than one
-			terminal = [iTerm valueForKey:@"currentTerminal"];
-			session = [terminal valueForKey:@"currentSession"];
-		}
-		
-		// set shell to system attribute "SHELL"
-		// exec command shell
-		[session execCommand:[DTRunManager shellPath]];
-		
-		// write text "cd ~/whatever"
-		[session writeContentsOfFile:nil text:cdCommandString];
-		
-        // write text "thecommand"
-        if ([self.command length] > 0) {
-            [session writeContentsOfFile:nil text:self.command];
-        }
-		[iTerm activate];
-	} else {
+    } else {
 		TerminalApplication* terminal = (TerminalApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
 		BOOL terminalAlreadyRunning = [terminal isRunning];
 		
