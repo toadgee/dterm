@@ -835,6 +835,7 @@
 				INFOPLIST_PREFIX_HEADER = $BUILT_PRODUCTS_DIR/include/Revision.h;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = net.decimus.dterm;
 				PRODUCT_NAME = DTerm;
 				WARNING_CFLAGS = (
 					"-Wall",
@@ -888,6 +889,7 @@
 				INFOPLIST_PREFIX_HEADER = $BUILT_PRODUCTS_DIR/include/Revision.h;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_BUNDLE_IDENTIFIER = net.decimus.dterm;
 				PRODUCT_NAME = DTerm;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WARNING_CFLAGS = (
