@@ -240,14 +240,18 @@ static void * DTPreferencesContext = &DTPreferencesContext;
     
     // test for iTerms newer scripting bridge
     if(iTerm && [iTerm respondsToSelector:@selector(createWindowWithDefaultProfileCommand:)]) {
-        iTerm2Window *terminal = nil;
-        iTerm2Session  *session  = nil;
+        iTerm2Window *window = [iTerm createWindowWithDefaultProfileCommand:nil];
+        iTerm2Session *session = [window currentSession];
         
-        if([iTerm isRunning]) {
-            [iTerm createWindowWithDefaultProfileCommand:nil];
+        int cnt = 0;
+        while ([[session text] length] == 0) {
+            if ( cnt++ > 100 ) {
+                NSLog(@"timeout reached");
+                break;
+            }
+            NSLog(@"wait for prompt...");
+            [NSThread sleepForTimeInterval:0.01f];
         }
-        terminal = [iTerm valueForKey:@"currentWindow"];
-        session = [terminal valueForKey:@"currentSession"];
         
         // write text "cd ~/whatever"
         [session writeContentsOfFile:nil text:cdCommandString newline:true];
