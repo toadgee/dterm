@@ -36,10 +36,12 @@
 	return sharedPath;
 }
 
-+ (NSArray*)argumentsToRunCommand:(NSString*)command {
++ (NSArray <NSString *> *)argumentsToRunCommand:(NSString*)command {
 	NSString* shell = [[DTRunManager shellPath] lastPathComponent];
 	if([shell isEqualToString:@"bash"] || [shell isEqualToString:@"sh"])
 		return @[@"-l", @"-i", @"-c", command];
+	else if ([shell isEqualToString:@"fish"])
+		return @[@"-l", @"-i", @"-C", command];
 	else
 		return @[@"-i", @"-c", command];
 }
